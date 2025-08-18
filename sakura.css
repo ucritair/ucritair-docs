@@ -241,3 +241,34 @@ label, legend, fieldset {
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
+
+/* CUSTOM */
+
+.image_row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.image_column {
+	padding: 5px;
+	flex-direction: column;
+}
+
+.table_thumbnail {
+	display: block;
+	width: 100%;
+
+	image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	image-rendering: optimize-contrast;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+.table_text {
+	text-align: left;
+	text-wrap: wrap;
+}
