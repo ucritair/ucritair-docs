@@ -12,18 +12,56 @@
 		</div>
 		<br>
 		<img src="/images/hardware.webp" style="display: block; margin: auto; height: 75.0vh;">
-		<h2 id="power-on">Power-On</h2>
-		<p>The uCritAir ships in a protected power-off mode, to prevent draining the battery before it arrives. To turn it on for the first time, simply press the reset button with a small object such as a paperclip, and wait a moment.</p>
-		<h2 id="displays">Displays</h2>
-		<h3 id="e-ink">E-Ink</h3>
-		<p>The uCritAir's topmost display is a non-interacive e-ink display which is used to communicate device status, air quality, gameplay metrics, and more. The e-ink display can be manually updated from the system menu.</p>
-		<p>When the device is flipped upside-down, the e-ink display will flip its orientation to match.</p>
-		<h3 id="lcd">LCD</h3>
-		<p>The main display is a touchscreen LCD which is constantly updated in real time. It is where the action happens. All air quality and gameplay features are controlled through interfaces that appear on the LCD.</p>
+		<h1 id="top-to-bottom">Top-to-Bottom</h1>
+		<h2 id="e-ink display">E-Ink Display</h2>
+		<div data-text_block="True">
+			The e-ink display is used to communicate device status, air quality conditions, and pet information.
+			Intervals between e-ink updates are relatively long, as updating the e-ink necessarily halts other device functions.
+			The e-ink display is non-interactive
+		</div>
+		<h2 id="lcd display">LCD Display</h2>
+		<div data-text_block="True">
+			The LCD display is the device's primary display.
+			It updates many times per second and is used for all real-time gameplay.
+			The LCD display supports touch input, but with relatively low precision.
+			Some but not all gameplay takes advantage of touch support. There is typically a non-touch way to perform any action that can be performed with touches.
+		</div>
+		<h3 id="display orientation and the imu">Display Orientation and the IMU</h3>
+		<div data-text_block="True">
+			The device has an on-board IMU for detecting orientation.
+			When the device's orientation is determined to be right-side-up or upside-down, the LCD and E-Ink are reoriented to match.
+			Device input logic is also reoriented to match the display.
+		</div>
+		<h2 id="reset button">Reset Button</h2>
+		<div data-text_block="True">
+			The device's reset button is situated at the back of a small aperture above the D-pad.
+			Pressing the reset button resets critical device state and prompts the device to restart itself.
+			As such, it is essential for recovering from crashes and other issues which may interfere with device logic.
+			More commonly, it is useful for waking from low-power sleep and DFU mode.
+		</div>
 		<h2 id="face buttons">Face Buttons</h2>
-		<p>The D-pad, A/B buttons, and start/select buttons are used to control the uCritAir's software in a manner that will be familiar to anyone who has used a gamepad. That is, in general: D-pad is for navigation, A/B are for confirm and cancel respectively, start is for entering or exiting some overarching context, and select is for changing modes within a context.</p>
+		<div data-text_block="True">
+			The device sports 4 face buttons: Start, Select, A, and B.
+			These buttons roughly adhere to their expected functions within video games.
+			Start and select are used for various modifications of the game context with select being more or less auxiliary to start.
+			A is used for positive action or confirmation, and B for retreat or cancellation.
+		</div>
+		<h2 id="d-pad">D-Pad</h2>
+		<div data-text_block="True">
+			The D-pad is the main set of inputs for in-game navigation.
+			As such, most navigation is 4-directional.
+		</div>
 		<h2 id="usb-c port">USB-C Port</h2>
-		<p>Connecting the μCritAir to a power source via the USB-C port will refill its battery.</p>
-		<p>New builds of the system software are flashed to the μCritAir over the USB-C port.</p>
+		<div data-text_block="True">
+			Connecting the uCritAir to a power source via the USB-C port will refill its battery.
+			New builds of the system software are flashed to the uCritAir over the USB-C port.
+		</div>
+		<h2 id="some special input combinations">Some Special Input Combinations</h2>
+		<div data-text_block="True">
+			Select + Start + Down while system is asleep: enter DFU mode.
+			<br>
+			Select + Start + Up: open debug menu.
+			<br>
+		</div>
 	</body>
 </html>
