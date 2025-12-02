@@ -1,1 +1,0 @@
-# ucritair-docs
