@@ -12,64 +12,64 @@
 			</a>
 		</div>
 		<br>
-		<div class="image_row">
-			<div class="image_column">
-				<img src="/images/case.png" style="height: 35vh" />
+		<div class="gallery_row">
+			<div class="gallery_column">
+				<img src="/images/case.png" class="gallery_image" style="height:50.0vh;border:none;" />
 			</div>
-			<div class="image_column">
-				<img src="/images/hardware.webp" style="height: 35vh" />
+			<div class="gallery_column">
+				<img src="/images/hardware.webp" class="gallery_image" style="height:50.0vh;border:none;" />
 			</div>
 		</div>
 		<h1 id="top-to-bottom">Top-to-Bottom</h1>
-		<h2 id="e-ink display">E-Ink Display</h2>
-		<div data-text_block="True">
-			The e-ink display is used to communicate device status, air quality conditions, and pet information.
-			Intervals between e-ink updates are relatively long, as updating the e-ink necessarily halts other device functions.
-			The e-ink display is non-interactive
-		</div>
+		<h2 id="e-paper display">E-Paper Display</h2>
+		<p data-text_block="True">
+			The e-paper display is used to communicate device status, air quality conditions, and pet information.
+			Intervals between e-paper updates are relatively long, as updating the e-paper necessarily halts other device functions.
+			The e-paper display is non-interactive
+		</p>
 		<h2 id="lcd display">LCD Display</h2>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			The LCD display is the device's primary display.
 			It updates many times per second and is used for all real-time gameplay.
 			The LCD display supports touch input, but with relatively low precision.
 			Some but not all gameplay takes advantage of touch support. There is typically a non-touch way to perform any action that can be performed with touches.
-		</div>
+		</p>
 		<h3 id="display orientation and the imu">Display Orientation and the IMU</h3>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			The device has an on-board IMU for detecting orientation.
-			When the device's orientation is determined to be right-side-up or upside-down, the LCD and E-Ink are reoriented to match.
+			When the device's orientation is determined to be right-side-up or upside-down, the LCD and E-Paper are reoriented to match.
 			Device input logic is also reoriented to match the display.
-		</div>
+		</p>
 		<h2 id="reset button">Reset Button</h2>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			The device's reset button is situated at the back of a small aperture above the D-pad.
 			Pressing the reset button resets critical device state and prompts the device to restart itself.
 			As such, it is essential for recovering from crashes and other issues which may interfere with device logic.
 			More commonly, it is useful for waking from low-power sleep and DFU mode.
-		</div>
+		</p>
 		<h2 id="face buttons">Face Buttons</h2>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			The device sports 4 face buttons: Start, Select, A, and B.
 			These buttons roughly adhere to their expected functions within video games.
 			Start and select are used for various modifications of the game context with select being more or less auxiliary to start.
 			A is used for positive action or confirmation, and B for retreat or cancellation.
-		</div>
+		</p>
 		<h2 id="d-pad">D-Pad</h2>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			The D-pad is the main set of inputs for in-game navigation.
 			As such, most navigation is 4-directional.
-		</div>
+		</p>
 		<h2 id="usb-c port">USB-C Port</h2>
-		<div data-text_block="True">
-			Connecting the uCritAir to a power source via the USB-C port will refill its battery.
-			New builds of the system software are flashed to the uCritAir over the USB-C port.
-		</div>
+		<p data-text_block="True">
+			Connecting the μCritAir to a power source via the USB-C port will refill its battery.
+			New builds of the system software are flashed to the μCritAir over the USB-C port.
+		</p>
 		<h2 id="some special input combinations">Some Special Input Combinations</h2>
-		<div data-text_block="True">
+		<p data-text_block="True">
 			Select + Start + Down while system is asleep: enter DFU mode.
 			<br>
 			Select + Start + Up: open debug menu.
 			<br>
-		</div>
+		</p>
 	</body>
 </html>
