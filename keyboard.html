@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typing and the keyboard · CAT manual</title>
+<meta name="description" content="The on-screen keyboard: layouts, button and touch controls, autocorrect, learned words and USB keyboards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html" aria-current="page">Typing</a>
+<ul class="toc"><li><a href="#layout">The layout</a></li><li><a href="#controls">Controls</a></li><li><a href="#autocorrect">Autocorrect</a></li><li><a href="#usb-keyboard">Typing on a USB keyboard</a></li></ul>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Typing and the keyboard</h1>
+<p class="lede">The full-screen keyboard opens whenever CAT needs text: messages, names, addresses, Wi-Fi passwords and hub settings.</p>
+
+<h2 id="layout">The layout<a class="anchor" href="#layout" aria-label="Link to this section">#</a></h2>
+<p>The title bar shows what you are typing (for example <span class="screen-text">To Mono</span> or <span class="screen-text">WiFi password</span>), a counter such as <span class="screen-text">26/159</span> that turns red when full, and an <span class="screen-text">X</span> to cancel. Below are two lines of text and four rows of keys. The bottom row holds the page key, comma, space, full stop and the accept key, whose label says what accepting does: <span class="screen-text">SEND</span>, <span class="screen-text">SAVE</span>, <span class="screen-text">NEXT</span> or <span class="screen-text">DONE</span>.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Lower case. The page key says ABC."><img src="assets/screens/keyboard_compose.png" width="640" height="480" loading="lazy" alt="Lower case. The page key says ABC."></button><figcaption>Lower case. The page key says ABC.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ABC once: the next letter is a capital. The key now says 123."><img src="assets/screens/keyboard_caps.png" width="640" height="480" loading="lazy" alt="ABC once: the next letter is a capital. The key now says 123."></button><figcaption>ABC once: the next letter is a capital. The key now says 123.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 123: digits and punctuation. #+= opens more symbols."><img src="assets/screens/keyboard_symbols.png" width="640" height="480" loading="lazy" alt="123: digits and punctuation. #+= opens more symbols."></button><figcaption>123: digits and punctuation. #+= opens more symbols.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The second symbol page. abc returns to letters."><img src="assets/screens/keyboard_symbols2.png" width="640" height="480" loading="lazy" alt="The second symbol page. abc returns to letters."></button><figcaption>The second symbol page. abc returns to letters.</figcaption></figure>
+</div>
+
+<h2 id="controls">Controls<a class="anchor" href="#controls" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Do this</th><th>Touch</th><th>Buttons</th></tr></thead>
+<tbody>
+<tr><td>Type a key</td><td>Tap it (keys act as soon as you touch)</td><td>Move the red box with the D-pad, press <kbd class="k round" title="A button">A</kbd></td></tr>
+<tr><td>Delete</td><td>DEL (hold to repeat)</td><td>Select DEL, press <kbd class="k round" title="A button">A</kbd></td></tr>
+<tr><td>Change page</td><td>ABC / 123 / abc</td><td><kbd class="k pill" title="SELECT button">SELECT</kbd></td></tr>
+<tr><td>Move the cursor</td><td>Tap in the text</td><td><kbd class="k " title="D-pad up">▲</kbd> from the top row enters the text; <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> move; <kbd class="k " title="D-pad down">▼</kbd> returns to the keys</td></tr>
+<tr><td>Accept</td><td>The accept key</td><td><kbd class="k pill" title="START button">START</kbd></td></tr>
+<tr><td>Cancel</td><td>The X</td><td><kbd class="k round" title="B button">B</kbd></td></tr>
+</tbody>
+</table></div>
+
+<h2 id="autocorrect">Autocorrect<a class="anchor" href="#autocorrect" aria-label="Link to this section">#</a></h2>
+<p>When you finish a word (with a space, punctuation or accept), CAT checks it against a dictionary of about 20,000 words. A word it doesn't know is replaced with the closest match, preferring slips to neighbouring keys and common words. The corrected word gets a thin red underline, and the title shows <span class="screen-text">was: teh</span> with what you typed.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: An automatic correction."><img src="assets/screens/keyboard_autocorrect.png" width="640" height="480" loading="lazy" alt="An automatic correction."></button><figcaption>An automatic correction.</figcaption></figure>
+<ul>
+<li><b>Undo a correction:</b> delete the corrected word and type your original again. CAT keeps it and <b>learns</b> it, so it won't correct that word again.</li>
+<li><b>Left alone:</b> words with digits, anything after @, # or /, acronyms in capitals, and words longer than 16 letters.</li>
+<li>A capital first letter is kept.</li>
+<li>When you press SEND or SAVE, only a clear single-slip mistake in the last word is fixed.</li>
+<li>Autocorrect is off for addresses, names, Wi-Fi details and hub settings.</li>
+</ul>
+<h3 id="learned-words">Learned words<a class="anchor" href="#learned-words" aria-label="Link to this section">#</a></h3>
+<p>Settings &rarr; SETTINGS &rarr; KEYBOARD shows how many words CAT has learned and lists the first few. <span class="screen-text">FORGET LEARNED WORDS</span> asks <span class="screen-text">Forget N learned word(s)?</span> and clears them. CAT remembers up to 48 words.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The KEYBOARD page."><img src="assets/screens/settings_keyboard.png" width="640" height="480" loading="lazy" alt="The KEYBOARD page."></button><figcaption>The KEYBOARD page.</figcaption></figure>
+
+<h2 id="usb-keyboard">Typing on a USB keyboard<a class="anchor" href="#usb-keyboard" aria-label="Link to this section">#</a></h2>
+<p>On v0.35 boards you can plug a USB keyboard into the USB-C port (see <a href="extras.html#usb">USB keyboard and mouse</a>). While the on-screen keyboard is open, letters, digits and punctuation type directly (Shift works), <kbd class="k pc">Backspace</kbd> deletes, <kbd class="k pc">Enter</kbd> accepts and <kbd class="k pc">Esc</kbd> cancels. Keys repeat after 400 ms. Elsewhere, the keyboard stands in for the buttons:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Computer key</th><th>CAT button</th></tr></thead>
+<tbody>
+<tr><td><kbd class="k pc">Esc</kbd></td><td><kbd class="k pill" title="START button">START</kbd></td></tr>
+<tr><td><kbd class="k pc">Tab</kbd></td><td><kbd class="k pill" title="SELECT button">SELECT</kbd></td></tr>
+<tr><td><kbd class="k pc">P</kbd></td><td><kbd class="k round" title="A button">A</kbd></td></tr>
+<tr><td><kbd class="k pc">L</kbd></td><td><kbd class="k round" title="B button">B</kbd></td></tr>
+<tr><td><kbd class="k pc">W</kbd> <kbd class="k pc">A</kbd> <kbd class="k pc">S</kbd> <kbd class="k pc">D</kbd> or the arrow keys</td><td>D-pad</td></tr>
+</tbody>
+</table></div>
+<p>The desktop simulator uses the same key map, with the mouse as a finger.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="chat.html"><small>Previous</small>Chat</a><a class="next" href="mesh.html"><small>Next</small>Mesh and Wi-Fi</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

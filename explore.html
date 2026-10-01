@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore: the adventure · CAT manual</title>
+<meta name="description" content="The Explore adventure: controls, the intro cave, the Headlands, inventory, the radio and ID card, combat, characters, items and the breaking-licence quest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html" aria-current="page">Explore</a>
+<ul class="toc"><li><a href="#controls">Controls</a></li><li><a href="#start">Starting out: Nowhere</a></li><li><a href="#overlay">The pause overlay</a></li><li><a href="#inventory">Inventory</a></li><li><a href="#headlands">The Headlands</a></li><li><a href="#combat">Combat, health and dying</a></li><li><a href="#gathering">Gathering and crafting</a></li><li><a href="#saving">Saving your progress</a></li><li><a href="#spoilers">Spoilers: the quest, characters and items</a></li></ul>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Explore: the adventure</h1>
+<p class="lede">You are a small yellow bird blown onto an island town. Explore is a short top-down adventure with conversations, collecting, a quest and sword fights.</p>
+<div class="callout"><strong>Spoilers</strong>The quest walkthrough and the character notes are folded away further down. Everything above them is safe to read.</div>
+
+<h2 id="controls">Controls<a class="anchor" href="#controls" aria-label="Link to this section">#</a></h2>
+<p>Explore uses buttons only; touch does nothing here.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Button</th><th>In the world</th><th>In a conversation or menu</th></tr></thead>
+<tbody>
+<tr><td>D-pad</td><td>Walk. The last direction you pressed wins.</td><td><kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> choose a reply or a menu item</td></tr>
+<tr><td><kbd class="k round" title="A button">A</kbd></td><td>Talk, pick up, open, use a door, or use a workbench, whenever the red <b>A</b> bubble is showing. With nothing in front of you, swing your sword.</td><td>Next line, confirm</td></tr>
+<tr><td><kbd class="k round" title="B button">B</kbd> (hold)</td><td>Ping the map: shows door markers, enemies with health bars, and the name of the area.</td><td>Close the conversation or go back</td></tr>
+<tr><td><kbd class="k pill" title="START button">START</kbd></td><td>Open the pause overlay</td><td>Close the overlay</td></tr>
+</tbody>
+</table></div>
+<p>The world is frozen while a conversation, notice, menu or the overlay is open.</p>
+
+<h2 id="start">Starting out: Nowhere<a class="anchor" href="#start" aria-label="Link to this section">#</a></h2>
+<p>Open the third tile on the home screen. The first time, before you have found the radio, the story begins in a cave called Nowhere. Four title cards set the scene: the season, the time of day, how warm the air is, and <span class="screen-text">THE WIND CARRIES YOU</span>. The season and time of day come from your CAT's clock.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Explore is the house tile."><img src="assets/screens/home_explore.png" width="640" height="480" loading="lazy" alt="Explore is the house tile."></button><figcaption>Explore is the house tile.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The season..."><img src="assets/screens/explore_intro_1.png" width="640" height="480" loading="lazy" alt="The season..."></button><figcaption>The season...</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ...the time of day..."><img src="assets/screens/explore_intro_2.png" width="640" height="480" loading="lazy" alt="...the time of day..."></button><figcaption>...the time of day...</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ...and the air temperature."><img src="assets/screens/explore_intro_3.png" width="640" height="480" loading="lazy" alt="...and the air temperature."></button><figcaption>...and the air temperature.</figcaption></figure>
+</div>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The cave. The wolf waits above you and the radio lies below."><img src="assets/screens/explore_cave.png" width="640" height="480" loading="lazy" alt="The cave. The wolf waits above you and the radio lies below."></button><figcaption>The cave. The wolf waits above you and the radio lies below.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Walk up to the wolf. The red A bubble means A will talk."><img src="assets/screens/explore_prompt.png" width="640" height="480" loading="lazy" alt="Walk up to the wolf. The red A bubble means A will talk."></button><figcaption>Walk up to the wolf. The red A bubble means <kbd class="k round" title="A button">A</kbd> will talk.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Conversations show the speaker&#x27;s portrait. A advances."><img src="assets/screens/explore_dialogue_1.png" width="640" height="480" loading="lazy" alt="Conversations show the speaker&#x27;s portrait. A advances."></button><figcaption>Conversations show the speaker's portrait. <kbd class="k round" title="A button">A</kbd> advances.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: At a choice, pick a reply with ▲ ▼ and press A."><img src="assets/screens/explore_dialogue_choice.png" width="640" height="480" loading="lazy" alt="At a choice, pick a reply with ▲ ▼ and press A."></button><figcaption>At a choice, pick a reply with <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> and press <kbd class="k round" title="A button">A</kbd>.</figcaption></figure>
+</div>
+<p>Walk down to the radio and press <kbd class="k round" title="A button">A</kbd> to take it. A notice shows each new item's name and description; dismiss it with <kbd class="k round" title="A button">A</kbd> or <kbd class="k round" title="B button">B</kbd>. Then walk onto the door at the bottom of the cave and press <kbd class="k round" title="A button">A</kbd> to leave.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Standing over the radio."><img src="assets/screens/explore_radio_prompt.png" width="640" height="480" loading="lazy" alt="Standing over the radio."></button><figcaption>Standing over the radio.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: An item notice."><img src="assets/screens/explore_item_get.png" width="640" height="480" loading="lazy" alt="An item notice."></button><figcaption>An item notice.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The way out."><img src="assets/screens/explore_door_prompt.png" width="640" height="480" loading="lazy" alt="The way out."></button><figcaption>The way out.</figcaption></figure>
+</div>
+<div class="callout"><strong>A display glitch in the cave</strong>The hint at the bottom of the cave is meant to read "START TO OPEN OVERLAY" with a START button picture. In this firmware it shows the raw codes <span class="screen-text">\xD\xE\xF\x10\x14</span> instead and runs off the edge of the screen.</div>
+<p>Once you own the radio, Explore always starts in the Headlands. If you leave Explore and come back without restarting CAT, you continue where you were.</p>
+
+<h2 id="overlay">The pause overlay<a class="anchor" href="#overlay" aria-label="Link to this section">#</a></h2>
+<p>Press <kbd class="k pill" title="START button">START</kbd> anywhere in the world. A clock in the corner shows your local time and date. On the right is a column of icons: move with <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> and press <kbd class="k round" title="A button">A</kbd>. <kbd class="k pill" title="START button">START</kbd> or <kbd class="k round" title="B button">B</kbd> closes it.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Icon</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Home</td><td>Asks <span class="screen-text">Return to the main menu?</span> and goes back to the home screen.</td></tr>
+<tr><td>Inventory</td><td>Opens your bag (highlighted when the overlay opens).</td></tr>
+<tr><td>Logbook</td><td>Not used yet; nothing happens.</td></tr>
+<tr><td>Two empty slots</td><td>Reserved; nothing happens.</td></tr>
+</tbody>
+</table></div>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The overlay, opened on Inventory."><img src="assets/screens/explore_overlay.png" width="640" height="480" loading="lazy" alt="The overlay, opened on Inventory."></button><figcaption>The overlay, opened on Inventory.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Logbook."><img src="assets/screens/explore_overlay_logbook.png" width="640" height="480" loading="lazy" alt="Logbook."></button><figcaption>Logbook.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Home."><img src="assets/screens/explore_overlay_home.png" width="640" height="480" loading="lazy" alt="Home."></button><figcaption>Home.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Leaving Explore."><img src="assets/screens/explore_home_confirm.png" width="640" height="480" loading="lazy" alt="Leaving Explore."></button><figcaption>Leaving Explore.</figcaption></figure>
+</div>
+
+<h2 id="inventory">Inventory<a class="anchor" href="#inventory" aria-label="Link to this section">#</a></h2>
+<p>Six items per page, in two columns, with the highlighted item's name, description and count on the right. Use the D-pad to move between items; pages turn automatically. Press <kbd class="k " title="D-pad up">▲</kbd> on the top row to reach the row of dots at the top (they are tabs, but only the first one lists items in this version).</p>
+<ul>
+<li><kbd class="k round" title="A button">A</kbd> on an item that can be used shows its actions. Choose one, then confirm with <span class="screen-text">Yes</span>. Most items have no action; <kbd class="k round" title="A button">A</kbd> does nothing for them.</li>
+<li><kbd class="k round" title="B button">B</kbd> backs out of the action list, or asks <span class="screen-text">Exit?</span> to close the inventory.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The ID Card and the Radio."><img src="assets/screens/explore_inventory.png" width="640" height="480" loading="lazy" alt="The ID Card and the Radio."></button><figcaption>The ID Card and the Radio.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The Radio&#x27;s description."><img src="assets/screens/explore_inventory_radio.png" width="640" height="480" loading="lazy" alt="The Radio&#x27;s description."></button><figcaption>The Radio's description.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The Radio&#x27;s three actions."><img src="assets/screens/explore_radio_actions.png" width="640" height="480" loading="lazy" alt="The Radio&#x27;s three actions."></button><figcaption>The Radio's three actions.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Every action asks to confirm."><img src="assets/screens/explore_confirm.png" width="640" height="480" loading="lazy" alt="Every action asks to confirm."></button><figcaption>Every action asks to confirm.</figcaption></figure>
+</div>
+
+<h3 id="id-card">The ID Card<a class="anchor" href="#id-card" aria-label="Link to this section">#</a></h3>
+<p>You are given an ID Card when your story starts. Choose <span class="screen-text">INSPECT</span> to see it: your device name, the date you started, and your device's serial number. A stamp is added when you earn the breaking licence. Press <kbd class="k round" title="B button">B</kbd> to put it away.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The ID Card&#x27;s one action."><img src="assets/screens/explore_id_inspect.png" width="640" height="480" loading="lazy" alt="The ID Card&#x27;s one action."></button><figcaption>The ID Card's one action.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Your card."><img src="assets/screens/explore_id_card.png" width="640" height="480" loading="lazy" alt="Your card."></button><figcaption>Your card.</figcaption></figure>
+</div>
+
+<h3 id="radio">The Radio<a class="anchor" href="#radio" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Action</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">TOGGLE SCAN</span></td><td>Turns scanning on or off (<span class="screen-text">Started scanning</span> / <span class="screen-text">Stopped scanning</span>). While on, radio towers send out expanding rings you can follow.</td></tr>
+<tr><td><span class="screen-text">LISTEN NEAR</span></td><td>Near a tower that is transmitting, plays its message. Otherwise <span class="screen-text">No transmissions...</span></td></tr>
+<tr><td><span class="screen-text">LISTEN FAR</span></td><td>Meant to pick up real messages from the mesh. Not connected yet in this firmware: it always says <span class="screen-text">No transmissions...</span></td></tr>
+</tbody>
+</table></div>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Scanning on."><img src="assets/screens/explore_scan.png" width="640" height="480" loading="lazy" alt="Scanning on."></button><figcaption>Scanning on.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: LISTEN FAR in this version."><img src="assets/screens/explore_no_transmissions.png" width="640" height="480" loading="lazy" alt="LISTEN FAR in this version."></button><figcaption>LISTEN FAR in this version.</figcaption></figure>
+</div>
+
+<h2 id="headlands">The Headlands<a class="anchor" href="#headlands" aria-label="Link to this section">#</a></h2>
+<p>The island town: paths, terraces, a railway viaduct, a community garden, a radio tower by the sea, and houses you can enter. Hold <kbd class="k round" title="B button">B</kbd> to ping the map: white rings mark doors, and the area name appears in the corner.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Arriving in the Headlands. The grey arcs are radio-tower rings (scanning is on)."><img src="assets/screens/explore_headlands_arrive.png" width="640" height="480" loading="lazy" alt="Arriving in the Headlands. The grey arcs are radio-tower rings (scanning is on)."></button><figcaption>Arriving in the Headlands. The grey arcs are radio-tower rings (scanning is on).</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Holding B: door markers and the area name."><img src="assets/screens/explore_ping_hud.png" width="640" height="480" loading="lazy" alt="Holding B: door markers and the area name."></button><figcaption>Holding <kbd class="k round" title="B button">B</kbd>: door markers and the area name.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: An islander. Face them and press A."><img src="assets/screens/explore_npc_prompt.png" width="640" height="480" loading="lazy" alt="An islander. Face them and press A."></button><figcaption>An islander. Face them and press <kbd class="k round" title="A button">A</kbd>.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Most islanders have several things to say. Talk again for something new."><img src="assets/screens/explore_npc_dialogue.png" width="640" height="480" loading="lazy" alt="Most islanders have several things to say. Talk again for something new."></button><figcaption>Most islanders have several things to say. Talk again for something new.</figcaption></figure>
+</div>
+<p>Places you can visit: <b>Nowhere</b> (the cave), <b>the Headlands</b>, the <b>Community Center</b>, <b>Reed's House</b>, the <b>Long House</b>, the <b>Flower House</b>, <b>Mono's House</b> and <b>Salt and Pepper's House</b>. Some other buildings, like the station and the arcade, are scenery.</p>
+
+<h2 id="combat">Combat, health and dying<a class="anchor" href="#combat" aria-label="Link to this section">#</a></h2>
+<p>Your health is the small bar over your head (100 points). Your sword does 35 damage, so most enemies take three hits. There is no way to heal except by dying.</p>
+<ul>
+<li><b>Phantoms</b> only appear when you disturb a <b>miasma ball</b>, an ominous orb marked with red diamonds. Press <kbd class="k round" title="A button">A</kbd> next to one and two to four phantoms rise around it.</li>
+<li>Each phantom hit costs you 10 health, flashes you, and gives you a second of safety.</li>
+<li><b>Parry:</b> strike a phantom just as it winds up. Its attack is cancelled, it is knocked back further, and you get a yellow spark.</li>
+<li>When every phantom is gone, press <kbd class="k round" title="A button">A</kbd> on the ball to collect a dose of <b>Miasma</b>.</li>
+<li>Hold <kbd class="k round" title="B button">B</kbd> during a fight to see each phantom's health.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A miasma ball on the path (red diamonds)."><img src="assets/screens/explore_miasma_ball.png" width="640" height="480" loading="lazy" alt="A miasma ball on the path (red diamonds)."></button><figcaption>A miasma ball on the path (red diamonds).</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Standing next to it."><img src="assets/screens/explore_miasma_prompt.png" width="640" height="480" loading="lazy" alt="Standing next to it."></button><figcaption>Standing next to it.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Phantoms rise."><img src="assets/screens/explore_phantoms.png" width="640" height="480" loading="lazy" alt="Phantoms rise."></button><figcaption>Phantoms rise.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A fight."><img src="assets/screens/explore_combat.png" width="640" height="480" loading="lazy" alt="A fight."></button><figcaption>A fight.</figcaption></figure>
+</div>
+<p>If your health reaches zero you fade away and see <span class="screen-text">DEATH</span>, then <span class="screen-text">BUT NOT THE END</span> (press <kbd class="k round" title="A button">A</kbd> to continue). You come back with full health where you last entered the area. You keep everything you were carrying.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Holding B in a fight."><img src="assets/screens/explore_combat_ping.png" width="640" height="480" loading="lazy" alt="Holding B in a fight."></button><figcaption>Holding <kbd class="k round" title="B button">B</kbd> in a fight.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Death..."><img src="assets/screens/explore_death_1.png" width="640" height="480" loading="lazy" alt="Death..."></button><figcaption>Death...</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ...but not the end."><img src="assets/screens/explore_death_2.png" width="640" height="480" loading="lazy" alt="...but not the end."></button><figcaption>...but not the end.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Back where you arrived."><img src="assets/screens/explore_respawn.png" width="640" height="480" loading="lazy" alt="Back where you arrived."></button><figcaption>Back where you arrived.</figcaption></figure>
+</div>
+
+<h2 id="gathering">Gathering and crafting<a class="anchor" href="#gathering" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><b>Fiber</b> (pale tufts): press <kbd class="k round" title="A button">A</kbd> to pick it up.</li>
+<li><b>Wood</b> (one sword hit) and <b>Stone</b> (four hits) can only be broken once you hold the breaking licence. Until then you get <span class="screen-text">You lack the ability to break this</span>.</li>
+<li><b>Chests</b> open once. A log in the Long House gives a Key.</li>
+</ul>
+<h3 id="crafting">Crafting at a workbench<a class="anchor" href="#crafting" aria-label="Link to this section">#</a></h3>
+<p>The Community Center has a workbench. Face it and press <kbd class="k round" title="A button">A</kbd> to open a 3&times;3 crafting grid with an output box on the right and a close box at the top left. (This screen is described from the firmware, not captured.)</p>
+<ul>
+<li>Move the cursor with the D-pad. <kbd class="k " title="D-pad right">▶</kbd> from the right-hand column moves to the output box; <kbd class="k " title="D-pad up">▲</kbd> from the top row moves to the close box.</li>
+<li><kbd class="k round" title="A button">A</kbd> on a grid cell opens your inventory to pick an ingredient. Nothing is used up until you craft.</li>
+<li><kbd class="k round" title="B button">B</kbd> on a filled cell clears it; on an empty cell it jumps to the close box. Holding <kbd class="k round" title="B button">B</kbd> for 1.5 seconds closes the workbench.</li>
+<li>When the grid matches a recipe, the result appears in the output box. Press <kbd class="k round" title="A button">A</kbd> there to craft it.</li>
+</ul>
+<p>There is one recipe in this version: a circle, a square and a triangle, in any arrangement, make a <b>Geometric Talisman</b>. The three shapes can't be found in the current world yet.</p>
+
+<h2 id="saving">Saving your progress<a class="anchor" href="#saving" aria-label="Link to this section">#</a></h2>
+<p>Your items, health and story flags are saved only when CAT saves (see <a href="getting-started.html#saving">how saving works</a>). If CAT loses power, progress since the last sleep or FORCE SAVE is lost. To start the story over, use Settings &rarr; DEVELOPER &rarr; CONTROLS &rarr; CLEAR GAME SAVE (this restarts CAT straight away).</p>
+
+<h2 id="spoilers">Spoilers: the quest, characters and items<a class="anchor" href="#spoilers" aria-label="Link to this section">#</a></h2>
+<details>
+<summary>The breaking licence (quest walkthrough)</summary>
+<div class="body">
+<ol>
+<li>In Nowhere, talk to the wolf and take the radio. She asks you to find her at the Community Center.</li>
+<li>In the Community Center, the wolf explains that rocks and logs block the Headlands and that you need a <b>breaking licence</b>. She sends you to her brother.</li>
+<li>Her brother, the licensing clerk, wants <b>5 bundles of fiber and 2 doses of miasma</b>. Ask him "Fiber?" or "Miasma?" for hints.</li>
+<li>Collect 5 Fiber from the tufts around the Headlands. Disturb a miasma ball, defeat the phantoms and take the Miasma. There are two balls.</li>
+<li>Return and choose <span class="screen-text">[Relinquish]</span>. He stamps your ID Card. From now on your sword breaks wood and stone.</li>
+</ol>
+<p>Quirk in this version: the clerk offers the trade once you carry one dose of miasma, but takes two.</p>
+<p>The radio tower by Salt and Pepper's house broadcasts a locker code when you use LISTEN NEAR within range of it. You write it down as the <b>Locker Code</b> item. Nothing uses it yet.</p>
+</div>
+</details>
+<details>
+<summary>Characters</summary>
+<div class="body">
+<ul>
+<li><b>The wolf</b> greets you in Nowhere and later waits in the Community Center. She is curious about where you both came from.</li>
+<li><b>Her brother</b>, also in the Community Center, handles licensing and little else.</li>
+<li><b>Reed</b>, in Reed's House, is an inspector who mostly stares and takes notes.</li>
+<li><b>Mono</b> stands outside, west of the town. His shop isn't open yet and he has lost about 200 rocks.</li>
+<li><b>Cube, Pyramid and Sphere</b> are Mono's siblings: a fussy jeweller, a newcomer worried about rent, and a reader of a suspicious novel.</li>
+<li><b>Salt</b> ("YO! BIRD!") and her brother <b>Pepper</b> are loud, and asking about couriers and radios.</li>
+<li><b>Willworm</b> and <b>Justright</b> share the Long House and argue about feathers and coffee.</li>
+<li><b>Instandhalter</b>, in the Flower House, suspects you broke something.</li>
+<li><b>The bush bear</b> speaks in capitals and feels a "number-wind" from the east.</li>
+<li>Crabs wander the lower paths. They are harmless.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>All items</summary>
+<div class="body">
+<div class="table-wrap"><table>
+<thead><tr><th>Item</th><th>Description on screen</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>ID Card</td><td>Your identification. It is the mark of your belonging here.</td><td>Given at the start. INSPECT.</td></tr>
+<tr><td>Radio</td><td>A sturdy radio. Its metal faces are reassuring.</td><td>Found in Nowhere. TOGGLE SCAN, LISTEN NEAR, LISTEN FAR.</td></tr>
+<tr><td>Locker Code</td><td>0314</td><td>From the radio tower.</td></tr>
+<tr><td>Key</td><td>A rather nondescript key. What lock awaits it?</td><td>From the log in the Long House. No lock uses it yet.</td></tr>
+<tr><td>Fiber</td><td>A bundle of hardy fibers.</td><td>Pale tufts. Licence ingredient.</td></tr>
+<tr><td>Miasma</td><td>It seeks to kill you from within.</td><td>From miasma balls after the phantoms. Licence ingredient.</td></tr>
+<tr><td>Wood</td><td>A short length of dense lumber. It makes a beautiful sound when you tap it.</td><td>Needs the licence.</td></tr>
+<tr><td>Stone</td><td>A lump of hard grey stone.</td><td>Needs the licence.</td></tr>
+<tr><td>Geometric Talisman</td><td>&ndash;</td><td>Crafted from circle, square and triangle.</td></tr>
+</tbody>
+</table></div>
+<p>Defined but not yet found anywhere in the world: Coins, Leaf (meant as money), Train Ticket, Very Small Hat, the circle, square and triangle shapes, Coffee, Latest Volume, Aether, Ceramic, Charcoal, Clay, Cloth, Glass, Ink, Leather, Oil, Paper, Salt, Sand, Seeds, Sugar, Time and Water. None of the items can be eaten or used up; only the ID Card and the Radio have actions.</p>
+</div>
+</details>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="garden.html"><small>Previous</small>Garden</a><a class="next" href="chat.html"><small>Next</small>Chat</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

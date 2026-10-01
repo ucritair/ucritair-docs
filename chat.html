@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat: messages and doodles · CAT manual</title>
+<meta name="description" content="The Chat app: contacts, nearby CATs and message requests, sending messages, delivery ticks, doodles, announcing and sharing your address.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html" aria-current="page">Chat</a>
+<ul class="toc"><li><a href="#overview">How Chat works</a></li><li><a href="#peers">The peer list</a></li><li><a href="#manage">Managing contacts and chats</a></li><li><a href="#conversation">A conversation</a></li><li><a href="#sending">Writing and sending</a></li><li><a href="#delivery">Delivery marks</a></li><li><a href="#reading">Reading long messages</a></li><li><a href="#doodles">Doodles</a></li><li><a href="#announce">Announcing yourself</a></li><li><a href="#my-address">Sharing your address</a></li><li><a href="#notifications">Notifications</a></li><li><a href="#limits">Limits and what&#x27;s not there yet</a></li></ul>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Chat: messages and doodles</h1>
+<p class="lede">Chat sends end-to-end encrypted messages and hand-drawn doodles to other CATs over LoRa radio, and to anyone on the Reticulum network when your CAT is online.</p>
+
+<h2 id="overview">How Chat works<a class="anchor" href="#overview" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Messages use <b>LXMF</b>, the messaging format of the Reticulum network. You can talk to other CATs, and to people using LXMF apps such as Sideband and NomadNet.</li>
+<li>Every CAT has an <b>address</b>: 32 hexadecimal digits, such as <code>7f6f59534ee42c0a3513cb272f75633a</code>. People message you by address; your <a href="settings.html#device-name">device name</a> travels with it so they see who you are.</li>
+<li>Messages reach a nearby CAT directly over LoRa. Farther away, other CATs relay them, or a <a href="mesh.html#propagation">propagation node</a> holds them until your friend comes online. With <a href="mesh.html#wifi">Wi-Fi</a>, your CAT also connects to the internet-wide Reticulum network.</li>
+<li>Conversations are one-to-one. There are no group chats yet.</li>
+</ul>
+<div class="callout"><strong>About these screenshots</strong>The simulator invents a handful of contacts (night-tower, moth, salt, arcade and others) and messages so every screen can be shown. It also fails every fifth message on purpose, to show what a failure looks like.</div>
+
+<h2 id="peers">The peer list<a class="anchor" href="#peers" aria-label="Link to this section">#</a></h2>
+<p>Open the Chat tile (the radio) on the home screen. The top bar shows <span class="screen-text">CHAT</span>, the total unread count, <b>your own</b> name and the first 8 digits of your address, and the time. Comparing those 8 digits with a friend's screen is a quick way to check you have the right address.</p>
+<p>Three tabs sit under the bar. Switch with <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> or tap a tab.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Contacts: people you have saved. Unread first, then recent activity, then by name."><img src="assets/screens/chat_contacts.png" width="640" height="480" loading="lazy" alt="Contacts: people you have saved. Unread first, then recent activity, then by name."></button><figcaption>Contacts: people you have saved. Unread first, then recent activity, then by name.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Nearby: unsaved CATs heard directly over LoRa in the last half hour."><img src="assets/screens/chat_nearby.png" width="640" height="480" loading="lazy" alt="Nearby: unsaved CATs heard directly over LoRa in the last half hour."></button><figcaption>Nearby: unsaved CATs heard directly over LoRa in the last half hour.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Requests: conversations with addresses you haven&#x27;t saved, such as messages from strangers."><img src="assets/screens/chat_requests.png" width="640" height="480" loading="lazy" alt="Requests: conversations with addresses you haven&#x27;t saved, such as messages from strangers."></button><figcaption>Requests: conversations with addresses you haven't saved, such as messages from strangers.</figcaption></figure>
+</div>
+<p>Each row shows the name, the first 8 digits of the address, and either the number of messages or <span class="screen-text">saved</span> / <span class="screen-text">unsaved</span>. On the right, a black box counts unread messages. A small green dot means that CAT was heard announcing itself directly over LoRa since your CAT started. It doesn't promise the CAT is in range right now.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Control</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd>, or swipe up and down</td><td>Move through the list (six rows per page)</td></tr>
+<tr><td><kbd class="k round" title="A button">A</kbd> or tap a row</td><td>Open the conversation. On the Nearby tab: save the CAT as a contact.</td></tr>
+<tr><td><kbd class="k pill" title="START button">START</kbd></td><td>The Manage popup (below)</td></tr>
+<tr><td><kbd class="k pill" title="SELECT button">SELECT</kbd></td><td>Announce yourself now (see <a href="#announce">announcing</a>)</td></tr>
+<tr><td><kbd class="k round" title="B button">B</kbd></td><td>Back to the home screen</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="manage">Managing contacts and chats<a class="anchor" href="#manage" aria-label="Link to this section">#</a></h2>
+<p>Press <kbd class="k pill" title="START button">START</kbd> on the peer list. The popup <span class="screen-text">CONTACTS &amp; CHATS</span> acts on the highlighted row and only lists actions that apply to it.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: For a saved contact."><img src="assets/screens/chat_manage_saved.png" width="640" height="480" loading="lazy" alt="For a saved contact."></button><figcaption>For a saved contact.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: For an unsaved request."><img src="assets/screens/chat_manage_request.png" width="640" height="480" loading="lazy" alt="For an unsaved request."></button><figcaption>For an unsaved request.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Delete conversation asks first. The contact itself is kept."><img src="assets/screens/chat_delete_confirm.png" width="640" height="480" loading="lazy" alt="Delete conversation asks first. The contact itself is kept."></button><figcaption>Delete conversation asks first. The contact itself is kept.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Clear all chats empties every conversation; your identity stays."><img src="assets/screens/chat_clear_confirm.png" width="640" height="480" loading="lazy" alt="Clear all chats empties every conversation; your identity stays."></button><figcaption>Clear all chats empties every conversation; your identity stays.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Option</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">Cancel</span></td><td>Close the popup (or press <kbd class="k round" title="B button">B</kbd>, or tap outside).</td></tr>
+<tr><td><span class="screen-text">Delete conversation</span></td><td>Permanently delete this conversation's messages. Saved contacts are kept.</td></tr>
+<tr><td><span class="screen-text">Clear all chats</span></td><td>Delete every conversation and forget unsaved peers. Your identity and routing stay. New announces can add peers again.</td></tr>
+<tr><td><span class="screen-text">Add LXMF address</span></td><td>Type someone's 32-digit address, then an optional friendly name.</td></tr>
+<tr><td><span class="screen-text">Show my address (QR)</span></td><td>Your <a href="#my-address">address and QR code</a>.</td></tr>
+<tr><td><span class="screen-text">Save contact</span> / <span class="screen-text">Edit friendly name</span></td><td>Save this peer, or rename a saved one. Your name for them replaces the name they announce.</td></tr>
+<tr><td><span class="screen-text">Remove contact (keep chat)</span></td><td>Unsave the contact. The conversation moves back to Requests.</td></tr>
+</tbody>
+</table></div>
+
+<h3 id="add-contact">Adding a contact<a class="anchor" href="#add-contact" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><b>From Nearby:</b> ask your friend to announce (or just wait; CATs announce regularly). Their CAT appears on the Nearby tab. Highlight it and press <kbd class="k round" title="A button">A</kbd>, type a name, and save.</li>
+<li><b>By address:</b> <kbd class="k pill" title="START button">START</kbd> &rarr; <span class="screen-text">Add LXMF address</span>. Type the 32 digits on the keyboard's number page (upper or lower case; surrounding &lt; &gt; are fine) and press <span class="screen-text">NEXT</span>. Then type a friendly name, or leave it empty, and press <span class="screen-text">SAVE</span>.</li>
+<li><b>From Requests:</b> highlight the conversation, <kbd class="k pill" title="START button">START</kbd> &rarr; <span class="screen-text">Save contact</span>.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Typing an address."><img src="assets/screens/keyboard_lxmf_id.png" width="640" height="480" loading="lazy" alt="Typing an address."></button><figcaption>Typing an address.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Anything that isn&#x27;t 32 hex digits is refused."><img src="assets/screens/keyboard_lxmf_error.png" width="640" height="480" loading="lazy" alt="Anything that isn&#x27;t 32 hex digits is refused."></button><figcaption>Anything that isn't 32 hex digits is refused.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Giving a contact a friendly name."><img src="assets/screens/keyboard_friendly_name.png" width="640" height="480" loading="lazy" alt="Giving a contact a friendly name."></button><figcaption>Giving a contact a friendly name.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Saved."><img src="assets/screens/chat_contact_saved.png" width="640" height="480" loading="lazy" alt="Saved."></button><figcaption>Saved.</figcaption></figure>
+</div>
+<p>You can keep up to 64 contacts. Friendly names can be up to 47 characters.</p>
+
+<h2 id="conversation">A conversation<a class="anchor" href="#conversation" aria-label="Link to this section">#</a></h2>
+<p>Messages from the other person are grey bubbles on the left; yours are outlined on the right. Each bubble shows the start of the message, the time (or the date if it wasn't today) and, on yours, the delivery mark. A red line marks where unread messages begin. Six messages fit on a page.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The bottom strip is where you write; the pen box on the right opens the doodle editor."><img src="assets/screens/chat_conversation.png" width="640" height="480" loading="lazy" alt="The bottom strip is where you write; the pen box on the right opens the doodle editor."></button><figcaption>The bottom strip is where you write; the pen box on the right opens the doodle editor.</figcaption></figure>
+<div class="table-wrap"><table>
+<thead><tr><th>Control</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><kbd class="k round" title="A button">A</kbd> or tap <span class="screen-text">Write a message</span></td><td>Open the keyboard to write. If you already have a draft, send it.</td></tr>
+<tr><td><kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd>, or swipe</td><td>Highlight a message; page through older and newer history</td></tr>
+<tr><td><kbd class="k " title="D-pad right">▶</kbd> or tap a highlighted message</td><td>Open it in the reader (or view a doodle). With a draft: edit the draft.</td></tr>
+<tr><td><kbd class="k " title="D-pad left">◀</kbd> or tap the pen</td><td>Draw a <a href="#doodles">doodle</a></td></tr>
+<tr><td><kbd class="k pill" title="START button">START</kbd></td><td>Mark the conversation as read (only once you have scrolled down to the newest message)</td></tr>
+<tr><td><kbd class="k pill" title="SELECT button">SELECT</kbd></td><td>Announce yourself</td></tr>
+<tr><td><kbd class="k round" title="B button">B</kbd></td><td>Close the reader; otherwise clear the draft; otherwise leave the conversation. A message that is still sending keeps going in the background.</td></tr>
+</tbody>
+</table></div>
+<p>The bottom-right corner tells you what <kbd class="k pill" title="START button">START</kbd> would do or where unread messages are: <span class="screen-text">Mark read</span>, <span class="screen-text">&#9650; 3 unread</span> or <span class="screen-text">&#9660; newest</span>.</p>
+
+<h2 id="sending">Writing and sending<a class="anchor" href="#sending" aria-label="Link to this section">#</a></h2>
+<p>The keyboard opens with your contact's name in the title. Type, then press <span class="screen-text">SEND</span> (or <kbd class="k pill" title="START button">START</kbd>). A message can be up to 159 characters. CAT corrects obvious typos as you go; see <a href="keyboard.html">Typing</a>.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A new message."><img src="assets/screens/keyboard_compose.png" width="640" height="480" loading="lazy" alt="A new message."></button><figcaption>A new message.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: &quot;teh&quot; became &quot;the&quot;: the red underline and &quot;was: teh&quot; in the title show what changed."><img src="assets/screens/keyboard_autocorrect.png" width="640" height="480" loading="lazy" alt="&quot;teh&quot; became &quot;the&quot;: the red underline and &quot;was: teh&quot; in the title show what changed."></button><figcaption>"teh" became "the": the red underline and "was: teh" in the title show what changed.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Ready to send."><img src="assets/screens/keyboard_typed.png" width="640" height="480" loading="lazy" alt="Ready to send."></button><figcaption>Ready to send.</figcaption></figure>
+</div>
+<div class="callout tip"><strong>Short messages travel best</strong>A message of up to about 48 characters fits in a single LoRa packet. Longer messages are split and need a connection, so they are slower and more likely to be relayed.</div>
+
+<h2 id="delivery">Delivery marks<a class="anchor" href="#delivery" aria-label="Link to this section">#</a></h2>
+<p>Your bubbles show how far each message has got:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Mark</th><th>Meaning</th><th>On screen</th></tr></thead>
+<tbody>
+<tr><td>Hollow circle</td><td>Queued on your CAT.</td><td>&ndash;</td></tr>
+<tr><td>Small dot</td><td>Sending.</td><td><img class="mark" src="assets/screens/mark_sending.png" width="904" height="116" alt="A bubble with a small grey dot after the time" loading="lazy"></td></tr>
+<tr><td>One grey tick</td><td>Sent. Waiting for proof that it arrived.</td><td><img class="mark" src="assets/screens/mark_sent.png" width="904" height="116" alt="A bubble with one grey tick" loading="lazy"></td></tr>
+<tr><td>Two green ticks</td><td><b>Delivered</b>: your friend's CAT confirmed it.</td><td><img class="mark" src="assets/screens/mark_delivered.png" width="904" height="116" alt="A bubble with two green ticks" loading="lazy"></td></tr>
+<tr><td>One tick and a dot</td><td><b>Relayed</b>: a propagation node accepted it and will hand it over when your friend checks in. This is final; a second tick won't follow, and that is normal.</td><td>&ndash;</td></tr>
+<tr><td>Red plus</td><td>Failed.</td><td><img class="mark" src="assets/screens/mark_failed.png" width="904" height="116" alt="A bubble with a red plus sign" loading="lazy"></td></tr>
+</tbody>
+</table></div>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A conversation after a failed send. The bottom-right corner points to unread messages above."><img src="assets/screens/chat_failed.png" width="640" height="480" loading="lazy" alt="A conversation after a failed send. The bottom-right corner points to unread messages above."></button><figcaption>A conversation after a failed send. The bottom-right corner points to unread messages above.</figcaption></figure>
+<p>If CAT has never heard from the recipient, it asks the network where they are and holds your message for up to 3 minutes while it waits; the composer keeps saying <span class="screen-text">Sending</span>. If a friend is more than one radio hop away, CAT tries directly once, then hands the message to a propagation node, retrying after 1, 2 and 4 minutes before giving up.</p>
+<p>Short notices at the bottom of the screen explain refusals: <span class="screen-text">Messaging busy - try again</span> (one send at a time), <span class="screen-text">Offline - cannot send yet</span>, or <span class="screen-text">Doodle sending - wait</span>. A refused draft is kept so you can try again.</p>
+
+<h2 id="reading">Reading long messages<a class="anchor" href="#reading" aria-label="Link to this section">#</a></h2>
+<p>Highlight a message and press <kbd class="k " title="D-pad right">▶</kbd> (or tap it again) to open the reader. The header says who it is from or to, the time, its position in the conversation and its delivery mark. <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> scroll. Long messages are fetched in full when you open them; you may briefly see <span class="screen-text">[loading the rest...]</span>.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The reader."><img src="assets/screens/chat_reader.png" width="640" height="480" loading="lazy" alt="The reader."></button><figcaption>The reader.</figcaption></figure>
+
+<h2 id="doodles">Doodles<a class="anchor" href="#doodles" aria-label="Link to this section">#</a></h2>
+<p>Doodles are small one-colour drawings, PictoChat style. Open the editor from a conversation with <kbd class="k " title="D-pad left">◀</kbd> or by tapping the pen.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The editor: canvas, tools on the right, colours below, and the ink meter."><img src="assets/screens/doodle_empty.png" width="640" height="480" loading="lazy" alt="The editor: canvas, tools on the right, colours below, and the ink meter."></button><figcaption>The editor: canvas, tools on the right, colours below, and the ink meter.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Drawing with a finger. Picking a colour recolours the whole doodle."><img src="assets/screens/doodle_drawn.png" width="640" height="480" loading="lazy" alt="Drawing with a finger. Picking a colour recolours the whole doodle."></button><figcaption>Drawing with a finger. Picking a colour recolours the whole doodle.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Tool</th><th>Touch</th><th>Button</th></tr></thead>
+<tbody>
+<tr><td>Draw / erase</td><td>Draw on the canvas; tap <span class="screen-text">PEN</span> or <span class="screen-text">ERASE</span></td><td><kbd class="k pill" title="START button">START</kbd> switches tool</td></tr>
+<tr><td>Thin or thick nib</td><td>Tap the left or right half of the nib box</td><td><kbd class="k " title="D-pad right">▶</kbd></td></tr>
+<tr><td>Colour (12)</td><td>Tap a swatch</td><td><kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd></td></tr>
+<tr><td>Undo</td><td><span class="screen-text">UNDO</span></td><td><kbd class="k pill" title="SELECT button">SELECT</kbd></td></tr>
+<tr><td>Clear</td><td><span class="screen-text">CLEAR</span>, then again within 2.5 s when it says <span class="screen-text">SURE?</span></td><td>&ndash;</td></tr>
+<tr><td>Send</td><td><span class="screen-text">SEND</span></td><td><kbd class="k round" title="A button">A</kbd></td></tr>
+<tr><td>Back (draft is kept)</td><td>&ndash;</td><td><kbd class="k round" title="B button">B</kbd></td></tr>
+</tbody>
+</table></div>
+<p>The ink meter in the top corner shows how much drawing is left (a doodle is at most 16 parts). Each part is one LoRa packet, sent and confirmed in turn. A progress box shows each part: green when delivered, red if it failed. Press <kbd class="k round" title="B button">B</kbd> to let it finish in the background. If parts fail, you are offered <span class="screen-text">A Retry  B Keep</span>; retry only resends the missing parts.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Sending part 1 of 6."><img src="assets/screens/doodle_sending.png" width="640" height="480" loading="lazy" alt="Sending part 1 of 6."></button><figcaption>Sending part 1 of 6.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Sent. The canvas clears for the next one."><img src="assets/screens/doodle_done.png" width="640" height="480" loading="lazy" alt="Sent. The canvas clears for the next one."></button><figcaption>Sent. The canvas clears for the next one.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Doodles appear as one bubble with a coloured pen mark and how many parts arrived."><img src="assets/screens/chat_with_doodle.png" width="640" height="480" loading="lazy" alt="Doodles appear as one bubble with a coloured pen mark and how many parts arrived."></button><figcaption>Doodles appear as one bubble with a coloured pen mark and how many parts arrived.</figcaption></figure>
+</div>
+<p>Open a doodle bubble with <kbd class="k " title="D-pad right">▶</kbd> or a second tap.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A doodle you received."><img src="assets/screens/doodle_view_in.png" width="640" height="480" loading="lazy" alt="A doodle you received."></button><figcaption>A doodle you received.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: One you sent. A RESEND sends it again."><img src="assets/screens/doodle_view_out.png" width="640" height="480" loading="lazy" alt="One you sent. A RESEND sends it again."></button><figcaption>One you sent. <kbd class="k round" title="A button">A</kbd> RESEND sends it again.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A doodle still missing a part. CAT draws what it has."><img src="assets/screens/doodle_view_partial.png" width="640" height="480" loading="lazy" alt="A doodle still missing a part. CAT draws what it has."></button><figcaption>A doodle still missing a part. CAT draws what it has.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A ASK AGAIN requests the missing parts from the sender."><img src="assets/screens/doodle_ask_again.png" width="640" height="480" loading="lazy" alt="A ASK AGAIN requests the missing parts from the sender."></button><figcaption><kbd class="k round" title="A button">A</kbd> ASK AGAIN requests the missing parts from the sender.</figcaption></figure>
+</div>
+<p>The sender's CAT resends missing parts automatically while they have your conversation open. Doodles only display on CATs: other LXMF apps show them as a short line of random-looking text.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A conversation mixing complete and partial doodles."><img src="assets/screens/chat_doodle_rows.png" width="640" height="480" loading="lazy" alt="A conversation mixing complete and partial doodles."></button><figcaption>A conversation mixing complete and partial doodles.</figcaption></figure>
+
+<h2 id="announce">Announcing yourself<a class="anchor" href="#announce" aria-label="Link to this section">#</a></h2>
+<p>An <b>announce</b> tells the network your address, your name and how to reach you. CAT announces three times in the first few minutes after starting, then every 15 minutes, and whenever its connections come up. Press <kbd class="k pill" title="SELECT button">SELECT</kbd> in Chat to announce right away; you can do it again after 30 seconds. Opening the Nearby tab also announces.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Bottom right: Announcing..."><img src="assets/screens/chat_announcing.png" width="640" height="480" loading="lazy" alt="Bottom right: Announcing..."></button><figcaption>Bottom right: Announcing...</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ...Announced."><img src="assets/screens/chat_announced.png" width="640" height="480" loading="lazy" alt="...Announced."></button><figcaption>...Announced.</figcaption></figure>
+</div>
+
+<h2 id="my-address">Sharing your address<a class="anchor" href="#my-address" aria-label="Link to this section">#</a></h2>
+<p>Settings &rarr; MY ADDRESS, or <kbd class="k pill" title="START button">START</kbd> &rarr; <span class="screen-text">Show my address (QR)</span> in Chat, shows your address as text and as a QR code. A friend with a phone LXMF app can scan the code; another CAT has no camera, so its owner types the digits in with <span class="screen-text">Add LXMF address</span>. Press <kbd class="k round" title="B button">B</kbd> or tap to close.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Your name, your address and its QR code."><img src="assets/screens/my_address.png" width="640" height="480" loading="lazy" alt="Your name, your address and its QR code."></button><figcaption>Your name, your address and its QR code.</figcaption></figure>
+
+<h2 id="notifications">Notifications<a class="anchor" href="#notifications" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>A new message wakes the screen if it was dim or dark.</li>
+<li>With <a href="settings.html#tone">NEW MESSAGE TONE</a> on, a soft three-note chime plays (at most once every 2 seconds).</li>
+<li>Unread counts show on the Chat tile, in the Chat title bar and on each row.</li>
+<li>There are no pop-ups and no LED signals for messages.</li>
+</ul>
+
+<h2 id="limits">Limits and what's not there yet<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>One-to-one only: no group chats or channels yet.</li>
+<li>No photos or files; doodles are the only pictures.</li>
+<li>You can't delete a single message, only a whole conversation.</li>
+<li>No reply, forward, search or typing indicators.</li>
+<li>CAT can't scan QR codes.</li>
+</ul>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="explore.html"><small>Previous</small>Explore</a><a class="next" href="keyboard.html"><small>Next</small>Typing</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

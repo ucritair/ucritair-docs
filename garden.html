@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garden · CAT manual</title>
+<meta name="description" content="The Garden app: a generated flower meadow that blooms differently depending on the air CAT measures.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html" aria-current="page">Garden</a>
+<ul class="toc"><li><a href="#using">Using the Garden</a></li><li><a href="#flowers">The flowers</a></li><li><a href="#air">How the air changes it</a></li></ul>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Garden</h1>
+<p class="lede">A small meadow that is planted fresh each time you open it, and grows according to the air around you.</p>
+
+<h2 id="using">Using the Garden<a class="anchor" href="#using" aria-label="Link to this section">#</a></h2>
+<p>Open the second tile on the home screen. A new set of three to five plants sprouts, grows and opens its flowers over a couple of seconds, then sways in the wind.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Control</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Touch the screen</td><td>Flick the stems near your finger. Closer stems bend more, then spring back.</td></tr>
+<tr><td><kbd class="k round" title="A button">A</kbd></td><td>Plant a brand-new meadow and watch it bloom again.</td></tr>
+<tr><td><kbd class="k round" title="B button">B</kbd></td><td>Back to the home screen.</td></tr>
+</tbody>
+</table></div>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Half a second in: buds still opening."><img src="assets/screens/garden_blooming.png" width="640" height="480" loading="lazy" alt="Half a second in: buds still opening."></button><figcaption>Half a second in: buds still opening.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Fully bloomed in clean air."><img src="assets/screens/garden_good.png" width="640" height="480" loading="lazy" alt="Fully bloomed in clean air."></button><figcaption>Fully bloomed in clean air.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Stems bending away from a tap."><img src="assets/screens/garden_tap.png" width="640" height="480" loading="lazy" alt="Stems bending away from a tap."></button><figcaption>Stems bending away from a tap.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A plants a different meadow."><img src="assets/screens/garden_good_regen.png" width="640" height="480" loading="lazy" alt="A plants a different meadow."></button><figcaption><kbd class="k round" title="A button">A</kbd> plants a different meadow.</figcaption></figure>
+</div>
+<p>Nothing is saved. There is no watering, harvesting or collection: the Garden is a living picture of the air, not a farming game.</p>
+
+<h2 id="flowers">The flowers<a class="anchor" href="#flowers" aria-label="Link to this section">#</a></h2>
+<p>Normal plants are sunflowers, peonies, eucalyptus and vanda orchids, on green stems. In polluted air some plants come up <b>strange</b>: dark, purple-stemmed variants, including the gazer, which only grows in bad air.</p>
+
+<h2 id="air">How the air changes it<a class="anchor" href="#air" aria-label="Link to this section">#</a></h2>
+<p>The Garden reads the air when you open it and each time you press <kbd class="k round" title="A button">A</kbd>.</p>
+<ul>
+<li><b>Strange flowers</b> appear once the worst of CO2, VOC and NOx is poor (roughly CO2 above 1200 ppm, a VOC index above 200 or a NOx index above 120). The worse the air, the more likely each plant is strange, up to one in two.</li>
+<li><b>Bloom speed</b> goes up with CO2 and down with VOC and NOx.</li>
+<li><b>Plant size</b> follows the same mix, between half and 1.2 times normal size.</li>
+<li><b>Swelling.</b> While the Garden is open, plants grow a little (up to 10% per 1000 ppm) if CO2 rises from where it was when you came in.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Polluted air: tall, fast-blooming plants."><img src="assets/screens/garden_poor.png" width="640" height="480" loading="lazy" alt="Polluted air: tall, fast-blooming plants."></button><figcaption>Polluted air: tall, fast-blooming plants.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Strange flowers: spiky heads on dark purple stems."><img src="assets/screens/garden_poor_regen.png" width="640" height="480" loading="lazy" alt="Strange flowers: spiky heads on dark purple stems."></button><figcaption>Strange flowers: spiky heads on dark purple stems.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Another polluted meadow."><img src="assets/screens/garden_poor_regen2.png" width="640" height="480" loading="lazy" alt="Another polluted meadow."></button><figcaption>Another polluted meadow.</figcaption></figure>
+</div>
+<p>To see the effect of a change in air, close the Garden and open it again, or press <kbd class="k round" title="A button">A</kbd>.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="dashboard.html"><small>Previous</small>Dashboard</a><a class="next" href="explore.html"><small>Next</small>Explore</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

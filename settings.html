@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings reference · CAT manual</title>
+<meta name="description" content="Every option under the Settings tile: device name, message tone, time and time zone, audio, display, power and the developer pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html" aria-current="page">Settings</a>
+<ul class="toc"><li><a href="#map">Menu map</a></li><li><a href="#device-name">DEVICE NAME</a></li><li><a href="#tone">NEW MESSAGE TONE</a></li><li><a href="#time">TIME &amp; TIMEZONE</a></li><li><a href="#audio">AUDIO</a></li><li><a href="#display">DISPLAY</a></li><li><a href="#power">POWER</a></li><li><a href="#developer">DEVELOPER</a></li></ul>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Settings reference</h1>
+<p class="lede">Everything under the gear tile, in the order it appears.</p>
+
+<h2 id="map">Menu map<a class="anchor" href="#map" aria-label="Link to this section">#</a></h2>
+<div class="tree">MENU
+├─ SETTINGS
+│  ├─ DEVICE NAME
+│  ├─ NEW MESSAGE TONE            checkbox
+│  ├─ TIME &amp; TIMEZONE
+│  ├─ NAME
+│  ├─ AUDIO                       VOLUME slider
+│  ├─ WIFI                        → <a href="mesh.html#wifi">Mesh and Wi-Fi</a>
+│  ├─ MESH                        → <a href="mesh.html#mesh-page">Mesh and Wi-Fi</a>
+│  ├─ KEYBOARD                    → <a href="keyboard.html#learned-words">Typing</a>
+│  ├─ USB KEYBOARD/MOUSE          hardware only → <a href="extras.html#usb">Extras</a>
+│  ├─ DISPLAY
+│  ├─ PARTY                       hardware only → <a href="extras.html#party">Extras</a>
+│  ├─ STORAGE                     hardware only → <a href="extras.html#storage">Extras</a>
+│  └─ EXTRAS                      hardware only
+│     ├─ LEGACY HANDHELD          GB Emulator → <a href="extras.html#legacy">Extras</a>
+│     └─ DOOM                     → <a href="extras.html#doom">Extras</a>
+├─ MY ADDRESS                     → <a href="chat.html#my-address">Chat</a>
+├─ CRYPTO                         → <a href="crypto.html">Crypto</a>
+├─ POWER
+│  ├─ SLEEP
+│  └─ POWER DOWN
+└─ DEVELOPER
+   ├─ INFO
+   └─ CONTROLS</div>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: MENU, opened from the gear tile. B here returns home."><img src="assets/screens/menu_root.png" width="640" height="480" loading="lazy" alt="MENU, opened from the gear tile. B here returns home."></button><figcaption>MENU, opened from the gear tile. <kbd class="k round" title="B button">B</kbd> here returns home.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS."><img src="assets/screens/menu_settings.png" width="640" height="480" loading="lazy" alt="SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS."></button><figcaption>SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS.</figcaption></figure>
+</div>
+<p>Changes apply immediately. When you leave Settings after changing something, CAT saves your settings to permanent storage.</p>
+
+<h2 id="device-name">DEVICE NAME<a class="anchor" href="#device-name" aria-label="Link to this section">#</a></h2>
+<p>Your CAT's name: shown in the home screen's top bar, on your ID card in Explore, and to everyone you message (it is your LXMF display name). The keyboard opens straight away; press <span class="screen-text">SAVE</span>. Up to 31 printable characters, with no spaces at either end. Leave it empty to go back to the default, <span class="screen-text">cat-game</span>.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The default name."><img src="assets/screens/keyboard_device_name_default.png" width="640" height="480" loading="lazy" alt="The default name."></button><figcaption>The default name.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Typing a new one."><img src="assets/screens/keyboard_device_name.png" width="640" height="480" loading="lazy" alt="Typing a new one."></button><figcaption>Typing a new one.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Name saved."><img src="assets/screens/settings_device_name.png" width="640" height="480" loading="lazy" alt="Name saved."></button><figcaption>Name saved.</figcaption></figure>
+</div>
+<p>Messages: <span class="screen-text">Name saved</span>, <span class="screen-text">Use printable text, without spaces at either end.</span>, or <span class="screen-text">Changed for now; could not save. Please retry.</span></p>
+<p><b>NAME</b>, further down the list, is an older editor for the same name. Changing either changes both.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The NAME window."><img src="assets/screens/settings_name.png" width="640" height="480" loading="lazy" alt="The NAME window."></button><figcaption>The NAME window.</figcaption></figure>
+
+<h2 id="tone">NEW MESSAGE TONE<a class="anchor" href="#tone" aria-label="Link to this section">#</a></h2>
+<p>Tick it to hear a soft three-note chime when a message arrives, at most once every 2 seconds. Off by default. New messages wake the screen either way.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Ticked."><img src="assets/screens/settings_tone_on.png" width="640" height="480" loading="lazy" alt="Ticked."></button><figcaption>Ticked.</figcaption></figure>
+
+<h2 id="time">TIME &amp; TIMEZONE<a class="anchor" href="#time" aria-label="Link to this section">#</a></h2>
+<p>The window <span class="screen-text">LOCAL DATE &amp; TIME</span> shows the current local time, date and time zone.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">CHOOSE BY LOCATION</span></td><td>The region, country and city picker from <a href="getting-started.html#first-boot">first boot</a>.</td></tr>
+<tr><td><span class="screen-text">USE UTC</span></td><td>Jump straight to the confirm page for Coordinated Universal Time.</td></tr>
+<tr><td><span class="screen-text">EDIT DATE</span></td><td>Set year, month and day.</td></tr>
+<tr><td><span class="screen-text">EDIT TIME</span></td><td>Set hour (12-hour, with AM or PM), minutes and seconds.</td></tr>
+</tbody>
+</table></div>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: LOCAL DATE &amp; TIME."><img src="assets/screens/settings_time.png" width="640" height="480" loading="lazy" alt="LOCAL DATE &amp; TIME."></button><figcaption>LOCAL DATE &amp; TIME.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: USE UTC."><img src="assets/screens/settings_use_utc.png" width="640" height="480" loading="lazy" alt="USE UTC."></button><figcaption>USE UTC.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: EDIT DATE."><img src="assets/screens/settings_edit_date.png" width="640" height="480" loading="lazy" alt="EDIT DATE."></button><figcaption>EDIT DATE.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: EDIT TIME."><img src="assets/screens/settings_edit_time.png" width="640" height="480" loading="lazy" alt="EDIT TIME."></button><figcaption>EDIT TIME.</figcaption></figure>
+</div>
+<p>In the date and time editors, <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> choose a field, <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> change it (hold to repeat; rolling past the end carries into the next field), <kbd class="k round" title="A button">A</kbd> saves and <kbd class="k round" title="B button">B</kbd> cancels. A time skipped by a daylight-saving change is refused with <span class="screen-text">Skipped by DST or outside 1970-2100.</span>. A time that happens twice when clocks go back asks <span class="screen-text">THIS TIME OCCURS TWICE</span> and lets you pick <span class="screen-text">FIRST (EARLIER)</span> or <span class="screen-text">SECOND (LATER)</span>.</p>
+<p>The time zone only affects what you see. Messages carry universal time.</p>
+
+<h2 id="audio">AUDIO<a class="anchor" href="#audio" aria-label="Link to this section">#</a></h2>
+<p>One slider, <span class="screen-text">VOLUME</span>, in ten steps from silent to full. Use <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> (hold to repeat) or tap either half. It sets the volume of the chime, Party music and the GB Emulator.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The VOLUME slider."><img src="assets/screens/settings_audio.png" width="640" height="480" loading="lazy" alt="The VOLUME slider."></button><figcaption>The VOLUME slider.</figcaption></figure>
+<div class="callout"><strong>Volume resets on restart</strong>In this firmware the volume isn't saved; CAT starts at full volume each time.</div>
+
+<h2 id="display">DISPLAY<a class="anchor" href="#display" aria-label="Link to this section">#</a></h2>
+<p>The status line shows whether the backlight is <span class="screen-text">on</span>, <span class="screen-text">dimmed</span> or <span class="screen-text">off</span>, and its current level.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: DISPLAY."><img src="assets/screens/settings_display.png" width="640" height="480" loading="lazy" alt="DISPLAY."></button><figcaption>DISPLAY.</figcaption></figure>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>Choices</th><th>Default</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">BRIGHTNESS</span></td><td>10% to 75% in steps of 5</td><td>75%</td></tr>
+<tr><td><span class="screen-text">DIM AFTER</span></td><td>NEVER, 15 S, 30 S, 45 S, 1 MIN, 2 MIN, 5 MIN, 10 MIN</td><td>45 S</td></tr>
+<tr><td><span class="screen-text">SCREEN OFF AFTER</span></td><td>NEVER, 30 S, 1 MIN, 2 MIN, 5 MIN, 10 MIN, 30 MIN, 60 MIN</td><td>2 MIN</td></tr>
+<tr><td><span class="screen-text">RESET TO DEFAULTS</span></td><td>Restores the three values above (no confirmation)</td><td>&ndash;</td></tr>
+</tbody>
+</table></div>
+<p>Dimmed is half brightness. The countdown restarts with every button press, every touch and every incoming message. The press that wakes a dark screen is ignored, so a blind tap can't do anything by accident. Screen off doesn't stop CAT: radios, sensors and mail keep running.</p>
+
+<h2 id="power">POWER<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
+<p><span class="screen-text">SLEEP</span> and <span class="screen-text">POWER DOWN</span> (which asks <span class="screen-text">Power down?</span> first) both save everything and switch CAT off. See <a href="getting-started.html#turn-off">turning CAT off</a>.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER."><img src="assets/screens/power_menu.png" width="640" height="480" loading="lazy" alt="POWER."></button><figcaption>POWER.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The confirmation."><img src="assets/screens/power_down_confirm.png" width="640" height="480" loading="lazy" alt="The confirmation."></button><figcaption>The confirmation.</figcaption></figure>
+</div>
+<p>If saving fails, CAT stays on and shows <span class="screen-text">Save failed</span> <span class="screen-text">State remains in RAM.</span> <span class="screen-text">Keep power connected.</span>. Plug it in and try again. If the network can't shut down cleanly you see <span class="screen-text">Shutdown paused</span>.</p>
+
+<h2 id="developer">DEVELOPER<a class="anchor" href="#developer" aria-label="Link to this section">#</a></h2>
+<p>Diagnostics and maintenance tools. They are safe to look at; the CONTROLS actions are not.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: DEVELOPER."><img src="assets/screens/dev_menu.png" width="640" height="480" loading="lazy" alt="DEVELOPER."></button><figcaption>DEVELOPER.</figcaption></figure>
+<h3 id="info">INFO<a class="anchor" href="#info" aria-label="Link to this section">#</a></h3>
+<p>A set of pages. <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> move between them (they wrap), <kbd class="k round" title="B button">B</kbd> leaves.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>CORE</td><td>Platform and device ID.</td></tr>
+<tr><td>TEXT</td><td>A font test page, with a small keyboard test.</td></tr>
+<tr><td>MEMORY</td><td>Storage and memory use.</td></tr>
+<tr><td>LOG</td><td>Only in test builds; normal builds say <span class="screen-text">Log recording is disabled.</span></td></tr>
+<tr><td>AIR</td><td>Every air reading with its score out of 100, including the hidden temperature and humidity, and the overall score.</td></tr>
+<tr><td>POWER</td><td>Battery percentage, cell voltage, charge or drain rate with a time estimate, charger phase (<span class="screen-text">not charging</span>, <span class="screen-text">pre-charge</span>, <span class="screen-text">fast (CC)</span>, <span class="screen-text">taper (CV)</span>, <span class="screen-text">done (full)</span>...) and whether a charger is connected.</td></tr>
+<tr><td>TIME</td><td>Clock values.</td></tr>
+<tr><td>COMMS</td><td>Wi-Fi, upload and crypto job states.</td></tr>
+<tr><td>FLAGS</td><td>Explore story flags. <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> select, <kbd class="k round" title="A button">A</kbd> toggles. Changing these can break your story.</td></tr>
+<tr><td>COUNTERS</td><td>Explore counters (such as health). <kbd class="k round" title="A button">A</kbd> adds one, <kbd class="k pill" title="SELECT button">SELECT</kbd> takes one away.</td></tr>
+</tbody>
+</table></div>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: CORE."><img src="assets/screens/dev_info_core.png" width="640" height="480" loading="lazy" alt="CORE."></button><figcaption>CORE.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: MEMORY."><img src="assets/screens/dev_info_memory.png" width="640" height="480" loading="lazy" alt="MEMORY."></button><figcaption>MEMORY.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: LOG in a normal build."><img src="assets/screens/dev_info_log.png" width="640" height="480" loading="lazy" alt="LOG in a normal build."></button><figcaption>LOG in a normal build.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: AIR: scores out of 100."><img src="assets/screens/dev_info_air.png" width="640" height="480" loading="lazy" alt="AIR: scores out of 100."></button><figcaption>AIR: scores out of 100.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER (the simulator has no real battery)."><img src="assets/screens/dev_info_power.png" width="640" height="480" loading="lazy" alt="POWER (the simulator has no real battery)."></button><figcaption>POWER (the simulator has no real battery).</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: TIME."><img src="assets/screens/dev_info_time.png" width="640" height="480" loading="lazy" alt="TIME."></button><figcaption>TIME.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: COMMS."><img src="assets/screens/dev_info_comms.png" width="640" height="480" loading="lazy" alt="COMMS."></button><figcaption>COMMS.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: FLAGS."><img src="assets/screens/dev_info_flags.png" width="640" height="480" loading="lazy" alt="FLAGS."></button><figcaption>FLAGS.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: COUNTERS."><img src="assets/screens/dev_info_counters.png" width="640" height="480" loading="lazy" alt="COUNTERS."></button><figcaption>COUNTERS.</figcaption></figure>
+</div>
+<h3 id="controls">CONTROLS<a class="anchor" href="#controls" aria-label="Link to this section">#</a></h3>
+<div class="callout warn"><strong>No confirmation</strong>These act the moment you press <kbd class="k round" title="A button">A</kbd>.</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">ENTER BOOTLOADER</span></td><td>Saves, then restarts the game processor in USB update mode for the provisioner. Only use it when you are about to update the firmware.</td></tr>
+<tr><td><span class="screen-text">FORCE SAVE</span></td><td>Saves settings, game progress and the messaging node now. There is no message on screen.</td></tr>
+<tr><td><span class="screen-text">CLEAR GAME SAVE</span></td><td>Erases your Explore progress and restarts CAT. Messages and settings are kept.</td></tr>
+<tr><td><span class="screen-text">CLEAR SETTINGS</span></td><td>Erases the basic settings file and restarts CAT.</td></tr>
+</tbody>
+</table></div>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: CONTROLS."><img src="assets/screens/dev_controls.png" width="640" height="480" loading="lazy" alt="CONTROLS."></button><figcaption>CONTROLS.</figcaption></figure>
+<p>There is no firmware version screen. Connect to the USB shell and type <code>version</code> to see it (see <a href="help.html#shell">the USB shell</a>).</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="crypto.html"><small>Previous</small>Crypto (FHE)</a><a class="next" href="extras.html"><small>Next</small>Hardware extras</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

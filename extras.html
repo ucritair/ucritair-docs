@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware extras: Party, Storage, GB Emulator, Doom, USB · CAT manual</title>
+<meta name="description" content="Features that only appear on real CAT hardware: Party lights and music, SD card storage, the GB Emulator, Doom, USB keyboard and mouse, and the NFC tag.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html" aria-current="page">Hardware extras</a>
+<ul class="toc"><li><a href="#party">Party: music and lights hardware only</a></li><li><a href="#storage">Storage: SD cards hardware only</a></li><li><a href="#legacy">GB Emulator hardware only</a></li><li><a href="#doom">Doom hardware only</a></li><li><a href="#usb">USB keyboard and mouse v0.35 hardware only</a></li><li><a href="#nfc">NFC tag</a></li></ul>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Hardware extras</h1>
+<p class="lede">Party, Storage, the GB Emulator, Doom and USB accessories need the real device's LEDs, SD card and USB port, so they don't exist in the desktop simulator. This page describes them from the firmware instead of screenshots.</p>
+<p>All of them are under Settings &rarr; SETTINGS, after DISPLAY: <span class="screen-text">PARTY</span>, <span class="screen-text">STORAGE</span> and <span class="screen-text">EXTRAS</span> (with the GB Emulator, listed as <span class="screen-text">LEGACY HANDHELD</span>, and <span class="screen-text">DOOM</span>), plus <span class="screen-text">USB KEYBOARD/MOUSE</span> after KEYBOARD.</p>
+
+<h2 id="party">Party: music and lights <span class="tag hw">hardware only</span><a class="anchor" href="#party" aria-label="Link to this section">#</a></h2>
+<p>Lights and music run while the PARTY window is open and stop when you leave it. Nothing here is saved.</p>
+<ul>
+<li><b>MUSIC</b>: <span class="screen-text">Songs play with beat-synced lights.</span> Choose Pirates, Carmen, Gadget, Kakariko, Techno or Brinstar (the playing song is marked &gt;), or <span class="screen-text">STOP MUSIC</span>. Each voice of the song drives its own LED.</li>
+<li><b>LIGHTS</b>: <span class="screen-text">Choose an effect for all five LEDs.</span> <span class="screen-text">RAINBOW CHASE</span> (default), <span class="screen-text">COLOR WIPE</span>, <span class="screen-text">SPARKLE</span> or <span class="screen-text">BREATHE</span>, and <span class="screen-text">BRIGHTNESS</span> at 10, 20 (default), 35 or 50%. With a song playing, the effect colours the beat.</li>
+</ul>
+<p>If the light driver can't start you see <span class="screen-text">LED driver unavailable.</span>. The RGB LEDs are fitted on v0.35 boards.</p>
+
+<h2 id="storage">Storage: SD cards <span class="tag hw">hardware only</span><a class="anchor" href="#storage" aria-label="Link to this section">#</a></h2>
+<p>CAT can use a microSD card (<b>External SD</b>) and, on v0.35 boards, a built-in 128 MB chip (<b>Internal SD</b>; shown greyed as <span class="screen-text">Internal SD (absent)</span> on v0.3).</p>
+<div class="callout warn"><strong>Insert and remove cards with CAT switched off</strong>CAT can't detect a card being inserted or removed. Put the card in before switching on, and take it out only after POWER DOWN, or after <span class="screen-text">Unmount</span> shows <span class="screen-text">Safe to remove</span>.</div>
+<p><b>Card format:</b> MBR partition table (not GPT), one FAT16, FAT32 or exFAT volume. On a Mac: Disk Utility &rarr; View &rarr; Show All Devices &rarr; select the card &rarr; Erase, scheme Master Boot Record, format ExFAT or MS-DOS (FAT).</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Page or row</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>External SD / Internal SD</td><td>Choose a card. Its state shows as <span class="screen-text">Ready</span>, <span class="screen-text">Unformatted</span>, <span class="screen-text">Unmounted</span>, <span class="screen-text">Not mounted</span> or <span class="screen-text">Unavailable</span>.</td></tr>
+<tr><td><span class="screen-text">Browse</span></td><td>Folders (marked [+]) and files, five per page. <span class="screen-text">New folder</span>. Pick an item to <span class="screen-text">Open</span>, <span class="screen-text">Copy to...</span>, <span class="screen-text">Move to...</span>, <span class="screen-text">Rename</span> or <span class="screen-text">Delete...</span>; its size is shown.</td></tr>
+<tr><td><span class="screen-text">Info</span></td><td>Filesystem, label, free space, <span class="screen-text">Rename card</span> (11 characters) and <span class="screen-text">Create game folders</span> (makes <code>/ROM</code> and <code>/SAVE</code>).</td></tr>
+<tr><td><span class="screen-text">Default: External</span></td><td>Which card the GB Emulator and Doom use.</td></tr>
+<tr><td><span class="screen-text">Mount</span> / <span class="screen-text">Unmount</span></td><td>Start or stop using the card.</td></tr>
+<tr><td><span class="screen-text">Format...</span></td><td>Asks <span class="screen-text">Format External SD?</span> <span class="screen-text">Erases all files.</span> with Cancel first. CAT never formats a card on its own.</td></tr>
+</tbody>
+</table></div>
+<p>When copying or moving, a row cycles what happens if a file already exists: <span class="screen-text">Stop</span>, <span class="screen-text">Skip</span>, <span class="screen-text">Replace</span> or <span class="screen-text">Keep both</span>. Long jobs show <span class="screen-text">Working...</span>; <span class="screen-text">Hold B to cancel</span> stops them (some files may already be done). <kbd class="k round" title="B button">B</kbd> goes up a folder, or back a page.</p>
+<p>Folders CAT uses: <code>/ROM</code> for GB Emulator games, <code>/SAVE</code> for their saves, and <code>/games/doom/</code> for Doom.</p>
+
+<h2 id="legacy">GB Emulator <span class="tag hw">hardware only</span><a class="anchor" href="#legacy" aria-label="Link to this section">#</a></h2>
+<p>The GB Emulator plays GB and GBC games from the SD card. No games are included: copy <code>.gb</code> or <code>.gbc</code> files you have the right to use into <code>/ROM</code> on the card.</p>
+<ol class="steps">
+<li>Settings &rarr; SETTINGS &rarr; EXTRAS &rarr; <span class="screen-text">LEGACY HANDHELD</span> (the GB Emulator's menu name in this firmware).</li>
+<li><span class="screen-text">CHOOSE A GAME</span> lists up to 64 games, 10 per page (<span class="screen-text">Previous</span> / <span class="screen-text">Next</span>).</li>
+<li>Pick a game. Large games take a few seconds to load.</li>
+<li>Play with the D-pad, <kbd class="k round" title="A button">A</kbd>, <kbd class="k round" title="B button">B</kbd>, <kbd class="k pill" title="START button">START</kbd> and <kbd class="k pill" title="SELECT button">SELECT</kbd>; each maps straight to the game's own button.</li>
+<li>To quit, <b>hold <kbd class="k pill" title="START button">START</kbd> and <kbd class="k pill" title="SELECT button">SELECT</kbd> together for about 1.5 seconds.</b></li>
+</ol>
+<p>With no card or no games you see <span class="screen-text">NO CARTRIDGE</span> <span class="screen-text">FAT32/exFAT SD (MBR).</span> <span class="screen-text">Copy .gb/.gbc games to /ROM.</span> <span class="screen-text">Insert with CAT off.</span>.</p>
+<ul>
+<li><b>Saves:</b> games with battery saves are saved to <code>/SAVE</code> when you quit. Saves follow the game's contents, not its file name, so renaming a ROM keeps its save. There are no save states: save inside the game before quitting.</li>
+<li><b>Game clocks</b> (games with a real-time clock) keep time while CAT is off.</li>
+<li><b>Picture:</b> the 160&times;144 game picture is scaled up and centred. Screen dimming still applies.</li>
+<li><b>Sound</b> plays through the speaker at the Settings volume.</li>
+<li>The mesh keeps running while you play.</li>
+<li>Most ordinary cartridges work (ROM-only, MBC1, MBC2, MBC3, MBC5). Special cartridges, such as those with motion sensors, don't.</li>
+<li>If the battery reaches 5% during a game, CAT quits the game to save the node, and the game's own save is skipped.</li>
+</ul>
+
+<h2 id="doom">Doom <span class="tag hw">hardware only</span><a class="anchor" href="#doom" aria-label="Link to this section">#</a></h2>
+<p>The shareware first episode of Doom, played from the SD card.</p>
+<ol class="steps">
+<li>Put <code>doom1.whx</code> (the compressed shareware data from the CAT release package) in <code>/games/doom/</code> on the default card, or use the provisioner's "Install Doom to SD". An ordinary <code>.wad</code> file won't work.</li>
+<li>Settings &rarr; SETTINGS &rarr; EXTRAS &rarr; DOOM. The window shows the card, then <span class="screen-text">Ready (SD).</span> and <span class="screen-text">Mesh paused in Doom. Hold START+SELECT to exit.</span></li>
+<li>Choose <span class="screen-text">PLAY</span>. CAT saves, then restarts into Doom.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead><tr><th>Button</th><th>In Doom</th></tr></thead>
+<tbody>
+<tr><td>D-pad</td><td>Move and turn; move through menus</td></tr>
+<tr><td><kbd class="k round" title="A button">A</kbd></td><td>Fire; accept (Yes)</td></tr>
+<tr><td><kbd class="k round" title="B button">B</kbd></td><td>Use and open doors; back (No)</td></tr>
+<tr><td><kbd class="k pill" title="START button">START</kbd></td><td>Open or close the Doom menu</td></tr>
+<tr><td><kbd class="k pill" title="SELECT button">SELECT</kbd> + D-pad</td><td>Strafe</td></tr>
+<tr><td><kbd class="k pill" title="SELECT button">SELECT</kbd> + <kbd class="k round" title="A button">A</kbd></td><td>Automap</td></tr>
+<tr><td><kbd class="k pill" title="SELECT button">SELECT</kbd> + <kbd class="k round" title="B button">B</kbd></td><td>Next weapon</td></tr>
+<tr><td>Hold <kbd class="k pill" title="START button">START</kbd> + <kbd class="k pill" title="SELECT button">SELECT</kbd> for 1.5 s</td><td>Quit back to CAT</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li><b>While Doom runs, the mesh is off.</b> Your CAT doesn't receive or relay messages until you quit and it restarts.</li>
+<li>Doom saves (8 slots) go to <code>/games/doom/saves/</code> on the card.</li>
+<li>Other messages: <span class="screen-text">Checking game files...</span>, <span class="screen-text">Game files missing. Open SD SETUP.</span> (<span class="screen-text">SD SETUP</span> explains where the file goes), <span class="screen-text">Doom not installed. Update firmware.</span></li>
+<li>A USB keyboard and mouse work in Doom if you switched them on before choosing PLAY: W/S move, A/D strafe, P fire, L use; the mouse turns and its left button fires.</li>
+<li>Multiplayer over LoRa is planned but not available.</li>
+</ul>
+
+<h2 id="usb">USB keyboard and mouse <span class="tag hw">v0.35 hardware only</span><a class="anchor" href="#usb" aria-label="Link to this section">#</a></h2>
+<p>Settings &rarr; SETTINGS &rarr; USB KEYBOARD/MOUSE &rarr; tick <span class="screen-text">ENABLED</span>, then plug a keyboard, mouse, receiver or small hub into the USB-C port. CAT powers the accessory from its battery.</p>
+<ul>
+<li>The status line says what is happening: <span class="screen-text">Switching on...</span>, <span class="screen-text">Plug in a keyboard, mouse or dock.</span>, <span class="screen-text">Keyboard and mouse ready.</span>, <span class="screen-text">Unplug the computer or charger.</span>, <span class="screen-text">Can't power USB. Battery low?</span>, <span class="screen-text">Switched off: nothing plugged in.</span></li>
+<li>Keys: <span class="screen-text">Esc/Tab = Start/Select, P/L = A/B, WASD/arrows = D-pad.</span> In the on-screen keyboard you can type directly (see <a href="keyboard.html#usb-keyboard">Typing</a>).</li>
+<li>Mouse: a pointer appears; left click is a tap. The wheel and other buttons are ignored, and a real touch always wins.</li>
+<li>While it is on, the USB port can't be used for a computer, charging or updates. It switches itself off after 2 minutes with nothing plugged in, and is always off after a restart.</li>
+<li>Unplug any computer or charger before switching it on. It refuses to start on a low battery.</li>
+</ul>
+
+<h2 id="nfc">NFC tag<a class="anchor" href="#nfc" aria-label="Link to this section">#</a></h2>
+<p>CAT contains a read-only NFC tag. Hold a phone's NFC area against the case for a couple of seconds and it opens <code>https://entropicengineering.com/</code>; NFC apps also show a line with the device ID. The antenna sits deep in the case, so you may need to move the phone around slowly. Two CATs can't exchange anything over NFC, and there is no NFC setting on the device.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="settings.html"><small>Previous</small>Settings</a><a class="next" href="help.html"><small>Next</small>Help and FAQ</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

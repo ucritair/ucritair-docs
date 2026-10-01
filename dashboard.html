@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard: air quality · CAT manual</title>
+<meta name="description" content="The Dashboard app: live CO2, PM2.5, VOC and NOx readings, how the A-F air grade is calculated, and the e-paper air badge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html" aria-current="page">Dashboard</a>
+<ul class="toc"><li><a href="#open">Opening the Dashboard</a></li><li><a href="#summary">LIVE SUMMARY</a></li><li><a href="#statistics">LIVE STATISTICS</a></li><li><a href="#grading">How the grade is calculated</a></li><li><a href="#epaper">The e-paper air badge</a></li><li><a href="#limits">What the Dashboard doesn&#x27;t do</a></li></ul>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Dashboard: air quality</h1>
+<p class="lede">The Dashboard shows what CAT's sensors measure right now and turns it into a single letter grade.</p>
+
+<h2 id="open">Opening the Dashboard<a class="anchor" href="#open" aria-label="Link to this section">#</a></h2>
+<p>On the home screen, highlight the first tile (clouds and sun) and press <kbd class="k round" title="A button">A</kbd>, or tap it. The Dashboard has two pages. Switch between them with <kbd class="k " title="D-pad left">◀</kbd> and <kbd class="k " title="D-pad right">▶</kbd> (they wrap around). Press <kbd class="k round" title="B button">B</kbd> to go home. It always opens on the summary.</p>
+
+<h2 id="summary">LIVE SUMMARY<a class="anchor" href="#summary" aria-label="Link to this section">#</a></h2>
+<p>A large letter grade for the air overall, from <b>A</b> (best) through A-, B+, B, B-, C+, C, C-, D+, D to <b>F</b>. Its colour follows the grade: green, teal, orange, then red.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Clean indoor air: CO2 540 ppm, PM2.5 2 µg/m³. Grade A."><img src="assets/screens/dash_summary_good.png" width="640" height="480" loading="lazy" alt="Clean indoor air: CO2 540 ppm, PM2.5 2 µg/m³. Grade A."></button><figcaption>Clean indoor air: CO2 540 ppm, PM2.5 2 &micro;g/m&sup3;. Grade A.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes."><img src="assets/screens/dash_summary_fair.png" width="640" height="480" loading="lazy" alt="A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes."></button><figcaption>A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F."><img src="assets/screens/dash_summary_poor.png" width="640" height="480" loading="lazy" alt="Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F."></button><figcaption>Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F.</figcaption></figure>
+</div>
+<p>To the right of the grade, up to three empty boxes appear, one for each pollutant group that scores B+ or lower: CO2, fine particles, and gases (VOC or NOx). In this firmware the boxes are placeholders with no icon inside. The number of boxes tells you how many groups need attention; the statistics page tells you which.</p>
+
+<h2 id="statistics">LIVE STATISTICS<a class="anchor" href="#statistics" aria-label="Link to this section">#</a></h2>
+<p>One row per sensor: the name, the current value, a colour bar and that sensor's own grade. The marker on the bar sits further right the better the reading, so a marker at the green end is good. Values refresh every 5 seconds.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Good air: A or A- across the board."><img src="assets/screens/dash_stats_good.png" width="640" height="480" loading="lazy" alt="Good air: A or A- across the board."></button><figcaption>Good air: A or A- across the board.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Fair air: CO2 B-, PM2.5 C, VOCs C+, NOx B."><img src="assets/screens/dash_stats_fair.png" width="640" height="480" loading="lazy" alt="Fair air: CO2 B-, PM2.5 C, VOCs C+, NOx B."></button><figcaption>Fair air: CO2 B-, PM2.5 C, VOCs C+, NOx B.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Poor air: every sensor at F."><img src="assets/screens/dash_stats_poor.png" width="640" height="480" loading="lazy" alt="Poor air: every sensor at F."></button><figcaption>Poor air: every sensor at F.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>Measures</th><th>Unit</th><th>Sensor</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">CO2</span></td><td>Carbon dioxide. Rises when people share a closed room; a good proxy for stale, rebreathed air.</td><td>ppm (parts per million)</td><td>Senseair Sunrise, pressure-compensated</td></tr>
+<tr><td><span class="screen-text">PM 2.5</span></td><td>Fine particles under 2.5 &micro;m: smoke, cooking, traffic.</td><td>&micro;g/m&sup3;</td><td>Sensirion SPS30</td></tr>
+<tr><td><span class="screen-text">VOCs</span></td><td>Volatile organic compounds (solvents, cleaning products, cooking). An index where about 100 is "normal for this place".</td><td>index 0&ndash;500</td><td>Sensirion SGP41</td></tr>
+<tr><td><span class="screen-text">NOX</span></td><td>Nitrogen oxides (gas stoves, traffic). An index where about 1 is "normal".</td><td>index 0&ndash;500</td><td>Sensirion SGP41</td></tr>
+</tbody>
+</table></div>
+<div class="callout"><strong>Just after switching on</strong>The particle sensor needs about 10 seconds to spin up and the gas sensor about 45 seconds to condition. Until the first reading arrives the rows show <span class="screen-text">0.00</span>, which scores as perfect, so the summary can read A for the first few seconds.</div>
+
+<h2 id="grading">How the grade is calculated<a class="anchor" href="#grading" aria-label="Link to this section">#</a></h2>
+<p>Each reading gets a score from 0 (worst) to 1 (best) by sliding between the breakpoints below. The overall grade is the plain average of six scores: the four sensors above plus temperature and humidity.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Sensor</th><th>Perfect up to</th><th>Breakpoints (getting worse)</th><th>Worst at</th></tr></thead>
+<tbody>
+<tr><td>CO2 (ppm)</td><td>420</td><td>800, 1000, 1400</td><td>4500</td></tr>
+<tr><td>PM2.5 (&micro;g/m&sup3;)</td><td>0</td><td>5, 12, 35, 55</td><td>150</td></tr>
+<tr><td>VOC index</td><td>0</td><td>100, 150, 250, 400</td><td>410</td></tr>
+<tr><td>NOx index</td><td>0</td><td>1, 90, 150, 300</td><td>310</td></tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Score</th><th>&ge; 0.93</th><th>0.90</th><th>0.87</th><th>0.83</th><th>0.80</th><th>0.77</th><th>0.73</th><th>0.70</th><th>0.67</th><th>0.65</th><th>&lt; 0.65</th></tr></thead>
+<tbody><tr><td>Grade</td><td>A</td><td>A-</td><td>B+</td><td>B</td><td>B-</td><td>C+</td><td>C</td><td>C-</td><td>D+</td><td>D</td><td>F</td></tr></tbody>
+</table></div>
+<p>The scale is strict on purpose. A single sensor drops to F at roughly these readings: CO2 above about 950 ppm, PM2.5 above about 10 &micro;g/m&sup3;, a VOC index above about 140, or a NOx index above about 75.</p>
+<div class="callout"><strong>Temperature and humidity</strong>CAT has a temperature and humidity sensor, but its readings are not accurate enough yet, so they are hidden. Both count in the grade as a fixed, comfortable 24 &deg;C and 50% humidity. That nudges the overall grade up a little compared with the four sensors alone.</div>
+
+<h2 id="epaper">The e-paper air badge<a class="anchor" href="#epaper" aria-label="Link to this section">#</a></h2>
+<p>The separate black-and-white e-paper screen is run by the board controller and updates every 30 seconds, whatever the main screen is doing. It shows:</p>
+<ul>
+<li>a unicorn and a cloud whose moods follow the air (happy above 75%, sad below 50%, a smoke cloud below 25%);</li>
+<li>CO2 in ppm and PM2.5 in &micro;g/m&sup3; in large digits;</li>
+<li>the NOx and VOC indices;</li>
+<li><span class="screen-text">% rebreathed</span>: roughly how much of the air you breathe has already been breathed, estimated from CO2;</li>
+<li><span class="screen-text">CritAQI</span>: a percentage driven by the worst pollutant, with a penalty for each other pollutant that is also bad;</li>
+<li>the time of the reading, and <span class="screen-text">---</span> for any sensor that failed.</li>
+</ul>
+<p>CritAQI is calculated differently from the Dashboard grade (worst pollutant rather than average), so the two can disagree. Faint ghosting between updates is normal; a full refresh clears it about every 25 minutes.</p>
+
+<h2 id="limits">What the Dashboard doesn't do<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>No history, graphs or time ranges. Only the current reading is shown. (The board controller does keep a few days of readings internally for the <a href="crypto.html">Crypto</a> uploads.)</li>
+<li>No alerts or sounds when air gets bad.</li>
+<li>The air does not affect Chat or Explore. It does change the <a href="garden.html">Garden</a>.</li>
+</ul>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="getting-started.html"><small>Previous</small>Getting started</a><a class="next" href="garden.html"><small>Next</small>Garden</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

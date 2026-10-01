@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesh networking and Wi-Fi · CAT manual</title>
+<meta name="description" content="How CAT&#x27;s LoRa mesh works, the MESH settings (transport node, propagation node, mail node, TCP bridge and hubs) and Wi-Fi setup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html" aria-current="page">Mesh and Wi-Fi</a>
+<ul class="toc"><li><a href="#concepts">How the mesh works</a></li><li><a href="#mesh-page">The MESH page</a></li><li><a href="#wifi">Wi-Fi</a></li><li><a href="#routing">What happens to a message</a></li></ul>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Mesh networking and Wi-Fi</h1>
+<p class="lede">Every CAT is a small node in the Reticulum mesh. It carries its own messages and helps carry everyone else's.</p>
+
+<h2 id="concepts">How the mesh works<a class="anchor" href="#concepts" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Term</th><th>What it means for you</th></tr></thead>
+<tbody>
+<tr><td><b>LoRa</b></td><td>The long-range, low-power radio built into CAT. CATs within radio range talk to each other directly, with no phone network, Wi-Fi or internet needed.</td></tr>
+<tr><td><b>Reticulum</b></td><td>The networking system CAT uses. It finds paths between devices and encrypts everything end to end.</td></tr>
+<tr><td><b>LXMF</b></td><td>The message format on top of Reticulum, shared with apps like Sideband and NomadNet.</td></tr>
+<tr><td id="transport"><b>Transport node</b></td><td>A device that forwards other people's traffic. With it on, your CAT helps messages hop across the mesh.</td></tr>
+<tr><td id="propagation"><b>Propagation node</b></td><td>A mailbox. It stores messages for people who are offline and hands them over when they reconnect. Your CAT is one by default, and also uses one (its <b>mail node</b>) for messages it can't deliver directly.</td></tr>
+<tr><td><b>TCP bridge</b> and <b>hubs</b></td><td>Over Wi-Fi, CAT connects to a public Reticulum hub on the internet. That links the CATs around you to the rest of the network, and lets you reach friends far away.</td></tr>
+<tr><td><b>Sanctuary</b></td><td>The project's home hub. CATs connect to it first and also use it as their default mail node.</td></tr>
+</tbody>
+</table></div>
+<p>The radio's frequency and other settings are fixed when CAT is set up; there is no radio settings screen. CATs only hear each other if they use the same radio settings.</p>
+
+<h2 id="mesh-page">The MESH page<a class="anchor" href="#mesh-page" aria-label="Link to this section">#</a></h2>
+<p>Settings &rarr; SETTINGS &rarr; MESH. The top of the window is a live status report; the rows below change your CAT's roles. Changes apply at once and are saved when you leave Settings.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The default setup: transport and propagation node on, mail via the home node, TCP bridge connected."><img src="assets/screens/mesh_main.png" width="640" height="480" loading="lazy" alt="The default setup: transport and propagation node on, mail via the home node, TCP bridge connected."></button><figcaption>The default setup: transport and propagation node on, mail via the home node, TCP bridge connected.</figcaption></figure>
+<div class="table-wrap"><table>
+<thead><tr><th>Status line</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">Transport: ON, 7 paths</span></td><td>Forwarding traffic; it knows 7 paths through the network. <span class="screen-text">off (leaf)</span> means it only handles its own traffic.</td></tr>
+<tr><td><span class="screen-text">Propagation node: SERVING, 2 held</span></td><td>Acting as a mailbox, holding 2 messages for others.</td></tr>
+<tr><td><span class="screen-text">Mail via: d4737137 (home)</span></td><td>The node that holds your outgoing mail when a friend is unreachable. <span class="screen-text">(home)</span> is Sanctuary; <span class="screen-text">fallback</span> means CAT picked another node because home is out of reach; <span class="screen-text">direct only</span> means MAIL NODE is off; <span class="screen-text">no node reachable</span> means it couldn't find one.</td></tr>
+<tr><td><span class="screen-text">TCP bridge: auto UP :4965</span></td><td>The internet link state: <span class="screen-text">UP</span>, <span class="screen-text">connecting</span>, <span class="screen-text">retrying</span>, <span class="screen-text">waiting for WiFi</span>, <span class="screen-text">WiFi is off</span>, <span class="screen-text">no host set</span> or <span class="screen-text">off</span>.</td></tr>
+<tr><td><span class="screen-text">Bridging LoRa/TCP: yes</span></td><td>Your CAT is joining the local radio mesh to the internet (transport on, bridge up and radio online).</td></tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>Default</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">TRANSPORT NODE</span></td><td>On</td><td>Forward other CATs' traffic.</td></tr>
+<tr><td><span class="screen-text">PROPAGATION NODE</span></td><td>On</td><td>Keep mail for offline CATs.</td></tr>
+<tr><td><span class="screen-text">MAIL NODE: HOME</span></td><td>Home</td><td>Choose where your undeliverable mail goes. Press <kbd class="k round" title="A button">A</kbd> to cycle <b>HOME</b> &rarr; <b>AUTO</b> &rarr; <b>OFF</b> &rarr; HOME.</td></tr>
+<tr><td><span class="screen-text">TCP BRIDGE</span></td><td>&ndash;</td><td>The internet link window (below).</td></tr>
+<tr><td><span class="screen-text">RESET TO DEFAULTS</span></td><td>&ndash;</td><td>Asks <span class="screen-text">Restore default mesh settings?</span>. This also resets your device name, the Wi-Fi switch and the hub choice.</td></tr>
+</tbody>
+</table></div>
+<h3 id="mail-node">Mail node: HOME, AUTO or OFF<a class="anchor" href="#mail-node" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><b>HOME</b> (default): use Sanctuary's mailbox whenever your CAT has a working internet route to it. Without one, CAT quietly picks the best nearby node instead and switches back when the route returns. Home is never looked for over LoRa.</li>
+<li><b>AUTO</b>: always pick the best node CAT can find, over radio or internet.</li>
+<li><b>OFF</b>: deliver directly only. Messages to unreachable friends fail instead of waiting in a mailbox.</li>
+</ul>
+<p>Switching mail node doesn't move messages already waiting on the old one. A custom node can be set from the USB shell; the menu then shows <span class="screen-text">MAIL NODE: CUSTOM</span>.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: MAIL NODE: AUTO."><img src="assets/screens/mesh_mail_auto.png" width="640" height="480" loading="lazy" alt="MAIL NODE: AUTO."></button><figcaption>MAIL NODE: AUTO.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: MAIL NODE: OFF, so mail goes direct only."><img src="assets/screens/mesh_mail_off.png" width="640" height="480" loading="lazy" alt="MAIL NODE: OFF, so mail goes direct only."></button><figcaption>MAIL NODE: OFF, so mail goes direct only.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Transport node off: the CAT becomes a leaf."><img src="assets/screens/mesh_transport_off.png" width="640" height="480" loading="lazy" alt="Transport node off: the CAT becomes a leaf."></button><figcaption>Transport node off: the CAT becomes a leaf.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Reset asks first."><img src="assets/screens/mesh_reset_confirm.png" width="640" height="480" loading="lazy" alt="Reset asks first."></button><figcaption>Reset asks first.</figcaption></figure>
+</div>
+
+<h3 id="tcp-bridge">TCP BRIDGE and hubs<a class="anchor" href="#tcp-bridge" aria-label="Link to this section">#</a></h3>
+<p>The TCP bridge needs Wi-Fi. By default it uses a built-in list of 32 public hubs, starting with <b>Europe - Sanctuary (home)</b>. If a hub stops answering, CAT moves to another one and later tries home again.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Hub 1 of 32: Sanctuary, connected."><img src="assets/screens/mesh_tcp.png" width="640" height="480" loading="lazy" alt="Hub 1 of 32: Sanctuary, connected."></button><figcaption>Hub 1 of 32: Sanctuary, connected.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: CHOOSE A HUB: six per page; &gt; marks the current one."><img src="assets/screens/mesh_hubs.png" width="640" height="480" loading="lazy" alt="CHOOSE A HUB: six per page; &gt; marks the current one."></button><figcaption>CHOOSE A HUB: six per page; &gt; marks the current one.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">ENABLED</span></td><td>Turn the internet link on or off (on by default).</td></tr>
+<tr><td><span class="screen-text">CHOOSE HUB FROM LIST</span></td><td>Start from a different hub in the list. CAT still moves on if it fails.</td></tr>
+<tr><td><span class="screen-text">CUSTOM HOST</span> / <span class="screen-text">CUSTOM PORT</span></td><td>Type your own hub's host name or IPv4 address, and port (default 4965).</td></tr>
+<tr><td><span class="screen-text">USE CUSTOM HOST</span></td><td>Switch to your custom hub. Rejected with <span class="screen-text">Host must be a host name or IPv4 address, port 1-65535</span> if it isn't valid.</td></tr>
+<tr><td><span class="screen-text">USE AUTOMATIC LIST</span></td><td>Shown only on a custom hub: go back to the built-in list.</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="wifi">Wi-Fi<a class="anchor" href="#wifi" aria-label="Link to this section">#</a></h2>
+<p>Settings &rarr; SETTINGS &rarr; WIFI. Wi-Fi is used for the TCP bridge and for <a href="crypto.html">Crypto</a> uploads. Your networks and passwords are stored on CAT's board controller and survive resets and game updates. Up to 8 networks are remembered, most recent first.</p>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: WIFI ON, connected to &quot;My Network&quot; (a pretend network in the simulator)."><img src="assets/screens/wifi_main.png" width="640" height="480" loading="lazy" alt="WIFI ON, connected to &quot;My Network&quot; (a pretend network in the simulator)."></button><figcaption>WIFI ON, connected to "My Network" (a pretend network in the simulator).</figcaption></figure>
+<h3 id="wifi-join">Joining a network<a class="anchor" href="#wifi-join" aria-label="Link to this section">#</a></h3>
+<ol class="steps">
+<li>Choose <span class="screen-text">SCAN NETWORKS</span>. After <span class="screen-text">SCANNING</span> <span class="screen-text">Please wait...</span>, nearby networks are listed.</li>
+<li>Pick yours. The keyboard opens for the password (leave it empty for an open network) and press <span class="screen-text">DONE</span>.</li>
+<li>Check the password shown on <span class="screen-text">CONNECT TO</span> and choose <span class="screen-text">CONFIRM</span>.</li>
+<li>Wait for <span class="screen-text">SUCCESS</span> <span class="screen-text">Connected</span>, and press <kbd class="k round" title="A button">A</kbd>. A network you connect to is saved automatically.</li>
+</ol>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: SELECT NETWORK."><img src="assets/screens/wifi_select.png" width="640" height="480" loading="lazy" alt="SELECT NETWORK."></button><figcaption>SELECT NETWORK.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Typing the password."><img src="assets/screens/keyboard_wifi_password.png" width="640" height="480" loading="lazy" alt="Typing the password."></button><figcaption>Typing the password.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Check, then CONFIRM."><img src="assets/screens/wifi_connect_to.png" width="640" height="480" loading="lazy" alt="Check, then CONFIRM."></button><figcaption>Check, then CONFIRM.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Connected."><img src="assets/screens/wifi_result.png" width="640" height="480" loading="lazy" alt="Connected."></button><figcaption>Connected.</figcaption></figure>
+</div>
+<div class="callout warn"><strong>Passwords are shown in plain text</strong>The Wi-Fi screens display the password as you typed it, so check who can see your screen.</div>
+<p>If it fails you see <span class="screen-text">FAILURE</span> with <span class="screen-text">Connection failed</span>, <span class="screen-text">No response</span>, <span class="screen-text">No networks found</span> or <span class="screen-text">Scan failed</span>.</p>
+<h3 id="wifi-saved">Saved networks and adding by hand<a class="anchor" href="#wifi-saved" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><span class="screen-text">SAVED NETWORKS</span> lists remembered networks and has the <span class="screen-text">AUTOCONNECT</span> switch. With it on, CAT reconnects by itself when it is offline and idle. Pick a network to see its security type and <span class="screen-text">CONNECT</span> or <span class="screen-text">FORGET</span> it. FORGET acts immediately.</li>
+<li><span class="screen-text">ADD NETWORK</span> is for hidden networks: type the name, optionally a password, and <span class="screen-text">SAVE</span>. With a password it is saved as WPA2, without as open.</li>
+<li>Untick <span class="screen-text">WIFI ON</span> to turn the Wi-Fi radio off. LoRa keeps working; the TCP bridge waits.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: SAVED NETWORKS."><img src="assets/screens/wifi_saved.png" width="640" height="480" loading="lazy" alt="SAVED NETWORKS."></button><figcaption>SAVED NETWORKS.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A saved network."><img src="assets/screens/wifi_saved_entry.png" width="640" height="480" loading="lazy" alt="A saved network."></button><figcaption>A saved network.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: ADD NETWORK starts with the name."><img src="assets/screens/keyboard_wifi_ssid.png" width="640" height="480" loading="lazy" alt="ADD NETWORK starts with the name."></button><figcaption>ADD NETWORK starts with the name.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Then the password, then SAVE."><img src="assets/screens/wifi_add.png" width="640" height="480" loading="lazy" alt="Then the password, then SAVE."></button><figcaption>Then the password, then SAVE.</figcaption></figure>
+</div>
+<p>CAT supports open, WEP, WPA and WPA2 networks. It can't join enterprise (802.1X) networks or act as a hotspot.</p>
+
+<h2 id="routing">What happens to a message<a class="anchor" href="#routing" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>If your friend is one radio hop away or reachable over the internet link, CAT sends it straight there and waits for a delivery receipt (two green ticks).</li>
+<li>If they are farther, CAT tries directly once, then gives the message to its mail node (one tick and a dot), retrying after 1, 2 and 4 minutes.</li>
+<li>If CAT has never heard of the recipient, it asks the network and waits up to 3 minutes.</li>
+<li>When your friend's CAT comes online, it collects its mail from the propagation node.</li>
+</ol>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="keyboard.html"><small>Previous</small>Typing</a><a class="next" href="crypto.html"><small>Next</small>Crypto (FHE)</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

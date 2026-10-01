@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started · CAT manual</title>
+<meta name="description" content="CAT hardware, power and charging, first boot, the home screen, menu navigation and how saving works.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html" aria-current="page">Getting started</a>
+<ul class="toc"><li><a href="#hardware">The hardware</a></li><li><a href="#power">Power and charging</a></li><li><a href="#first-boot">First boot: set your time zone</a></li><li><a href="#home">The home screen</a></li><li><a href="#menus">Using menus</a></li><li><a href="#saving">How saving works (important)</a></li><li><a href="#sounds">Sounds and lights</a></li></ul>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Getting started</h1>
+<p class="lede">The hardware, turning CAT on and off, the first-boot time zone prompt, the home screen, and the one habit that keeps your data safe.</p>
+
+<h2 id="hardware">The hardware<a class="anchor" href="#hardware" aria-label="Link to this section">#</a></h2>
+<p>CAT has a 320&times;240 colour touch screen, eight buttons, a USB-C port, a microSD slot, a speaker, a set of air-quality sensors, a LoRa radio and Wi-Fi. A second, black-and-white e-paper screen shows the latest air readings even while the device is off.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Part</th><th>What it's for</th></tr></thead>
+<tbody>
+<tr><td>D-pad <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd></td><td>Move around menus, the home grid and the Explore world.</td></tr>
+<tr><td><kbd class="k round" title="A button">A</kbd> and <kbd class="k round" title="B button">B</kbd></td><td><kbd class="k round" title="A button">A</kbd> accepts or opens; <kbd class="k round" title="B button">B</kbd> goes back or cancels.</td></tr>
+<tr><td><kbd class="k pill" title="START button">START</kbd> and <kbd class="k pill" title="SELECT button">SELECT</kbd></td><td>Extra actions that depend on the screen (each page lists them).</td></tr>
+<tr><td>Touch screen</td><td>Capacitive, one finger. Tap anything you could select with the buttons.</td></tr>
+<tr><td>Power button</td><td>Wakes a CAT that is asleep or powered down. It does nothing while USB is plugged in.</td></tr>
+<tr><td>USB-C port</td><td>Charging, connecting to a computer, and (on v0.35 boards) USB keyboards and mice.</td></tr>
+<tr><td>microSD slot</td><td>Storage for GB Emulator games, their saves and Doom. v0.35 boards also have a built-in "Internal SD".</td></tr>
+<tr><td>Speaker</td><td>Message chime, Party music, game sound.</td></tr>
+<tr><td>Five RGB LEDs (v0.35)</td><td>Light shows from the Party menu. They are not used as status lights.</td></tr>
+<tr><td>E-paper screen</td><td>Always-visible air readings and the sleep screen (see <a href="dashboard.html#epaper">e-paper badge</a>).</td></tr>
+<tr><td>Sensors</td><td>CO2, fine particles, VOC and NOx gases, plus temperature, humidity, pressure, light and motion sensors used internally.</td></tr>
+<tr><td>LoRa radio</td><td>Long-range, low-power radio for the mesh messenger.</td></tr>
+<tr><td>NFC tag</td><td>A phone tapped on the case reads a link to the project page and the device ID.</td></tr>
+</tbody>
+</table></div>
+
+<details>
+<summary>What's inside: four processors</summary>
+<div class="body">
+<p>You never have to think about this, but it explains some behaviour (for example why Wi-Fi settings survive a reset of the game).</p>
+<ul>
+<li><b>Game processor (RP2350).</b> Runs the screen, the apps, the Explore game and the mesh node that sends and stores messages.</li>
+<li><b>Board controller (Nordic nRF5340 with nRF7002 Wi-Fi).</b> Power, charging, battery gauge, Wi-Fi and saved networks, sensors, the e-paper screen, the clock and the NFC tag.</li>
+<li><b>LoRa radio (RAK11300).</b> Runs RNode radio firmware.</li>
+<li><b>Crypto chip (Baochip).</b> Does the homomorphic encryption used by the <a href="crypto.html">Crypto</a> menu.</li>
+</ul>
+</div>
+</details>
+
+<h2 id="power">Power and charging<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
+<h3 id="turn-on">Turning CAT on<a class="anchor" href="#turn-on" aria-label="Link to this section">#</a></h3>
+<p>Plug in USB-C, or press the power button. A CAT that was put to sleep, powered down or ran flat wakes this way. The e-paper screen changes from <span class="screen-text">ASLEEP</span> to <span class="screen-text">AWAKE</span> <span class="screen-text">Waiting for sensors...</span>, and the first air readings appear about 30 seconds later.</p>
+<h3 id="turn-off">Turning CAT off<a class="anchor" href="#turn-off" aria-label="Link to this section">#</a></h3>
+<p>Open Settings &rarr; POWER and choose <span class="screen-text">SLEEP</span>, or <span class="screen-text">POWER DOWN</span> and then <span class="screen-text">Yes</span>. Both do the same thing in this firmware. CAT shows <span class="screen-text">Saving...</span>, saves everything, shows <span class="screen-text">GOODNIGHT</span> and switches its battery off. The e-paper screen then shows a sleeping unicorn with <span class="screen-text">Powered off.</span> and <span class="screen-text">Plug in USB-C to turn on.</span></p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Settings → POWER."><img src="assets/screens/power_menu.png" width="640" height="480" loading="lazy" alt="Settings → POWER."></button><figcaption>Settings &rarr; POWER.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER DOWN asks first. SLEEP does not."><img src="assets/screens/power_down_confirm.png" width="640" height="480" loading="lazy" alt="POWER DOWN asks first. SLEEP does not."></button><figcaption>POWER DOWN asks first. SLEEP does not.</figcaption></figure>
+</div>
+<div class="callout"><strong>Screen off is not power off</strong>When the screen dims and goes dark on its own, CAT keeps running: it still receives messages, relays traffic for other CATs and reads the sensors. The first tap or button press on a dark screen only wakes it and does nothing else.</div>
+
+<h3 id="battery">Battery and charging<a class="anchor" href="#battery" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>The battery icon is at the top right of the home screen and the Dashboard. It animates while charging. It stays hidden until the battery gauge has reported once after boot.</li>
+<li>Any USB-C charger works. A completely flat battery needs a proper charger (1.5 A or more) to start straight away; on a weak port CAT stays off until it has charged enough, which can take a while.</li>
+<li>At 5% battery CAT saves everything automatically and briefly shows <span class="screen-text">Critical battery</span> <span class="screen-text">Saving node...</span>. If the cell gets too low, CAT saves and switches itself off, and the e-paper shows <span class="screen-text">Battery empty.</span></li>
+<li>The exact charge level, cell voltage and charger state are on Settings &rarr; DEVELOPER &rarr; INFO &rarr; POWER (see <a href="settings.html#developer">developer pages</a>).</li>
+</ul>
+<div class="callout warn"><strong>Charge at room temperature</strong>The charger's temperature sensor input is bypassed on current boards, so the charger cannot stop on its own if the battery gets too hot or cold. Charge CAT indoors and don't leave it charging in a hot car or in direct sun.</div>
+
+<h2 id="first-boot">First boot: set your time zone<a class="anchor" href="#first-boot" aria-label="Link to this section">#</a></h2>
+<p>The first time the home screen appears, CAT asks for your time zone. The clock and message times use it, and it is never sent over the network. The list works offline and knows daylight-saving rules up to the year 2100.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 1. Pick a region with ▲ ▼ and A, or tap it."><img src="assets/screens/boot_tz_region.png" width="640" height="480" loading="lazy" alt="1. Pick a region with ▲ ▼ and A, or tap it."></button><figcaption>1. Pick a region with <kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> and <kbd class="k round" title="A button">A</kbd>, or tap it.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 2. Pick a country. The United States is first under Americas, the United Kingdom first under Europe. Seven per page; use NEXT PAGE."><img src="assets/screens/boot_tz_country.png" width="640" height="480" loading="lazy" alt="2. Pick a country. The United States is first under Americas, the United Kingdom first under Europe. Seven per page; use NEXT PAGE."></button><figcaption>2. Pick a country. The United States is first under Americas, the United Kingdom first under Europe. Seven per page; use NEXT PAGE.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 3. Pick a city or zone."><img src="assets/screens/boot_tz_city.png" width="640" height="480" loading="lazy" alt="3. Pick a city or zone."></button><figcaption>3. Pick a city or zone.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 4. Check the local time and choose SAVE TIMEZONE."><img src="assets/screens/boot_tz_confirm.png" width="640" height="480" loading="lazy" alt="4. Check the local time and choose SAVE TIMEZONE."></button><figcaption>4. Check the local time and choose SAVE TIMEZONE.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: 5. The home screen, with the default name cat-game."><img src="assets/screens/home_first.png" width="640" height="480" loading="lazy" alt="5. The home screen, with the default name cat-game."></button><figcaption>5. The home screen, with the default name cat-game.</figcaption></figure>
+</div>
+<p><kbd class="k round" title="B button">B</kbd> goes back one step. Pressing <kbd class="k round" title="B button">B</kbd> on the first page skips the prompt: the clock stays on UTC and CAT asks again at the next start. You can change the zone later in <a href="settings.html#time">Settings &rarr; TIME &amp; TIMEZONE</a>.</p>
+
+<h2 id="home">The home screen<a class="anchor" href="#home" aria-label="Link to this section">#</a></h2>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Top bar: your device name, local time and date, battery. Bottom bar: the highlighted app and &quot;Press A to open&quot;."><img src="assets/screens/home.png" width="640" height="480" loading="lazy" alt="Top bar: your device name, local time and date, battery. Bottom bar: the highlighted app and &quot;Press A to open&quot;."></button><figcaption>Top bar: your device name, local time and date, battery. Bottom bar: the highlighted app and "Press A to open".</figcaption></figure>
+<ul>
+<li><b>Five apps</b> in a 3&times;2 grid: <a href="dashboard.html">Dashboard</a>, <a href="garden.html">Garden</a>, <a href="explore.html">Explore</a>, <a href="chat.html">Chat</a> and <a href="settings.html">Settings</a>.</li>
+<li><b>Move</b> with the D-pad. <kbd class="k " title="D-pad left">◀</kbd> and <kbd class="k " title="D-pad right">▶</kbd> step one tile (hold to repeat); <kbd class="k " title="D-pad up">▲</kbd> and <kbd class="k " title="D-pad down">▼</kbd> jump a row.</li>
+<li><b>Open</b> an app by releasing <kbd class="k round" title="A button">A</kbd>, or tap its tile. If you move the highlight while holding <kbd class="k round" title="A button">A</kbd>, releasing it does not open anything.</li>
+<li><b>Unread messages</b> show as a number on the Chat tile (99+ above 99).</li>
+<li><b>The clock</b> reads <span class="screen-text">Syncing...</span> until the board controller has reported the time after boot.</li>
+</ul>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Highlight on Garden."><img src="assets/screens/home_garden.png" width="640" height="480" loading="lazy" alt="Highlight on Garden."></button><figcaption>Highlight on Garden.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Highlight on Explore."><img src="assets/screens/home_explore.png" width="640" height="480" loading="lazy" alt="Highlight on Explore."></button><figcaption>Highlight on Explore.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Highlight on Chat, with 30 unread messages."><img src="assets/screens/home_chat.png" width="640" height="480" loading="lazy" alt="Highlight on Chat, with 30 unread messages."></button><figcaption>Highlight on Chat, with 30 unread messages.</figcaption></figure>
+</div>
+
+<h2 id="menus">Using menus<a class="anchor" href="#menus" aria-label="Link to this section">#</a></h2>
+<p>Settings and most sub-screens use the same list style. Once you know one, you know them all.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Do this</th><th>With buttons</th><th>With touch</th></tr></thead>
+<tbody>
+<tr><td>Move the highlight</td><td><kbd class="k " title="D-pad up">▲</kbd> <kbd class="k " title="D-pad down">▼</kbd> (the list wraps around)</td><td>Touch a row</td></tr>
+<tr><td>Open, run or tick a row</td><td><kbd class="k round" title="A button">A</kbd></td><td>Tap the row</td></tr>
+<tr><td>Change a <span class="screen-text">&lt;value&gt;</span> or a slider</td><td><kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd></td><td>Tap the left or right half of the window</td></tr>
+<tr><td>Go back one level</td><td><kbd class="k round" title="B button">B</kbd></td><td>&ndash;</td></tr>
+</tbody>
+</table></div>
+<p>Rows with a small box are checkboxes: a filled box means on. Rows written as <span class="screen-text">NAME &lt;value&gt;</span> are steppers. Grey rows are unavailable.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The Settings tile opens MENU."><img src="assets/screens/menu_root.png" width="640" height="480" loading="lazy" alt="The Settings tile opens MENU."></button><figcaption>The Settings tile opens MENU.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A window with a status line, three steppers and an action."><img src="assets/screens/settings_display.png" width="640" height="480" loading="lazy" alt="A window with a status line, three steppers and an action."></button><figcaption>A window with a status line, three steppers and an action.</figcaption></figure>
+</div>
+
+<h2 id="saving">How saving works (important)<a class="anchor" href="#saving" aria-label="Link to this section">#</a></h2>
+<p>CAT keeps your messages, contacts, settings and game progress in fast memory while it runs, and writes them to permanent storage only at certain moments. There is no automatic save every few minutes. If CAT loses power suddenly, or is reset, anything since the last save is lost.</p>
+<p>CAT saves when you:</p>
+<ul>
+<li>put it to sleep or power it down (Settings &rarr; POWER);</li>
+<li>leave the Settings menu after changing something;</li>
+<li>choose Settings &rarr; DEVELOPER &rarr; CONTROLS &rarr; FORCE SAVE;</li>
+<li>start Doom, or enter the USB bootloader for a firmware update;</li>
+<li>reach 5% battery (automatic).</li>
+</ul>
+<p>While a save runs, a <span class="screen-text">Saving...</span> box covers the screen. An ordinary save takes about 4 seconds; a busy node can take 10 to 16 seconds. Don't unplug or reset during it.</p>
+<div class="callout tip"><strong>Good habit</strong>Use POWER &rarr; SLEEP instead of letting the battery run out, and use FORCE SAVE before plugging CAT into a computer for an update.</div>
+
+<h2 id="sounds">Sounds and lights<a class="anchor" href="#sounds" aria-label="Link to this section">#</a></h2>
+<p>CAT is mostly quiet. You hear the message chime (if you turn on <a href="settings.html#tone">NEW MESSAGE TONE</a>), a soft ambient loop in Explore, Party music, and game audio. There are no button clicks. The RGB LEDs only light up from the <a href="extras.html#party">Party</a> menu.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="index.html"><small>Previous</small>Welcome</a><a class="next" href="dashboard.html"><small>Next</small>Dashboard</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

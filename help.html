@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help, care and FAQ · CAT manual</title>
+<meta name="description" content="Troubleshooting, care and safety, updating firmware, the USB shell, known issues in this firmware and a glossary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html">Crypto (FHE)</a>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html" aria-current="page">Help and FAQ</a>
+<ul class="toc"><li><a href="#faq">Troubleshooting</a></li><li><a href="#care">Care and safety</a></li><li><a href="#update">Updating the firmware</a></li><li><a href="#shell">The USB shell</a></li><li><a href="#known-issues">Known issues in this firmware</a></li><li><a href="#glossary">Glossary</a></li></ul>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Help, care and FAQ</h1>
+<p class="lede">Answers to common questions, how to look after your CAT, and the rough edges in this firmware.</p>
+
+<h2 id="faq">Troubleshooting<a class="anchor" href="#faq" aria-label="Link to this section">#</a></h2>
+<details><summary>The screen is black but CAT is on</summary><div class="body"><p>The backlight turned off after a while without input. Press any button or tap once to wake it; that first press does nothing else. Change the timing in <a href="settings.html#display">Settings &rarr; DISPLAY</a>.</p></div></details>
+<details><summary>CAT won't turn on</summary><div class="body"><p>Plug it into a USB-C charger. A completely flat battery waits until it has charged enough before starting, which is quicker on a charger rated 1.5 A or more than on a computer port. Check the e-paper screen: <span class="screen-text">Battery empty.</span> means it needs charging. The power button does nothing while USB is plugged in.</p></div></details>
+<details><summary>I lost recent messages or settings</summary><div class="body"><p>CAT saves only at certain moments (see <a href="getting-started.html#saving">how saving works</a>). A reset or sudden power loss loses anything since the last save. Use POWER &rarr; SLEEP to switch off, and FORCE SAVE before updates.</p></div></details>
+<details><summary>My friend's CAT doesn't appear on the Nearby tab</summary><div class="body"><ul><li>Nearby only lists CATs heard <b>directly over LoRa</b>, not ones reached through the internet.</li><li>Ask them to press <kbd class="k pill" title="SELECT button">SELECT</kbd> in Chat to announce, or open the Nearby tab themselves.</li><li>Both CATs must use the same radio settings.</li><li>If they are already a contact, they appear on Contacts, not Nearby.</li><li>You can always add them by address instead: <kbd class="k pill" title="START button">START</kbd> &rarr; Add LXMF address.</li></ul></div></details>
+<details><summary>My message only has one tick</summary><div class="body"><p>One grey tick means sent and waiting for a receipt. One tick with a dot means a propagation node is holding it for your friend, which is final and normal. Two green ticks only appear when your friend's CAT confirms delivery directly. See <a href="chat.html#delivery">delivery marks</a>.</p></div></details>
+<details><summary>"Messaging busy - try again"</summary><div class="body"><p>CAT tracks one send at a time. Wait for the current message or doodle to finish.</p></div></details>
+<details><summary>My doodle shows as gibberish in Sideband</summary><div class="body"><p>Doodles only display on CATs. Other LXMF apps show the raw doodle data as text.</p></div></details>
+<details><summary>The Dashboard shows 0.00 and an A</summary><div class="body"><p>The sensors are still starting up; readings arrive within about a minute of switching on.</p></div></details>
+<details><summary>Crypto says "Baochip busy"</summary><div class="body"><p>The crypto chip generates its keys for about 4 minutes after every start. Try again a few minutes later.</p></div></details>
+<details><summary>The Wi-Fi bridge stays on "connecting"</summary><div class="body"><p>Check that Wi-Fi shows <span class="screen-text">Connected to</span>. CAT moves to another hub if one doesn't answer, and returns to the home hub later. You can pick a hub yourself in <a href="mesh.html#tcp-bridge">TCP BRIDGE</a>.</p></div></details>
+<details><summary>Explore says "Not enough memory for Explore"</summary><div class="body"><p>Press <kbd class="k round" title="B button">B</kbd> to go back, then try again. Restarting CAT frees memory.</p></div></details>
+
+<h2 id="care">Care and safety<a class="anchor" href="#care" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><b>Charging:</b> charge at room temperature, indoors and out of direct sun. The charger's temperature protection is bypassed on current boards.</li>
+<li><b>SD cards:</b> insert and remove only while CAT is off. Formatting erases everything.</li>
+<li><b>Save before you unplug.</b> Use SLEEP or POWER DOWN rather than letting the battery run flat, and don't reset during <span class="screen-text">Saving...</span>.</li>
+<li><b>Screen off is not off:</b> radios and sensors keep running. Use POWER DOWN to really switch off, for example when flying.</li>
+<li><b>USB accessories</b> draw from CAT's battery. Turn the setting off when you are done.</li>
+<li><b>E-paper</b> keeps its last image without power. Faint ghosting between full refreshes is normal.</li>
+<li><b>The speaker</b> is a small buzzer and is loudest in the upper midrange; music sounds chiptune-like by design.</li>
+</ul>
+
+<h2 id="update">Updating the firmware<a class="anchor" href="#update" aria-label="Link to this section">#</a></h2>
+<p>Firmware updates use the <b>CAT provisioner</b> on a computer. It updates all four processors in turn, from a release package, over USB.</p>
+<ol class="steps">
+<li>Save first: POWER &rarr; SLEEP and wake again, or DEVELOPER &rarr; CONTROLS &rarr; FORCE SAVE.</li>
+<li>Connect CAT to the computer and run the provisioner with the release package. If several CATs are connected, select yours by serial number.</li>
+<li>USB disconnects and reconnects several times during an update. Don't unplug until it reports success.</li>
+</ol>
+<p>Your Wi-Fi networks, messages and contacts are kept. Firmware images are checked with SHA-256 checksums but are not signed.</p>
+
+<h2 id="shell">The USB shell<a class="anchor" href="#shell" aria-label="Link to this section">#</a></h2>
+<p>Connected to a computer, CAT's game processor offers a text console on its USB serial port (any terminal program, any baud rate). Press a key to get the prompt <code>game:~$</code>, then type <code>help</code>. Handy commands:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>Shows or does</th></tr></thead>
+<tbody>
+<tr><td><code>version</code></td><td>The firmware version and build.</td></tr>
+<tr><td><code>lxmf address</code>, <code>lxmf address qr</code></td><td>Your address (and a QR code drawn in the terminal).</td></tr>
+<tr><td><code>lxmf contacts</code></td><td>List, add, rename or remove contacts.</td></tr>
+<tr><td><code>batt</code></td><td>Battery and charger state.</td></tr>
+<tr><td><code>mesh</code></td><td>Mesh roles, including <code>mesh pnsel home|auto|off|&lt;hash&gt;</code> for the mail node.</td></tr>
+<tr><td><code>timezone</code>, <code>message tone</code>, <code>backlight</code></td><td>The same preferences as Settings.</td></tr>
+<tr><td><code>usb</code>, <code>sd</code></td><td>USB accessory mode and SD card state.</td></tr>
+</tbody>
+</table></div>
+<p>The shell isn't available while USB keyboard/mouse mode is on.</p>
+
+<h2 id="known-issues">Known issues in this firmware<a class="anchor" href="#known-issues" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>The intro cave in Explore shows raw codes (<span class="screen-text">\xD\xE\xF\x10\x14 TO OPEN OVERL</span>) instead of the START button hint, and the text runs off screen.</li>
+<li>The caption in Reed's House is wider than the screen and is cut off at both ends.</li>
+<li>The Radio's LISTEN FAR never receives anything yet.</li>
+<li>The Dashboard's warning boxes are empty placeholders.</li>
+<li>Settings lists two editors for the same name (DEVICE NAME and NAME).</li>
+<li>Volume isn't remembered across restarts.</li>
+<li>SLEEP and POWER DOWN do the same thing.</li>
+<li>The Geometric Talisman recipe can't be completed, because its ingredients aren't in the world yet.</li>
+<li>Explore's licence clerk offers his trade with one dose of miasma but takes two.</li>
+<li>Crypto uses a shared, public test key (see <a href="crypto.html">Crypto</a>).</li>
+</ul>
+
+<h2 id="glossary">Glossary<a class="anchor" href="#glossary" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<tbody>
+<tr><td><b>Address</b></td><td>Your CAT's 32-digit LXMF delivery ID.</td></tr>
+<tr><td><b>Announce</b></td><td>A broadcast saying who you are and how to reach you.</td></tr>
+<tr><td><b>FHE</b></td><td>Fully homomorphic encryption: computing on encrypted data.</td></tr>
+<tr><td><b>Hub</b></td><td>A public Reticulum server CAT connects to over Wi-Fi.</td></tr>
+<tr><td><b>LoRa</b></td><td>The long-range, low-power radio used between CATs.</td></tr>
+<tr><td><b>LXMF</b></td><td>The messaging format used by Chat, Sideband and NomadNet.</td></tr>
+<tr><td><b>Mail node</b></td><td>The propagation node that holds your outgoing mail for unreachable friends.</td></tr>
+<tr><td><b>PN10</b></td><td>The number of particles up to 10 &micro;m per cubic centimetre.</td></tr>
+<tr><td><b>PM2.5</b></td><td>The weight of fine particles under 2.5 &micro;m per cubic metre of air.</td></tr>
+<tr><td><b>Propagation node</b></td><td>A Reticulum mailbox that stores messages for offline devices.</td></tr>
+<tr><td><b>Reticulum</b></td><td>The encrypted mesh networking system CAT uses.</td></tr>
+<tr><td><b>Transport node</b></td><td>A device that forwards other devices' traffic.</td></tr>
+</tbody>
+</table></div>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="extras.html"><small>Previous</small>Hardware extras</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>

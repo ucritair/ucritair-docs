@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crypto: encrypted air statistics · CAT manual</title>
+<meta name="description" content="The CRYPTO menu: uploading encrypted hourly air readings, fleet statistics computed on encrypted data (FHE), hourly automation, status messages and the privacy model.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<span class="spacer"></span>
+<button class="icon-btn" type="button" data-theme-toggle>Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Manual">
+<h2>Start here</h2><ul>
+<li><a href="index.html">Welcome</a>
+</li>
+<li><a href="getting-started.html">Getting started</a>
+</li>
+</ul>
+<h2>Apps</h2><ul>
+<li><a href="dashboard.html">Dashboard</a>
+</li>
+<li><a href="garden.html">Garden</a>
+</li>
+<li><a href="explore.html">Explore</a>
+</li>
+<li><a href="chat.html">Chat</a>
+</li>
+<li><a href="keyboard.html">Typing</a>
+</li>
+</ul>
+<h2>Connectivity</h2><ul>
+<li><a href="mesh.html">Mesh and Wi-Fi</a>
+</li>
+<li><a href="crypto.html" aria-current="page">Crypto (FHE)</a>
+<ul class="toc"><li><a href="#fhe">What FHE means</a></li><li><a href="#menu">The CRYPTO menu</a></li><li><a href="#upload">Uploading an hour</a></li><li><a href="#fleet">Fleet statistics</a></li><li><a href="#hourly">Hourly automation</a></li><li><a href="#errors">Status and error messages</a></li><li><a href="#privacy">Privacy in plain words</a></li></ul>
+</li>
+</ul>
+<h2>Reference</h2><ul>
+<li><a href="settings.html">Settings</a>
+</li>
+<li><a href="extras.html">Hardware extras</a>
+</li>
+<li><a href="help.html">Help and FAQ</a>
+</li>
+</ul>
+</nav>
+<main>
+<article class="content">
+<h1>Crypto: encrypted air statistics</h1>
+<p class="lede">CAT can upload its air readings encrypted, let a server combine every CAT's readings without decrypting them, and then show how your air compares with the fleet.</p>
+
+<div class="callout warn"><strong>This is a research demo with a shared test key</strong>Every CAT and every firmware build uses the same encryption key, and that key is published in the project's source code. Anyone with the source can decrypt any upload. Treat everything you upload as public. The device ID and the hour of each upload are also visible to the server.</div>
+
+<h2 id="fhe">What FHE means<a class="anchor" href="#fhe" aria-label="Link to this section">#</a></h2>
+<p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT locks its readings before they leave the device. The server adds up the locked readings from every CAT, producing a locked total, and never sees a single value. Only a key holder can unlock the total and turn it into an average.</p>
+<ol class="steps">
+<li><b>Measure.</b> Every 3 minutes the board controller records CO2, PM2.5 and PN10 (the number of particles, not their weight).</li>
+<li><b>Encrypt.</b> After each full hour, the Baochip crypto chip packs that hour's 20 readings into one encrypted batch (about 3 minutes of work).</li>
+<li><b>Upload.</b> The board controller sends the batch over Wi-Fi to the test platform.</li>
+<li><b>Combine.</b> The platform adds every CAT's encrypted hours together and works out the spread, still encrypted.</li>
+<li><b>Decrypt the summary.</b> Your CAT downloads the encrypted result (about 5 MB), the Baochip decrypts it, and the screen shows the fleet's average next to yours.</li>
+</ol>
+<p>Only CO2, PM2.5 and PN10 are uploaded. VOC, NOx, temperature, humidity, pressure, light and motion never leave the device. Readings wait unencrypted in the board controller's storage until they are encrypted, and are deleted after 64 hours if never sent.</p>
+
+<h2 id="menu">The CRYPTO menu<a class="anchor" href="#menu" aria-label="Link to this section">#</a></h2>
+<p>Settings &rarr; CRYPTO. Only one job runs at a time; choosing a job that is already running just shows its progress again.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Before any statistics have been fetched."><img src="assets/screens/crypto_menu.png" width="640" height="480" loading="lazy" alt="Before any statistics have been fetched."></button><figcaption>Before any statistics have been fetched.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: With a report available and both hourly options ticked."><img src="assets/screens/crypto_toggles_on.png" width="640" height="480" loading="lazy" alt="With a report available and both hourly options ticked."></button><figcaption>With a report available and both hourly options ticked.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Row</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">UPLOAD LAST HOUR</span></td><td>Encrypt and upload the last complete hour now.</td></tr>
+<tr><td><span class="screen-text">FLEET STATS</span></td><td>Run the fleet job now and show the result.</td></tr>
+<tr><td><span class="screen-text">VIEW LAST STATS</span></td><td>Show the most recent fleet report again (only listed once there is one).</td></tr>
+<tr><td><span class="screen-text">FHE HOURLY UPLOAD</span></td><td>Upload every hour automatically. Off by default.</td></tr>
+<tr><td><span class="screen-text">FHE HOURLY STATS DOWNLOAD</span></td><td>Fetch fresh fleet statistics every hour automatically. Off by default.</td></tr>
+</tbody>
+</table></div>
+<p>The bottom line reads <span class="screen-text">Wi-Fi: yes  Keys: yes  Job: idle</span>: whether CAT is online, whether upload credentials are installed, and whether a job is running. If the board controller doesn't answer it says <span class="screen-text">Nordic: no reply</span>.</p>
+
+<h2 id="upload">Uploading an hour<a class="anchor" href="#upload" aria-label="Link to this section">#</a></h2>
+<p><span class="screen-text">UPLOAD LAST HOUR</span> opens a progress page with two steps, <span class="screen-text">encrypting</span> and <span class="screen-text">uploading</span>. A tick marks a finished step, a triangle the current one, and a red cross the step that failed. On real hardware encryption takes about 3 minutes.</p>
+<div class="shots">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Encrypting."><img src="assets/screens/crypto_upload_progress1.png" width="640" height="480" loading="lazy" alt="Encrypting."></button><figcaption>Encrypting.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Uploading."><img src="assets/screens/crypto_upload_progress2.png" width="640" height="480" loading="lazy" alt="Uploading."></button><figcaption>Uploading.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Uploaded."><img src="assets/screens/crypto_upload_done.png" width="640" height="480" loading="lazy" alt="Uploaded."></button><figcaption>Uploaded.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Each hour is uploaded only once. Asking again says Already uploaded."><img src="assets/screens/crypto_already.png" width="640" height="480" loading="lazy" alt="Each hour is uploaded only once. Asking again says Already uploaded."></button><figcaption>Each hour is uploaded only once. Asking again says Already uploaded.</figcaption></figure>
+</div>
+<p>Press <kbd class="k round" title="B button">B</kbd> to leave the progress page; the job carries on.</p>
+
+<h2 id="fleet">Fleet statistics<a class="anchor" href="#fleet" aria-label="Link to this section">#</a></h2>
+<p><span class="screen-text">FLEET STATS</span> runs five steps: <span class="screen-text">requesting</span>, <span class="screen-text">computing</span> (the platform works on the encrypted data), <span class="screen-text">downloading</span> and <span class="screen-text">loading</span> (with a percentage), then <span class="screen-text">decrypting</span>. On hardware the whole job takes about 10 minutes. When it finishes, the statistics screen opens.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Computing on the platform."><img src="assets/screens/crypto_fleet_progress1.png" width="640" height="480" loading="lazy" alt="Computing on the platform."></button><figcaption>Computing on the platform.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Downloading the encrypted result."><img src="assets/screens/crypto_fleet_progress2.png" width="640" height="480" loading="lazy" alt="Downloading the encrypted result."></button><figcaption>Downloading the encrypted result.</figcaption></figure>
+</div>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: The statistics screen, styled like the Dashboard&#x27;s LIVE STATISTICS."><img src="assets/screens/crypto_fleet_stats.png" width="640" height="480" loading="lazy" alt="The statistics screen, styled like the Dashboard&#x27;s LIVE STATISTICS."></button><figcaption>The statistics screen, styled like the Dashboard's LIVE STATISTICS.</figcaption></figure>
+<ul>
+<li>The top bar shows how many CATs contributed.</li>
+<li>Each row is one measurement: <b>PM 2.5</b>, <b>PN 10</b> and <b>CO2</b>.</li>
+<li><b>You</b> (pink) is the average of your last uploaded hour. <b>Fleet</b> (blue) is the average of every reading from every CAT, &plusmn; the spread (standard deviation).</li>
+<li>PM 2.5 and CO2 get letter grades and sit on the same colour bar as the <a href="dashboard.html#grading">Dashboard</a>. PN 10 has no grade and uses a plain scale.</li>
+<li>On the bar, the pink triangle is you, the blue tick is the fleet average, and the light blue band covers the fleet's spread.</li>
+<li><span class="screen-text">--</span> means there is no value, for example no uploaded hour of your own yet.</li>
+</ul>
+<p>Press <kbd class="k round" title="B button">B</kbd> or tap to go back. With no report yet the screen says <span class="screen-text">No fleet stats yet</span>.</p>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Before your own hour is included: You shows --."><img src="assets/screens/crypto_stats_noyou.png" width="640" height="480" loading="lazy" alt="Before your own hour is included: You shows --."></button><figcaption>Before your own hour is included: You shows --.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: VIEW LAST STATS appears once a report exists."><img src="assets/screens/crypto_menu_with_report.png" width="640" height="480" loading="lazy" alt="VIEW LAST STATS appears once a report exists."></button><figcaption>VIEW LAST STATS appears once a report exists.</figcaption></figure>
+</div>
+
+<h2 id="hourly">Hourly automation<a class="anchor" href="#hourly" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><b>FHE HOURLY UPLOAD</b>: from the hour you tick it, each completed hour is encrypted and uploaded. Older hours are not back-filled. If an upload fails, CAT retries after 2, 5, 10, 20, 30 and 60 minutes. Being offline or busy doesn't count as a failure.</li>
+<li><b>FHE HOURLY STATS DOWNLOAD</b>: once an hour, from 20 minutes past (after the uploads have landed), CAT runs the fleet job in the background. If it is busy or offline it tries again every 2 minutes, up to 3 runs an hour. You don't see progress; open VIEW LAST STATS for the new numbers.</li>
+<li>Both settings live on the board controller and survive restarts.</li>
+</ul>
+
+<h2 id="errors">Status and error messages<a class="anchor" href="#errors" aria-label="Link to this section">#</a></h2>
+<div class="shots two">
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: A server refusal: HTTP 401 with the internal error number."><img src="assets/screens/crypto_error.png" width="640" height="480" loading="lazy" alt="A server refusal: HTTP 401 with the internal error number."></button><figcaption>A server refusal: HTTP 401 with the internal error number.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Another job is running."><img src="assets/screens/crypto_busy.png" width="640" height="480" loading="lazy" alt="Another job is running."></button><figcaption>Another job is running.</figcaption></figure>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Message</th><th>Meaning and what to do</th></tr></thead>
+<tbody>
+<tr><td><span class="screen-text">Uploaded</span> / <span class="screen-text">Done</span></td><td>Success.</td></tr>
+<tr><td><span class="screen-text">Already uploaded</span></td><td>That hour was sent before. Nothing to do.</td></tr>
+<tr><td><span class="screen-text">No Wi-Fi</span></td><td>Connect to Wi-Fi first (<a href="mesh.html#wifi">how</a>).</td></tr>
+<tr><td><span class="screen-text">No token</span></td><td>No upload credentials are installed. Normal builds include demo credentials.</td></tr>
+<tr><td><span class="screen-text">HTTP 401</span> (or another number)</td><td>The platform refused the request.</td></tr>
+<tr><td><span class="screen-text">Baochip busy</span></td><td>The crypto chip is still generating keys, which takes about 4 minutes after every start. Try again later.</td></tr>
+<tr><td><span class="screen-text">Busy</span></td><td>Another upload or fleet job is running.</td></tr>
+<tr><td><span class="screen-text">No data</span></td><td>No complete hour of readings yet, or no fleet readings.</td></tr>
+<tr><td><span class="screen-text">No clock</span></td><td>CAT doesn't know the time yet.</td></tr>
+<tr><td><span class="screen-text">Job failed</span> / <span class="screen-text">Timeout</span></td><td>The platform job failed or took too long (the limit is 20 minutes).</td></tr>
+<tr><td><span class="screen-text">Decrypt failed</span> / <span class="screen-text">Baochip error</span></td><td>The crypto chip couldn't decrypt or summarise the result.</td></tr>
+<tr><td><span class="screen-text">Network error</span></td><td>The connection failed partway.</td></tr>
+<tr><td><span class="screen-text">Storage error</span></td><td>The board controller couldn't store the result.</td></tr>
+<tr><td><span class="screen-text">No reply</span> / <span class="screen-text">Not supported</span></td><td>The board controller didn't answer, or its firmware doesn't know this request.</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="privacy">Privacy in plain words<a class="anchor" href="#privacy" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><b>Encrypted in transit and at the server:</b> your CO2, PM2.5 and PN10 values for each hour, plus whether each reading was valid and how many readings passed fixed health thresholds.</li>
+<li><b>Visible to the server:</b> your device ID, which hour the batch is for, when and how much you uploaded, and some plain bookkeeping (counts of valid readings and the units).</li>
+<li><b>Not protected in this demo:</b> because the key is shared and public, anyone with the project's source can decrypt your uploads. With only a few CATs taking part, the fleet average can also reveal a lot about each one.</li>
+</ul>
+<p>Leave both hourly options off unless you are happy for your hourly air readings to be effectively public.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="mesh.html"><small>Previous</small>Mesh and Wi-Fi</a><a class="next" href="settings.html"><small>Next</small>Settings</a></nav>
+<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+</article>
+</main>
+</div>
+</body>
+</html>
