@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -71,10 +71,10 @@
 <tr><td><kbd class="k pill" title="START button">START</kbd> and <kbd class="k pill" title="SELECT button">SELECT</kbd></td><td>Extra actions that depend on the screen (each page lists them).</td></tr>
 <tr><td>Touch screen</td><td>Capacitive, one finger. Tap anything you could select with the buttons.</td></tr>
 <tr><td>Power button</td><td>Wakes a CAT that is asleep or powered down. It does nothing while USB is plugged in.</td></tr>
-<tr><td>USB-C port</td><td>Charging, connecting to a computer, and (on v0.35 boards) USB keyboards and mice.</td></tr>
-<tr><td>microSD slot</td><td>Storage for GB Emulator games, their saves and Doom. v0.35 boards also have a built-in "Internal SD".</td></tr>
+<tr><td>USB-C port</td><td>Charging, connecting to a computer, and USB keyboards and mice.</td></tr>
+<tr><td>microSD slot</td><td>Storage for GB Emulator games, their saves and Doom.</td></tr>
 <tr><td>Speaker</td><td>Message chime, Party music, game sound.</td></tr>
-<tr><td>Five RGB LEDs (v0.35)</td><td>Light shows from the Party menu. They are not used as status lights.</td></tr>
+<tr><td>Five RGB LEDs</td><td>Light shows from the Party menu.</td></tr>
 <tr><td>E-paper screen</td><td>Always-visible air readings and the sleep screen (see <a href="dashboard.html#epaper">e-paper badge</a>).</td></tr>
 <tr><td>Sensors</td><td>CO2, fine particles, VOC and NOx gases, plus temperature, humidity, pressure, light and motion sensors used internally.</td></tr>
 <tr><td>LoRa radio</td><td>Long-range, low-power radio for the mesh messenger.</td></tr>
@@ -85,12 +85,11 @@
 <details>
 <summary>What's inside: four processors</summary>
 <div class="body">
-<p>You never have to think about this, but it explains some behaviour (for example why Wi-Fi settings survive a reset of the game).</p>
 <ul>
 <li><b>Game processor (RP2350).</b> Runs the screen, the apps, the Explore game and the mesh node that sends and stores messages.</li>
 <li><b>Board controller (Nordic nRF5340 with nRF7002 Wi-Fi).</b> Power, charging, battery gauge, Wi-Fi and saved networks, sensors, the e-paper screen, the clock and the NFC tag.</li>
 <li><b>LoRa radio (RAK11300).</b> Runs RNode radio firmware.</li>
-<li><b>Crypto chip (Baochip).</b> Does the homomorphic encryption used by the <a href="crypto.html">Crypto</a> menu.</li>
+<li><b>Crypto chip (Baochip).</b> CAT's root of trust: it holds secrets and runs the cryptography behind the <a href="crypto.html">Crypto</a> menu.</li>
 </ul>
 </div>
 </details>
@@ -99,7 +98,7 @@
 <h3 id="turn-on">Turning CAT on<a class="anchor" href="#turn-on" aria-label="Link to this section">#</a></h3>
 <p>Plug in USB-C, or press the power button. A CAT that was put to sleep, powered down or ran flat wakes this way. The e-paper screen changes from <span class="screen-text">ASLEEP</span> to <span class="screen-text">AWAKE</span> <span class="screen-text">Waiting for sensors...</span>, and the first air readings appear about 30 seconds later.</p>
 <h3 id="turn-off">Turning CAT off<a class="anchor" href="#turn-off" aria-label="Link to this section">#</a></h3>
-<p>Open Settings &rarr; POWER and choose <span class="screen-text">SLEEP</span>, or <span class="screen-text">POWER DOWN</span> and then <span class="screen-text">Yes</span>. Both do the same thing in this firmware. CAT shows <span class="screen-text">Saving...</span>, saves everything, shows <span class="screen-text">GOODNIGHT</span> and switches its battery off. The e-paper screen then shows a sleeping unicorn with <span class="screen-text">Powered off.</span> and <span class="screen-text">Plug in USB-C to turn on.</span></p>
+<p>Open Settings &rarr; POWER and choose <span class="screen-text">SLEEP</span>, or <span class="screen-text">POWER DOWN</span> and then <span class="screen-text">Yes</span>. Either way, CAT shows <span class="screen-text">Saving...</span>, saves everything, shows <span class="screen-text">GOODNIGHT</span> and switches its battery off. The e-paper screen then shows a sleeping unicorn with <span class="screen-text">Powered off.</span> and <span class="screen-text">Plug in USB-C to turn on.</span></p>
 <div class="shots two">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Settings → POWER."><img src="assets/screens/power_menu.png" width="640" height="480" loading="lazy" alt="Settings → POWER."></button><figcaption>Settings &rarr; POWER.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER DOWN asks first. SLEEP does not."><img src="assets/screens/power_down_confirm.png" width="640" height="480" loading="lazy" alt="POWER DOWN asks first. SLEEP does not."></button><figcaption>POWER DOWN asks first. SLEEP does not.</figcaption></figure>
@@ -108,12 +107,12 @@
 
 <h3 id="battery">Battery and charging<a class="anchor" href="#battery" aria-label="Link to this section">#</a></h3>
 <ul>
-<li>The battery icon is at the top right of the home screen and the Dashboard. It animates while charging. It stays hidden until the battery gauge has reported once after boot.</li>
+<li>The battery icon is at the top right of the home screen and the Dashboard. It animates while charging.</li>
 <li>Any USB-C charger works. A completely flat battery needs a proper charger (1.5 A or more) to start straight away; on a weak port CAT stays off until it has charged enough, which can take a while.</li>
 <li>At 5% battery CAT saves everything automatically and briefly shows <span class="screen-text">Critical battery</span> <span class="screen-text">Saving node...</span>. If the cell gets too low, CAT saves and switches itself off, and the e-paper shows <span class="screen-text">Battery empty.</span></li>
 <li>The exact charge level, cell voltage and charger state are on Settings &rarr; DEVELOPER &rarr; INFO &rarr; POWER (see <a href="settings.html#developer">developer pages</a>).</li>
 </ul>
-<div class="callout warn"><strong>Charge at room temperature</strong>The charger's temperature sensor input is bypassed on current boards, so the charger cannot stop on its own if the battery gets too hot or cold. Charge CAT indoors and don't leave it charging in a hot car or in direct sun.</div>
+<div class="callout warn"><strong>Charge at room temperature</strong>CAT's charger doesn't monitor battery temperature, so it can't stop on its own if the battery gets too hot or cold. Charge CAT indoors and don't leave it charging in a hot car or in direct sun.</div>
 
 <h2 id="first-boot">First boot: set your time zone<a class="anchor" href="#first-boot" aria-label="Link to this section">#</a></h2>
 <p>The first time the home screen appears, CAT asks for your time zone. The clock and message times use it, and it is never sent over the network. The list works offline and knows daylight-saving rules up to the year 2100.</p>
@@ -133,7 +132,7 @@
 <li><b>Move</b> with the D-pad. <kbd class="k " title="D-pad left">◀</kbd> and <kbd class="k " title="D-pad right">▶</kbd> step one tile (hold to repeat); <kbd class="k " title="D-pad up">▲</kbd> and <kbd class="k " title="D-pad down">▼</kbd> jump a row.</li>
 <li><b>Open</b> an app by releasing <kbd class="k round" title="A button">A</kbd>, or tap its tile. If you move the highlight while holding <kbd class="k round" title="A button">A</kbd>, releasing it does not open anything.</li>
 <li><b>Unread messages</b> show as a number on the Chat tile (99+ above 99).</li>
-<li><b>The clock</b> reads <span class="screen-text">Syncing...</span> until the board controller has reported the time after boot.</li>
+<li><b>The clock</b> reads <span class="screen-text">Syncing...</span> for a moment after CAT starts.</li>
 </ul>
 <div class="shots">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Highlight on Garden."><img src="assets/screens/home_garden.png" width="640" height="480" loading="lazy" alt="Highlight on Garden."></button><figcaption>Highlight on Garden.</figcaption></figure>
@@ -174,7 +173,6 @@
 <h2 id="sounds">Sounds and lights<a class="anchor" href="#sounds" aria-label="Link to this section">#</a></h2>
 <p>CAT is mostly quiet. You hear the message chime (if you turn on <a href="settings.html#tone">NEW MESSAGE TONE</a>), a soft ambient loop in Explore, Party music, and game audio. There are no button clicks. The RGB LEDs only light up from the <a href="extras.html#party">Party</a> menu.</p>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="index.html"><small>Previous</small>Welcome</a><a class="next" href="dashboard.html"><small>Next</small>Dashboard</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>

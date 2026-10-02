@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -35,7 +35,7 @@
 <li><a href="explore.html">Explore</a>
 </li>
 <li><a href="chat.html" aria-current="page">Chat</a>
-<ul class="toc"><li><a href="#overview">How Chat works</a></li><li><a href="#peers">The peer list</a></li><li><a href="#manage">Managing contacts and chats</a></li><li><a href="#conversation">A conversation</a></li><li><a href="#sending">Writing and sending</a></li><li><a href="#delivery">Delivery marks</a></li><li><a href="#reading">Reading long messages</a></li><li><a href="#doodles">Doodles</a></li><li><a href="#announce">Announcing yourself</a></li><li><a href="#my-address">Sharing your address</a></li><li><a href="#notifications">Notifications</a></li><li><a href="#limits">Limits and what&#x27;s not there yet</a></li></ul>
+<ul class="toc"><li><a href="#overview">How Chat works</a></li><li><a href="#peers">The peer list</a></li><li><a href="#manage">Managing contacts and chats</a></li><li><a href="#conversation">A conversation</a></li><li><a href="#sending">Writing and sending</a></li><li><a href="#delivery">Delivery marks</a></li><li><a href="#reading">Reading long messages</a></li><li><a href="#doodles">Doodles</a></li><li><a href="#announce">Announcing yourself</a></li><li><a href="#my-address">Sharing your address</a></li><li><a href="#notifications">Notifications</a></li></ul>
 </li>
 <li><a href="keyboard.html">Typing</a>
 </li>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -66,9 +66,8 @@
 <li>Messages use <b>LXMF</b>, the messaging format of the Reticulum network. You can talk to other CATs, and to people using LXMF apps such as Sideband and NomadNet.</li>
 <li>Every CAT has an <b>address</b>: 32 hexadecimal digits, such as <code>7f6f59534ee42c0a3513cb272f75633a</code>. People message you by address; your <a href="settings.html#device-name">device name</a> travels with it so they see who you are.</li>
 <li>Messages reach a nearby CAT directly over LoRa. Farther away, other CATs relay them, or a <a href="mesh.html#propagation">propagation node</a> holds them until your friend comes online. With <a href="mesh.html#wifi">Wi-Fi</a>, your CAT also connects to the internet-wide Reticulum network.</li>
-<li>Conversations are one-to-one. There are no group chats yet.</li>
+<li>Conversations are one-to-one.</li>
 </ul>
-<div class="callout"><strong>About these screenshots</strong>The simulator invents a handful of contacts (night-tower, moth, salt, arcade and others) and messages so every screen can be shown. It also fails every fifth message on purpose, to show what a failure looks like.</div>
 
 <h2 id="peers">The peer list<a class="anchor" href="#peers" aria-label="Link to this section">#</a></h2>
 <p>Open the Chat tile (the radio) on the home screen. The top bar shows <span class="screen-text">CHAT</span>, the total unread count, <b>your own</b> name and the first 8 digits of your address, and the time. Comparing those 8 digits with a friend's screen is a quick way to check you have the right address.</p>
@@ -222,19 +221,8 @@
 <li>A new message wakes the screen if it was dim or dark.</li>
 <li>With <a href="settings.html#tone">NEW MESSAGE TONE</a> on, a soft three-note chime plays (at most once every 2 seconds).</li>
 <li>Unread counts show on the Chat tile, in the Chat title bar and on each row.</li>
-<li>There are no pop-ups and no LED signals for messages.</li>
-</ul>
-
-<h2 id="limits">Limits and what's not there yet<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
-<ul>
-<li>One-to-one only: no group chats or channels yet.</li>
-<li>No photos or files; doodles are the only pictures.</li>
-<li>You can't delete a single message, only a whole conversation.</li>
-<li>No reply, forward, search or typing indicators.</li>
-<li>CAT can't scan QR codes.</li>
 </ul>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="explore.html"><small>Previous</small>Explore</a><a class="next" href="keyboard.html"><small>Next</small>Typing</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>

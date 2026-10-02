@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -29,7 +29,7 @@
 </ul>
 <h2>Apps</h2><ul>
 <li><a href="dashboard.html" aria-current="page">Dashboard</a>
-<ul class="toc"><li><a href="#open">Opening the Dashboard</a></li><li><a href="#summary">LIVE SUMMARY</a></li><li><a href="#statistics">LIVE STATISTICS</a></li><li><a href="#grading">How the grade is calculated</a></li><li><a href="#epaper">The e-paper air badge</a></li><li><a href="#limits">What the Dashboard doesn&#x27;t do</a></li></ul>
+<ul class="toc"><li><a href="#open">Opening the Dashboard</a></li><li><a href="#summary">LIVE SUMMARY</a></li><li><a href="#statistics">LIVE STATISTICS</a></li><li><a href="#grading">How the grade is calculated</a></li><li><a href="#epaper">The e-paper air badge</a></li></ul>
 </li>
 <li><a href="garden.html">Garden</a>
 </li>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -71,7 +71,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes."><img src="assets/screens/dash_summary_fair.png" width="640" height="480" loading="lazy" alt="A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes."></button><figcaption>A stuffy room: CO2 780 ppm, PM2.5 6.5. Grade B. Three warning boxes.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F."><img src="assets/screens/dash_summary_poor.png" width="640" height="480" loading="lazy" alt="Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F."></button><figcaption>Poor air: CO2 1450 ppm, PM2.5 38, high VOC and NOx. Grade F.</figcaption></figure>
 </div>
-<p>To the right of the grade, up to three empty boxes appear, one for each pollutant group that scores B+ or lower: CO2, fine particles, and gases (VOC or NOx). In this firmware the boxes are placeholders with no icon inside. The number of boxes tells you how many groups need attention; the statistics page tells you which.</p>
+<p>To the right of the grade, one box appears for each pollutant group that scores B+ or lower: CO2, fine particles, and gases (VOC or NOx). The number of boxes tells you how many groups need attention; the statistics page tells you which.</p>
 
 <h2 id="statistics">LIVE STATISTICS<a class="anchor" href="#statistics" aria-label="Link to this section">#</a></h2>
 <p>One row per sensor: the name, the current value, a colour bar and that sensor's own grade. The marker on the bar sits further right the better the reading, so a marker at the green end is good. Values refresh every 5 seconds.</p>
@@ -89,7 +89,7 @@
 <tr><td><span class="screen-text">NOX</span></td><td>Nitrogen oxides (gas stoves, traffic). An index where about 1 is "normal".</td><td>index 0&ndash;500</td><td>Sensirion SGP41</td></tr>
 </tbody>
 </table></div>
-<div class="callout"><strong>Just after switching on</strong>The particle sensor needs about 10 seconds to spin up and the gas sensor about 45 seconds to condition. Until the first reading arrives the rows show <span class="screen-text">0.00</span>, which scores as perfect, so the summary can read A for the first few seconds.</div>
+<div class="callout"><strong>Just after switching on</strong>The particle sensor needs about 10 seconds to spin up and the gas sensor about 45 seconds to condition. Until then the rows read <span class="screen-text">0.00</span>.</div>
 
 <h2 id="grading">How the grade is calculated<a class="anchor" href="#grading" aria-label="Link to this section">#</a></h2>
 <p>Each reading gets a score from 0 (worst) to 1 (best) by sliding between the breakpoints below. The overall grade is the plain average of six scores: the four sensors above plus temperature and humidity.</p>
@@ -110,7 +110,7 @@
 <div class="callout"><strong>Temperature and humidity</strong>CAT has a temperature and humidity sensor, but its readings are not accurate enough yet, so they are hidden. Both count in the grade as a fixed, comfortable 24 &deg;C and 50% humidity. That nudges the overall grade up a little compared with the four sensors alone.</div>
 
 <h2 id="epaper">The e-paper air badge<a class="anchor" href="#epaper" aria-label="Link to this section">#</a></h2>
-<p>The separate black-and-white e-paper screen is run by the board controller and updates every 30 seconds, whatever the main screen is doing. It shows:</p>
+<p>The separate black-and-white e-paper screen updates every 30 seconds, whatever the main screen is doing. It shows:</p>
 <ul>
 <li>a unicorn and a cloud whose moods follow the air (happy above 75%, sad below 50%, a smoke cloud below 25%);</li>
 <li>CO2 in ppm and PM2.5 in &micro;g/m&sup3; in large digits;</li>
@@ -120,15 +120,7 @@
 <li>the time of the reading, and <span class="screen-text">---</span> for any sensor that failed.</li>
 </ul>
 <p>CritAQI is calculated differently from the Dashboard grade (worst pollutant rather than average), so the two can disagree. Faint ghosting between updates is normal; a full refresh clears it about every 25 minutes.</p>
-
-<h2 id="limits">What the Dashboard doesn't do<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
-<ul>
-<li>No history, graphs or time ranges. Only the current reading is shown. (The board controller does keep a few days of readings internally for the <a href="crypto.html">Crypto</a> uploads.)</li>
-<li>No alerts or sounds when air gets bad.</li>
-<li>The air does not affect Chat or Explore. It does change the <a href="garden.html">Garden</a>.</li>
-</ul>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="getting-started.html"><small>Previous</small>Getting started</a><a class="next" href="garden.html"><small>Next</small>Garden</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>

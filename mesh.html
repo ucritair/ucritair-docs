@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -97,7 +97,7 @@
 <tr><td><b>Sanctuary</b></td><td>The project's home hub. CATs connect to it first and also use it as their default mail node.</td></tr>
 </tbody>
 </table></div>
-<p>The radio's frequency and other settings are fixed when CAT is set up; there is no radio settings screen. CATs only hear each other if they use the same radio settings.</p>
+<p>The radio's frequency and other settings are fixed when CAT is set up. CATs hear each other when they use the same radio settings.</p>
 
 <h2 id="mesh-page">The MESH page<a class="anchor" href="#mesh-page" aria-label="Link to this section">#</a></h2>
 <p>Settings &rarr; SETTINGS &rarr; MESH. The top of the window is a live status report; the rows below change your CAT's roles. Changes apply at once and are saved when you leave Settings.</p>
@@ -155,7 +155,7 @@
 
 <h2 id="wifi">Wi-Fi<a class="anchor" href="#wifi" aria-label="Link to this section">#</a></h2>
 <p>Settings &rarr; SETTINGS &rarr; WIFI. Wi-Fi is used for the TCP bridge and for <a href="crypto.html">Crypto</a> uploads. Your networks and passwords are stored on CAT's board controller and survive resets and game updates. Up to 8 networks are remembered, most recent first.</p>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: WIFI ON, connected to &quot;My Network&quot; (a pretend network in the simulator)."><img src="assets/screens/wifi_main.png" width="640" height="480" loading="lazy" alt="WIFI ON, connected to &quot;My Network&quot; (a pretend network in the simulator)."></button><figcaption>WIFI ON, connected to "My Network" (a pretend network in the simulator).</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: WIFI ON and connected."><img src="assets/screens/wifi_main.png" width="640" height="480" loading="lazy" alt="WIFI ON and connected."></button><figcaption>WIFI ON and connected.</figcaption></figure>
 <h3 id="wifi-join">Joining a network<a class="anchor" href="#wifi-join" aria-label="Link to this section">#</a></h3>
 <ol class="steps">
 <li>Choose <span class="screen-text">SCAN NETWORKS</span>. After <span class="screen-text">SCANNING</span> <span class="screen-text">Please wait...</span>, nearby networks are listed.</li>
@@ -183,7 +183,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: ADD NETWORK starts with the name."><img src="assets/screens/keyboard_wifi_ssid.png" width="640" height="480" loading="lazy" alt="ADD NETWORK starts with the name."></button><figcaption>ADD NETWORK starts with the name.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Then the password, then SAVE."><img src="assets/screens/wifi_add.png" width="640" height="480" loading="lazy" alt="Then the password, then SAVE."></button><figcaption>Then the password, then SAVE.</figcaption></figure>
 </div>
-<p>CAT supports open, WEP, WPA and WPA2 networks. It can't join enterprise (802.1X) networks or act as a hotspot.</p>
+<p>CAT joins open, WEP, WPA and WPA2 networks.</p>
 
 <h2 id="routing">What happens to a message<a class="anchor" href="#routing" aria-label="Link to this section">#</a></h2>
 <ol>
@@ -193,7 +193,6 @@
 <li>When your friend's CAT comes online, it collects its mail from the propagation node.</li>
 </ol>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="keyboard.html"><small>Previous</small>Typing</a><a class="next" href="crypto.html"><small>Next</small>Crypto: FHE and ZK</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>

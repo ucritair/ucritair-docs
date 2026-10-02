@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -49,7 +49,7 @@
 <li><a href="settings.html" aria-current="page">Settings</a>
 <ul class="toc"><li><a href="#map">Menu map</a></li><li><a href="#device-name">DEVICE NAME</a></li><li><a href="#tone">NEW MESSAGE TONE</a></li><li><a href="#time">TIME &amp; TIMEZONE</a></li><li><a href="#audio">AUDIO</a></li><li><a href="#display">DISPLAY</a></li><li><a href="#power">POWER</a></li><li><a href="#developer">DEVELOPER</a></li></ul>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -72,11 +72,11 @@
 │  ├─ WIFI                        → <a href="mesh.html#wifi">Mesh and Wi-Fi</a>
 │  ├─ MESH                        → <a href="mesh.html#mesh-page">Mesh and Wi-Fi</a>
 │  ├─ KEYBOARD                    → <a href="keyboard.html#learned-words">Typing</a>
-│  ├─ USB KEYBOARD/MOUSE          hardware only → <a href="extras.html#usb">Extras</a>
+│  ├─ USB KEYBOARD/MOUSE          → <a href="extras.html#usb">Extras</a>
 │  ├─ DISPLAY
-│  ├─ PARTY                       hardware only → <a href="extras.html#party">Extras</a>
-│  ├─ STORAGE                     hardware only → <a href="extras.html#storage">Extras</a>
-│  └─ EXTRAS                      hardware only
+│  ├─ PARTY                       → <a href="extras.html#party">Extras</a>
+│  ├─ STORAGE                     → <a href="extras.html#storage">Extras</a>
+│  └─ EXTRAS
 │     ├─ LEGACY HANDHELD          GB Emulator → <a href="extras.html#legacy">Extras</a>
 │     └─ DOOM                     → <a href="extras.html#doom">Extras</a>
 ├─ MY ADDRESS                     → <a href="chat.html#my-address">Chat</a>
@@ -89,7 +89,7 @@
    └─ CONTROLS</div>
 <div class="shots two">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: MENU, opened from the gear tile. B here returns home."><img src="assets/screens/menu_root.png" width="640" height="480" loading="lazy" alt="MENU, opened from the gear tile. B here returns home."></button><figcaption>MENU, opened from the gear tile. <kbd class="k round" title="B button">B</kbd> here returns home.</figcaption></figure>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS."><img src="assets/screens/menu_settings.png" width="640" height="480" loading="lazy" alt="SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS."></button><figcaption>SETTINGS in the simulator. Real hardware also lists USB KEYBOARD/MOUSE, PARTY, STORAGE and EXTRAS.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: SETTINGS."><img src="assets/screens/menu_settings.png" width="640" height="480" loading="lazy" alt="SETTINGS."></button><figcaption>SETTINGS.</figcaption></figure>
 </div>
 <p>Changes apply immediately. When you leave Settings after changing something, CAT saves your settings to permanent storage.</p>
 
@@ -101,7 +101,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Name saved."><img src="assets/screens/settings_device_name.png" width="640" height="480" loading="lazy" alt="Name saved."></button><figcaption>Name saved.</figcaption></figure>
 </div>
 <p>Messages: <span class="screen-text">Name saved</span>, <span class="screen-text">Use printable text, without spaces at either end.</span>, or <span class="screen-text">Changed for now; could not save. Please retry.</span></p>
-<p><b>NAME</b>, further down the list, is an older editor for the same name. Changing either changes both.</p>
+<p><b>NAME</b>, further down the list, edits the same name.</p>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: The NAME window."><img src="assets/screens/settings_name.png" width="640" height="480" loading="lazy" alt="The NAME window."></button><figcaption>The NAME window.</figcaption></figure>
 
 <h2 id="tone">NEW MESSAGE TONE<a class="anchor" href="#tone" aria-label="Link to this section">#</a></h2>
@@ -131,7 +131,7 @@
 <h2 id="audio">AUDIO<a class="anchor" href="#audio" aria-label="Link to this section">#</a></h2>
 <p>One slider, <span class="screen-text">VOLUME</span>, in ten steps from silent to full. Use <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> (hold to repeat) or tap either half. It sets the volume of the chime, Party music and the GB Emulator.</p>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: The VOLUME slider."><img src="assets/screens/settings_audio.png" width="640" height="480" loading="lazy" alt="The VOLUME slider."></button><figcaption>The VOLUME slider.</figcaption></figure>
-<div class="callout"><strong>Volume resets on restart</strong>In this firmware the volume isn't saved; CAT starts at full volume each time.</div>
+<p>CAT starts at full volume each time it is switched on.</p>
 
 <h2 id="display">DISPLAY<a class="anchor" href="#display" aria-label="Link to this section">#</a></h2>
 <p>The status line shows whether the backlight is <span class="screen-text">on</span>, <span class="screen-text">dimmed</span> or <span class="screen-text">off</span>, and its current level.</p>
@@ -164,9 +164,7 @@
 <thead><tr><th>Page</th><th>Shows</th></tr></thead>
 <tbody>
 <tr><td>CORE</td><td>Platform and device ID.</td></tr>
-<tr><td>TEXT</td><td>A font test page, with a small keyboard test.</td></tr>
 <tr><td>MEMORY</td><td>Storage and memory use.</td></tr>
-<tr><td>LOG</td><td>Only in test builds; normal builds say <span class="screen-text">Log recording is disabled.</span></td></tr>
 <tr><td>AIR</td><td>Every air reading with its score out of 100, including the hidden temperature and humidity, and the overall score.</td></tr>
 <tr><td>POWER</td><td>Battery percentage, cell voltage, charge or drain rate with a time estimate, charger phase (<span class="screen-text">not charging</span>, <span class="screen-text">pre-charge</span>, <span class="screen-text">fast (CC)</span>, <span class="screen-text">taper (CV)</span>, <span class="screen-text">done (full)</span>...) and whether a charger is connected.</td></tr>
 <tr><td>TIME</td><td>Clock values.</td></tr>
@@ -178,9 +176,8 @@
 <div class="shots">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: CORE."><img src="assets/screens/dev_info_core.png" width="640" height="480" loading="lazy" alt="CORE."></button><figcaption>CORE.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: MEMORY."><img src="assets/screens/dev_info_memory.png" width="640" height="480" loading="lazy" alt="MEMORY."></button><figcaption>MEMORY.</figcaption></figure>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: LOG in a normal build."><img src="assets/screens/dev_info_log.png" width="640" height="480" loading="lazy" alt="LOG in a normal build."></button><figcaption>LOG in a normal build.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: AIR: scores out of 100."><img src="assets/screens/dev_info_air.png" width="640" height="480" loading="lazy" alt="AIR: scores out of 100."></button><figcaption>AIR: scores out of 100.</figcaption></figure>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER (the simulator has no real battery)."><img src="assets/screens/dev_info_power.png" width="640" height="480" loading="lazy" alt="POWER (the simulator has no real battery)."></button><figcaption>POWER (the simulator has no real battery).</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER."><img src="assets/screens/dev_info_power.png" width="640" height="480" loading="lazy" alt="POWER."></button><figcaption>POWER.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: TIME."><img src="assets/screens/dev_info_time.png" width="640" height="480" loading="lazy" alt="TIME."></button><figcaption>TIME.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: COMMS."><img src="assets/screens/dev_info_comms.png" width="640" height="480" loading="lazy" alt="COMMS."></button><figcaption>COMMS.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: FLAGS."><img src="assets/screens/dev_info_flags.png" width="640" height="480" loading="lazy" alt="FLAGS."></button><figcaption>FLAGS.</figcaption></figure>
@@ -198,9 +195,8 @@
 </tbody>
 </table></div>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: CONTROLS."><img src="assets/screens/dev_controls.png" width="640" height="480" loading="lazy" alt="CONTROLS."></button><figcaption>CONTROLS.</figcaption></figure>
-<p>There is no firmware version screen. Connect to the USB shell and type <code>version</code> to see it (see <a href="help.html#shell">the USB shell</a>).</p>
-<nav class="pager" aria-label="Previous and next page"><a class="prev" href="crypto.html"><small>Previous</small>Crypto: FHE and ZK</a><a class="next" href="extras.html"><small>Next</small>Hardware extras</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+<p>To see the firmware version, connect to the <a href="help.html#shell">USB shell</a> and type <code>version</code>.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="crypto.html"><small>Previous</small>Crypto: FHE and ZK</a><a class="next" href="extras.html"><small>Next</small>Extras</a></nav>
 </article>
 </main>
 </div>

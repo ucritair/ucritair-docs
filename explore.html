@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -95,7 +95,6 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: An item notice."><img src="assets/screens/explore_item_get.png" width="640" height="480" loading="lazy" alt="An item notice."></button><figcaption>An item notice.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: The way out."><img src="assets/screens/explore_door_prompt.png" width="640" height="480" loading="lazy" alt="The way out."></button><figcaption>The way out.</figcaption></figure>
 </div>
-<div class="callout"><strong>A display glitch in the cave</strong>The hint at the bottom of the cave is meant to read "START TO OPEN OVERLAY" with a START button picture. In this firmware it shows the raw codes <span class="screen-text">\xD\xE\xF\x10\x14</span> instead and runs off the edge of the screen.</div>
 <p>Once you own the radio, Explore always starts in the Headlands. If you leave Explore and come back without restarting CAT, you continue where you were.</p>
 
 <h2 id="overlay">The pause overlay<a class="anchor" href="#overlay" aria-label="Link to this section">#</a></h2>
@@ -105,21 +104,18 @@
 <tbody>
 <tr><td>Home</td><td>Asks <span class="screen-text">Return to the main menu?</span> and goes back to the home screen.</td></tr>
 <tr><td>Inventory</td><td>Opens your bag (highlighted when the overlay opens).</td></tr>
-<tr><td>Logbook</td><td>Not used yet; nothing happens.</td></tr>
-<tr><td>Two empty slots</td><td>Reserved; nothing happens.</td></tr>
 </tbody>
 </table></div>
 <div class="shots">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: The overlay, opened on Inventory."><img src="assets/screens/explore_overlay.png" width="640" height="480" loading="lazy" alt="The overlay, opened on Inventory."></button><figcaption>The overlay, opened on Inventory.</figcaption></figure>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Logbook."><img src="assets/screens/explore_overlay_logbook.png" width="640" height="480" loading="lazy" alt="Logbook."></button><figcaption>Logbook.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Home."><img src="assets/screens/explore_overlay_home.png" width="640" height="480" loading="lazy" alt="Home."></button><figcaption>Home.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Leaving Explore."><img src="assets/screens/explore_home_confirm.png" width="640" height="480" loading="lazy" alt="Leaving Explore."></button><figcaption>Leaving Explore.</figcaption></figure>
 </div>
 
 <h2 id="inventory">Inventory<a class="anchor" href="#inventory" aria-label="Link to this section">#</a></h2>
-<p>Six items per page, in two columns, with the highlighted item's name, description and count on the right. Use the D-pad to move between items; pages turn automatically. Press <kbd class="k " title="D-pad up">▲</kbd> on the top row to reach the row of dots at the top (they are tabs, but only the first one lists items in this version).</p>
+<p>Six items per page, in two columns, with the highlighted item's name, description and count on the right. Use the D-pad to move between items; pages turn automatically.</p>
 <ul>
-<li><kbd class="k round" title="A button">A</kbd> on an item that can be used shows its actions. Choose one, then confirm with <span class="screen-text">Yes</span>. Most items have no action; <kbd class="k round" title="A button">A</kbd> does nothing for them.</li>
+<li><kbd class="k round" title="A button">A</kbd> on an item that can be used shows its actions. Choose one, then confirm with <span class="screen-text">Yes</span>. Only the ID Card and the Radio have actions.</li>
 <li><kbd class="k round" title="B button">B</kbd> backs out of the action list, or asks <span class="screen-text">Exit?</span> to close the inventory.</li>
 </ul>
 <div class="shots">
@@ -142,12 +138,12 @@
 <tbody>
 <tr><td><span class="screen-text">TOGGLE SCAN</span></td><td>Turns scanning on or off (<span class="screen-text">Started scanning</span> / <span class="screen-text">Stopped scanning</span>). While on, radio towers send out expanding rings you can follow.</td></tr>
 <tr><td><span class="screen-text">LISTEN NEAR</span></td><td>Near a tower that is transmitting, plays its message. Otherwise <span class="screen-text">No transmissions...</span></td></tr>
-<tr><td><span class="screen-text">LISTEN FAR</span></td><td>Meant to pick up real messages from the mesh. Not connected yet in this firmware: it always says <span class="screen-text">No transmissions...</span></td></tr>
+<tr><td><span class="screen-text">LISTEN FAR</span></td><td>Listen for distant transmissions.</td></tr>
 </tbody>
 </table></div>
 <div class="shots two">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Scanning on."><img src="assets/screens/explore_scan.png" width="640" height="480" loading="lazy" alt="Scanning on."></button><figcaption>Scanning on.</figcaption></figure>
-<figure class="shot"><button class="device" type="button" aria-label="Enlarge: LISTEN FAR in this version."><img src="assets/screens/explore_no_transmissions.png" width="640" height="480" loading="lazy" alt="LISTEN FAR in this version."></button><figcaption>LISTEN FAR in this version.</figcaption></figure>
+<figure class="shot"><button class="device" type="button" aria-label="Enlarge: Nothing in range."><img src="assets/screens/explore_no_transmissions.png" width="640" height="480" loading="lazy" alt="Nothing in range."></button><figcaption>Nothing in range.</figcaption></figure>
 </div>
 
 <h2 id="headlands">The Headlands<a class="anchor" href="#headlands" aria-label="Link to this section">#</a></h2>
@@ -161,7 +157,7 @@
 <p>Places you can visit: <b>Nowhere</b> (the cave), <b>the Headlands</b>, the <b>Community Center</b>, <b>Reed's House</b>, the <b>Long House</b>, the <b>Flower House</b>, <b>Mono's House</b> and <b>Salt and Pepper's House</b>. Some other buildings, like the station and the arcade, are scenery.</p>
 
 <h2 id="combat">Combat, health and dying<a class="anchor" href="#combat" aria-label="Link to this section">#</a></h2>
-<p>Your health is the small bar over your head (100 points). Your sword does 35 damage, so most enemies take three hits. There is no way to heal except by dying.</p>
+<p>Your health is the small bar over your head (100 points). Your sword does 35 damage, so most enemies take three hits. Health refills only when you respawn.</p>
 <ul>
 <li><b>Phantoms</b> only appear when you disturb a <b>miasma ball</b>, an ominous orb marked with red diamonds. Press <kbd class="k round" title="A button">A</kbd> next to one and two to four phantoms rise around it.</li>
 <li>Each phantom hit costs you 10 health, flashes you, and gives you a second of safety.</li>
@@ -190,14 +186,14 @@
 <li><b>Chests</b> open once. A log in the Long House gives a Key.</li>
 </ul>
 <h3 id="crafting">Crafting at a workbench<a class="anchor" href="#crafting" aria-label="Link to this section">#</a></h3>
-<p>The Community Center has a workbench. Face it and press <kbd class="k round" title="A button">A</kbd> to open a 3&times;3 crafting grid with an output box on the right and a close box at the top left. (This screen is described from the firmware, not captured.)</p>
+<p>The Community Center has a workbench. Face it and press <kbd class="k round" title="A button">A</kbd> to open a 3&times;3 crafting grid with an output box on the right and a close box at the top left.</p>
 <ul>
 <li>Move the cursor with the D-pad. <kbd class="k " title="D-pad right">▶</kbd> from the right-hand column moves to the output box; <kbd class="k " title="D-pad up">▲</kbd> from the top row moves to the close box.</li>
 <li><kbd class="k round" title="A button">A</kbd> on a grid cell opens your inventory to pick an ingredient. Nothing is used up until you craft.</li>
 <li><kbd class="k round" title="B button">B</kbd> on a filled cell clears it; on an empty cell it jumps to the close box. Holding <kbd class="k round" title="B button">B</kbd> for 1.5 seconds closes the workbench.</li>
 <li>When the grid matches a recipe, the result appears in the output box. Press <kbd class="k round" title="A button">A</kbd> there to craft it.</li>
 </ul>
-<p>There is one recipe in this version: a circle, a square and a triangle, in any arrangement, make a <b>Geometric Talisman</b>. The three shapes can't be found in the current world yet.</p>
+<p>Recipe: a circle, a square and a triangle, in any arrangement, make a <b>Geometric Talisman</b>.</p>
 
 <h2 id="saving">Saving your progress<a class="anchor" href="#saving" aria-label="Link to this section">#</a></h2>
 <p>Your items, health and story flags are saved only when CAT saves (see <a href="getting-started.html#saving">how saving works</a>). If CAT loses power, progress since the last sleep or FORCE SAVE is lost. To start the story over, use Settings &rarr; DEVELOPER &rarr; CONTROLS &rarr; CLEAR GAME SAVE (this restarts CAT straight away).</p>
@@ -213,8 +209,7 @@
 <li>Collect 5 Fiber from the tufts around the Headlands. Disturb a miasma ball, defeat the phantoms and take the Miasma. There are two balls.</li>
 <li>Return and choose <span class="screen-text">[Relinquish]</span>. He stamps your ID Card. From now on your sword breaks wood and stone.</li>
 </ol>
-<p>Quirk in this version: the clerk offers the trade once you carry one dose of miasma, but takes two.</p>
-<p>The radio tower by Salt and Pepper's house broadcasts a locker code when you use LISTEN NEAR within range of it. You write it down as the <b>Locker Code</b> item. Nothing uses it yet.</p>
+<p>The radio tower by Salt and Pepper's house broadcasts a locker code when you use LISTEN NEAR within range of it. You write it down as the <b>Locker Code</b> item.</p>
 </div>
 </details>
 <details>
@@ -235,7 +230,7 @@
 </div>
 </details>
 <details>
-<summary>All items</summary>
+<summary>Items</summary>
 <div class="body">
 <div class="table-wrap"><table>
 <thead><tr><th>Item</th><th>Description on screen</th><th>Notes</th></tr></thead>
@@ -243,7 +238,7 @@
 <tr><td>ID Card</td><td>Your identification. It is the mark of your belonging here.</td><td>Given at the start. INSPECT.</td></tr>
 <tr><td>Radio</td><td>A sturdy radio. Its metal faces are reassuring.</td><td>Found in Nowhere. TOGGLE SCAN, LISTEN NEAR, LISTEN FAR.</td></tr>
 <tr><td>Locker Code</td><td>0314</td><td>From the radio tower.</td></tr>
-<tr><td>Key</td><td>A rather nondescript key. What lock awaits it?</td><td>From the log in the Long House. No lock uses it yet.</td></tr>
+<tr><td>Key</td><td>A rather nondescript key. What lock awaits it?</td><td>From the log in the Long House.</td></tr>
 <tr><td>Fiber</td><td>A bundle of hardy fibers.</td><td>Pale tufts. Licence ingredient.</td></tr>
 <tr><td>Miasma</td><td>It seeks to kill you from within.</td><td>From miasma balls after the phantoms. Licence ingredient.</td></tr>
 <tr><td>Wood</td><td>A short length of dense lumber. It makes a beautiful sound when you tap it.</td><td>Needs the licence.</td></tr>
@@ -251,11 +246,9 @@
 <tr><td>Geometric Talisman</td><td>&ndash;</td><td>Crafted from circle, square and triangle.</td></tr>
 </tbody>
 </table></div>
-<p>Defined but not yet found anywhere in the world: Coins, Leaf (meant as money), Train Ticket, Very Small Hat, the circle, square and triangle shapes, Coffee, Latest Volume, Aether, Ceramic, Charcoal, Clay, Cloth, Glass, Ink, Leather, Oil, Paper, Salt, Sand, Seeds, Sugar, Time and Water. None of the items can be eaten or used up; only the ID Card and the Radio have actions.</p>
 </div>
 </details>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="garden.html"><small>Previous</small>Garden</a><a class="next" href="chat.html"><small>Next</small>Chat</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>

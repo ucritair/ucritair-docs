@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Help, care and FAQ · CAT manual</title>
-<meta name="description" content="Troubleshooting, care and safety, updating firmware, the USB shell, known issues in this firmware and a glossary.">
+<meta name="description" content="Troubleshooting, care and safety, updating firmware, the USB shell and a glossary.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -48,10 +48,10 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html" aria-current="page">Help and FAQ</a>
-<ul class="toc"><li><a href="#faq">Troubleshooting</a></li><li><a href="#care">Care and safety</a></li><li><a href="#update">Updating the firmware</a></li><li><a href="#shell">The USB shell</a></li><li><a href="#known-issues">Known issues in this firmware</a></li><li><a href="#legacy">Older devices</a></li><li><a href="#glossary">Glossary</a></li></ul>
+<ul class="toc"><li><a href="#faq">Troubleshooting</a></li><li><a href="#care">Care and safety</a></li><li><a href="#update">Updating the firmware</a></li><li><a href="#shell">The USB shell</a></li><li><a href="#legacy">Older devices</a></li><li><a href="#glossary">Glossary</a></li></ul>
 </li>
 </ul>
 <h2>Older devices</h2><ul><li><a href="legacy/">Legacy μCritAir manual</a></li></ul>
@@ -59,7 +59,7 @@
 <main>
 <article class="content">
 <h1>Help, care and FAQ</h1>
-<p class="lede">Answers to common questions, how to look after your CAT, and the rough edges in this firmware.</p>
+<p class="lede">Answers to common questions, how to look after your CAT, and a glossary.</p>
 
 <h2 id="faq">Troubleshooting<a class="anchor" href="#faq" aria-label="Link to this section">#</a></h2>
 <details><summary>The screen is black but CAT is on</summary><div class="body"><p>The backlight turned off after a while without input. Press any button or tap once to wake it; that first press does nothing else. Change the timing in <a href="settings.html#display">Settings &rarr; DISPLAY</a>.</p></div></details>
@@ -69,14 +69,14 @@
 <details><summary>My message only has one tick</summary><div class="body"><p>One grey tick means sent and waiting for a receipt. One tick with a dot means a propagation node is holding it for your friend, which is final and normal. Two green ticks only appear when your friend's CAT confirms delivery directly. See <a href="chat.html#delivery">delivery marks</a>.</p></div></details>
 <details><summary>"Messaging busy - try again"</summary><div class="body"><p>CAT tracks one send at a time. Wait for the current message or doodle to finish.</p></div></details>
 <details><summary>My doodle shows as gibberish in Sideband</summary><div class="body"><p>Doodles only display on CATs. Other LXMF apps show the raw doodle data as text.</p></div></details>
-<details><summary>The Dashboard shows 0.00 and an A</summary><div class="body"><p>The sensors are still starting up; readings arrive within about a minute of switching on.</p></div></details>
+<details><summary>The Dashboard shows 0.00</summary><div class="body"><p>The sensors are still starting up; readings arrive within about a minute of switching on.</p></div></details>
 <details><summary>Crypto says "Baochip busy"</summary><div class="body"><p>The crypto chip generates its keys for about 4 minutes after every start. Try again a few minutes later.</p></div></details>
 <details><summary>The Wi-Fi bridge stays on "connecting"</summary><div class="body"><p>Check that Wi-Fi shows <span class="screen-text">Connected to</span>. CAT moves to another hub if one doesn't answer, and returns to the home hub later. You can pick a hub yourself in <a href="mesh.html#tcp-bridge">TCP BRIDGE</a>.</p></div></details>
 <details><summary>Explore says "Not enough memory for Explore"</summary><div class="body"><p>Press <kbd class="k round" title="B button">B</kbd> to go back, then try again. Restarting CAT frees memory.</p></div></details>
 
 <h2 id="care">Care and safety<a class="anchor" href="#care" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><b>Charging:</b> charge at room temperature, indoors and out of direct sun. The charger's temperature protection is bypassed on current boards.</li>
+<li><b>Charging:</b> charge at room temperature, indoors and out of direct sun. The charger doesn't monitor battery temperature.</li>
 <li><b>SD cards:</b> insert and remove only while CAT is off. Formatting erases everything.</li>
 <li><b>Save before you unplug.</b> Use SLEEP or POWER DOWN rather than letting the battery run flat, and don't reset during <span class="screen-text">Saving...</span>.</li>
 <li><b>Screen off is not off:</b> radios and sensors keep running. Use POWER DOWN to really switch off, for example when flying.</li>
@@ -92,7 +92,7 @@
 <li>Connect CAT to the computer and run the provisioner with the release package. If several CATs are connected, select yours by serial number.</li>
 <li>USB disconnects and reconnects several times during an update. Don't unplug until it reports success.</li>
 </ol>
-<p>Your Wi-Fi networks, messages and contacts are kept. Firmware images are checked with SHA-256 checksums but are not signed.</p>
+<p>Your Wi-Fi networks, messages and contacts are kept.</p>
 
 <h2 id="shell">The USB shell<a class="anchor" href="#shell" aria-label="Link to this section">#</a></h2>
 <p>Connected to a computer, CAT's game processor offers a text console on its USB serial port (any terminal program, any baud rate). Press a key to get the prompt <code>game:~$</code>, then type <code>help</code>. Handy commands:</p>
@@ -109,20 +109,6 @@
 </tbody>
 </table></div>
 <p>The shell isn't available while USB keyboard/mouse mode is on.</p>
-
-<h2 id="known-issues">Known issues in this firmware<a class="anchor" href="#known-issues" aria-label="Link to this section">#</a></h2>
-<ul>
-<li>The intro cave in Explore shows raw codes (<span class="screen-text">\xD\xE\xF\x10\x14 TO OPEN OVERL</span>) instead of the START button hint, and the text runs off screen.</li>
-<li>The caption in Reed's House is wider than the screen and is cut off at both ends.</li>
-<li>The Radio's LISTEN FAR never receives anything yet.</li>
-<li>The Dashboard's warning boxes are empty placeholders.</li>
-<li>Settings lists two editors for the same name (DEVICE NAME and NAME).</li>
-<li>Volume isn't remembered across restarts.</li>
-<li>SLEEP and POWER DOWN do the same thing.</li>
-<li>The Geometric Talisman recipe can't be completed, because its ingredients aren't in the world yet.</li>
-<li>Explore's licence clerk offers his trade with one dose of miasma but takes two.</li>
-<li>Crypto uses a shared, public test key until MPC key management arrives in a future update (see <a href="crypto.html">Crypto</a>).</li>
-</ul>
 
 <h2 id="legacy">Older devices<a class="anchor" href="#legacy" aria-label="Link to this section">#</a></h2>
 <p>The documentation for the original &micro;CritAir virtual-pet firmware (feeding, fishing, the apartment and arcade) is kept as the <a href="legacy/">legacy &micro;CritAir manual</a>.</p>
@@ -144,8 +130,7 @@
 <tr><td><b>Transport node</b></td><td>A device that forwards other devices' traffic.</td></tr>
 </tbody>
 </table></div>
-<nav class="pager" aria-label="Previous and next page"><a class="prev" href="extras.html"><small>Previous</small>Hardware extras</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
+<nav class="pager" aria-label="Previous and next page"><a class="prev" href="extras.html"><small>Previous</small>Extras</a></nav>
 </article>
 </main>
 </div>

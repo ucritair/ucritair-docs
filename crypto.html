@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
 <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Show navigation">Menu</button>
-<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual <small>firmware v10.7 / cat_v0.3_lora</small></a>
+<a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="30" height="30">CAT manual</a>
 <span class="spacer"></span>
 <button class="icon-btn" type="button" data-theme-toggle>Dark</button>
 </header>
@@ -49,7 +49,7 @@
 <h2>Reference</h2><ul>
 <li><a href="settings.html">Settings</a>
 </li>
-<li><a href="extras.html">Hardware extras</a>
+<li><a href="extras.html">Extras</a>
 </li>
 <li><a href="help.html">Help and FAQ</a>
 </li>
@@ -61,27 +61,27 @@
 <h1>Crypto: encrypted statistics and anonymous proofs</h1>
 <p class="lede">CAT carries its own secure crypto chip. Today it encrypts your air readings so a server can compute fleet statistics without reading them. Next, it will prove that it is a genuine CAT without revealing which one.</p>
 
-<div class="callout warn"><strong>This is a research demo with a shared test key</strong>Every CAT and every firmware build uses the same encryption key, and that key is published in the project's source code. Anyone with the source can decrypt any upload. Treat everything you upload as public. The device ID and the hour of each upload are also visible to the server.</div>
-<div class="callout tip"><strong>Coming in a future update: MPC key management</strong>Secure multi-party computation (MPC) is being developed to manage the decryption key. Instead of one shared key that anyone can use, the key will be split so that no single party can decrypt your readings on its own. It will replace the test key in a future firmware update.</div>
+<div class="callout warn"><strong>Encrypted with a shared test key</strong>For now every CAT uses the same encryption key, and that key is published in the project's source code. Anyone with the source can decrypt any upload. Treat everything you upload as public. The device ID and the hour of each upload are also visible to the server.</div>
+<div class="callout tip"><strong>Coming in a future update: MPC key management</strong>Secure multi-party computation (MPC) is being developed to manage the decryption key. Instead of one shared key that anyone can use, the key will be split so that no single party can decrypt your readings on its own. It will replace the test key in a future update.</div>
 
 <h2 id="baochip">The Baochip: CAT's root of trust<a class="anchor" href="#baochip" aria-label="Link to this section">#</a></h2>
 <p>Every CAT contains a <a href="https://www.baochip.com/">Baochip</a>, an open-hardware secure microcontroller running the <a href="https://github.com/betrusted-io/xous-core">Xous</a> microkernel. It is CAT's <b>root of trust</b>: the chip where secrets are generated and kept, and where the cryptography runs, separate from the processors that handle the screen, radio and Wi-Fi.</p>
 <ul>
 <li><b>Today</b> it generates the encryption keys after each start (the roughly 4-minute <span class="screen-text">Baochip busy</span> period), encrypts your hourly air readings, and decrypts fleet results (see <a href="#fhe">FHE</a> below).</li>
-<li><b>At boot</b> it also runs a zero-knowledge prover self-test, the groundwork for <a href="#zk-login">anonymous logins</a>.</li>
+<li><b>It runs the zero-knowledge prover</b> behind <a href="#zk-login">anonymous logins</a>.</li>
 <li><b>Next</b>, devices will be provisioned with a secret identity on the Baochip that never leaves it, used to prove membership without revealing who you are.</li>
 </ul>
 
 <h2 id="fhe">What FHE means<a class="anchor" href="#fhe" aria-label="Link to this section">#</a></h2>
 <p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT locks its readings before they leave the device. The server adds up the locked readings from every CAT, producing a locked total, and never sees a single value. Only a key holder can unlock the total and turn it into an average.</p>
 <ol class="steps">
-<li><b>Measure.</b> Every 3 minutes the board controller records CO2, PM2.5 and PN10 (the number of particles, not their weight).</li>
+<li><b>Measure.</b> Every 3 minutes CAT records CO2, PM2.5 and PN10 (the number of particles, not their weight).</li>
 <li><b>Encrypt.</b> After each full hour, the Baochip crypto chip packs that hour's 20 readings into one encrypted batch (about 3 minutes of work).</li>
-<li><b>Upload.</b> The board controller sends the batch over Wi-Fi to the test platform.</li>
+<li><b>Upload.</b> CAT sends the batch over Wi-Fi to the statistics server.</li>
 <li><b>Combine.</b> The platform adds every CAT's encrypted hours together and works out the spread, still encrypted.</li>
 <li><b>Decrypt the summary.</b> Your CAT downloads the encrypted result (about 5 MB), the Baochip decrypts it, and the screen shows the fleet's average next to yours.</li>
 </ol>
-<p>Only CO2, PM2.5 and PN10 are uploaded. VOC, NOx, temperature, humidity, pressure, light and motion never leave the device. Readings wait unencrypted in the board controller's storage until they are encrypted, and are deleted after 64 hours if never sent.</p>
+<p>Only CO2, PM2.5 and PN10 are uploaded. VOC, NOx, temperature, humidity, pressure, light and motion never leave the device. Readings wait unencrypted in CAT's storage until they are encrypted, and are deleted after 64 hours if never sent.</p>
 
 <h2 id="zk">What zero-knowledge proofs are<a class="anchor" href="#zk" aria-label="Link to this section">#</a></h2>
 <p>A <b>zero-knowledge proof</b> (ZK proof) convinces someone that a statement is true without telling them anything else. The classic picture is a cave with a locked door in the middle of a loop: if you can walk in one side and come out whichever side the other person names, every time, you have proved you know the door's code, without ever saying it.</p>
@@ -117,12 +117,7 @@
 <li><b>Verify.</b> The server checks the proof against the registry's root and issues a short-lived access token tied to the session tag.</li>
 <li><b>Submit.</b> CAT uploads its encrypted readings with that token instead of its device ID. The server knows the data came from <i>some</i> genuine CAT, and nothing more.</li>
 </ol>
-<p><b>Where it stands:</b></p>
-<ul>
-<li>The original &micro;CritAir firmware had a working prototype: <span class="screen-text">AUTHENTICATE DEVICE</span> ran the five stages (nonce, parent, witness, proof, verify) in about ten minutes and returned an access token for <span class="screen-text">UPLOAD LATEST DATA</span>.</li>
-<li>On CAT v0.3 the prover runs on the Baochip as a self-test at every boot, against test data. It isn't connected to logins or uploads yet, and uploads still carry the device ID.</li>
-<li>Still to do: provisioning real secrets into the registry, delivering the registry path without revealing which device asks, and connecting the token to the FHE upload path.</li>
-</ul>
+<p>Anonymous logins are in development. The Baochip already runs the prover; logins and uploads are not yet connected to it, so uploads still carry the device ID.</p>
 <p>Together, MPC key management and ZK logins aim at uploads that are encrypted, anonymous and still provably from real devices.</p>
 
 <h2 id="menu">The CRYPTO menu<a class="anchor" href="#menu" aria-label="Link to this section">#</a></h2>
@@ -141,7 +136,7 @@
 <tr><td><span class="screen-text">FHE HOURLY STATS DOWNLOAD</span></td><td>Fetch fresh fleet statistics every hour automatically. Off by default.</td></tr>
 </tbody>
 </table></div>
-<p>The bottom line reads <span class="screen-text">Wi-Fi: yes  Keys: yes  Job: idle</span>: whether CAT is online, whether upload credentials are installed, and whether a job is running. If the board controller doesn't answer it says <span class="screen-text">Nordic: no reply</span>.</p>
+<p>The bottom line reads <span class="screen-text">Wi-Fi: yes  Keys: yes  Job: idle</span>: whether CAT is online, whether upload credentials are installed, and whether a job is running. If CAT doesn't answer it says <span class="screen-text">Nordic: no reply</span>.</p>
 
 <h2 id="upload">Uploading an hour<a class="anchor" href="#upload" aria-label="Link to this section">#</a></h2>
 <p><span class="screen-text">UPLOAD LAST HOUR</span> opens a progress page with two steps, <span class="screen-text">encrypting</span> and <span class="screen-text">uploading</span>. A tick marks a finished step, a triangle the current one, and a red cross the step that failed. On real hardware encryption takes about 3 minutes.</p>
@@ -178,7 +173,7 @@
 <ul>
 <li><b>FHE HOURLY UPLOAD</b>: from the hour you tick it, each completed hour is encrypted and uploaded. Older hours are not back-filled. If an upload fails, CAT retries after 2, 5, 10, 20, 30 and 60 minutes. Being offline or busy doesn't count as a failure.</li>
 <li><b>FHE HOURLY STATS DOWNLOAD</b>: once an hour, from 20 minutes past (after the uploads have landed), CAT runs the fleet job in the background. If it is busy or offline it tries again every 2 minutes, up to 3 runs an hour. You don't see progress; open VIEW LAST STATS for the new numbers.</li>
-<li>Both settings live on the board controller and survive restarts.</li>
+<li>Both settings live on CAT and survive restarts.</li>
 </ul>
 
 <h2 id="errors">Status and error messages<a class="anchor" href="#errors" aria-label="Link to this section">#</a></h2>
@@ -192,7 +187,7 @@
 <tr><td><span class="screen-text">Uploaded</span> / <span class="screen-text">Done</span></td><td>Success.</td></tr>
 <tr><td><span class="screen-text">Already uploaded</span></td><td>That hour was sent before. Nothing to do.</td></tr>
 <tr><td><span class="screen-text">No Wi-Fi</span></td><td>Connect to Wi-Fi first (<a href="mesh.html#wifi">how</a>).</td></tr>
-<tr><td><span class="screen-text">No token</span></td><td>No upload credentials are installed. Normal builds include demo credentials.</td></tr>
+<tr><td><span class="screen-text">No token</span></td><td>No upload credentials are installed.</td></tr>
 <tr><td><span class="screen-text">HTTP 401</span> (or another number)</td><td>The platform refused the request.</td></tr>
 <tr><td><span class="screen-text">Baochip busy</span></td><td>The crypto chip is still generating keys, which takes about 4 minutes after every start. Try again later.</td></tr>
 <tr><td><span class="screen-text">Busy</span></td><td>Another upload or fleet job is running.</td></tr>
@@ -201,8 +196,8 @@
 <tr><td><span class="screen-text">Job failed</span> / <span class="screen-text">Timeout</span></td><td>The platform job failed or took too long (the limit is 20 minutes).</td></tr>
 <tr><td><span class="screen-text">Decrypt failed</span> / <span class="screen-text">Baochip error</span></td><td>The crypto chip couldn't decrypt or summarise the result.</td></tr>
 <tr><td><span class="screen-text">Network error</span></td><td>The connection failed partway.</td></tr>
-<tr><td><span class="screen-text">Storage error</span></td><td>The board controller couldn't store the result.</td></tr>
-<tr><td><span class="screen-text">No reply</span> / <span class="screen-text">Not supported</span></td><td>The board controller didn't answer, or its firmware doesn't know this request.</td></tr>
+<tr><td><span class="screen-text">Storage error</span></td><td>CAT couldn't store the result.</td></tr>
+<tr><td><span class="screen-text">No reply</span> / <span class="screen-text">Not supported</span></td><td>CAT didn't answer, or its firmware doesn't know this request.</td></tr>
 </tbody>
 </table></div>
 
@@ -210,11 +205,10 @@
 <ul>
 <li><b>Encrypted in transit and at the server:</b> your CO2, PM2.5 and PN10 values for each hour, plus whether each reading was valid and how many readings passed fixed health thresholds.</li>
 <li><b>Visible to the server:</b> your device ID (until <a href="#zk-login">ZK logins</a> replace it), which hour the batch is for, when and how much you uploaded, and some plain bookkeeping (counts of valid readings and the units).</li>
-<li><b>Not protected in this demo:</b> because the key is shared and public, anyone with the project's source can decrypt your uploads. With only a few CATs taking part, the fleet average can also reveal a lot about each one.</li>
+<li><b>Not protected yet:</b> because the key is shared and public, anyone with the project's source can decrypt your uploads. With only a few CATs taking part, the fleet average can also reveal a lot about each one.</li>
 </ul>
-<p>Leave both hourly options off unless you are happy for your hourly air readings to be effectively public. The shared test key is a stopgap: MPC-based key management, now in development, is planned to take its place in a future update.</p>
+<p>Leave both hourly options off unless you are happy for your hourly air readings to be effectively public. MPC key management will replace the shared test key in a future update.</p>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="mesh.html"><small>Previous</small>Mesh and Wi-Fi</a><a class="next" href="settings.html"><small>Next</small>Settings</a></nav>
-<footer class="site">Screens were captured from the CAT desktop simulator, firmware <code>cat_v0.3_lora</code> at <code>47d7f593</code>.</footer>
 </article>
 </main>
 </div>
