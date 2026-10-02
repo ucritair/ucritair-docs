@@ -406,7 +406,15 @@ th {
 	border-bottom-width: 2px;
 }
 td.nowrap, th.nowrap { white-space: nowrap; }
+td:first-child .screen-text { white-space: nowrap; overflow-wrap: normal; }
 img.mark { display: block; width: 260px; max-width: 100%; border-radius: 4px; image-rendering: pixelated; }
+
+/* ------------------------------------------------------------ status lists */
+
+dl.status { margin: 16px 0 22px; border-top: 1px solid var(--rule); }
+dl.status dt { margin: 0; padding: 12px 0 4px; }
+dl.status dd { margin: 0; padding: 0 0 12px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+dl.status dt .screen-text { white-space: normal; }
 
 /* ------------------------------------------------------------ cards */
 

@@ -72,11 +72,11 @@
 <h3 id="node-messaging">Messaging<a class="anchor" href="#node-messaging" aria-label="Link to this section">#</a></h3>
 <p>CAT sends and receives encrypted messages and doodles, with other CATs and with LXMF apps on phones and computers. See <a href="chat.html">Chat</a>.</p>
 <h3 id="node-routing">Routing<a class="anchor" href="#node-routing" aria-label="Link to this section">#</a></h3>
-<p>CAT passes on traffic for other devices. A message between two people out of each other's range can hop through your CAT to get there.</p>
+<p>CAT is a Reticulum transport node. It forwards all Reticulum traffic for the network, so traffic between any two devices can travel through your CAT.</p>
 <h3 id="node-bridging">Bridging LoRa and IP<a class="anchor" href="#node-bridging" aria-label="Link to this section">#</a></h3>
 <p>When CAT is on Wi-Fi, it connects the LoRa radios around it to the Reticulum network on the internet. Anyone nearby with a LoRa radio, such as an RNode used with Sideband, can reach people anywhere through your CAT.</p>
 <h3 id="node-store-forward">Store and forward<a class="anchor" href="#node-store-forward" aria-label="Link to this section">#</a></h3>
-<p>CAT holds messages for people who are offline and delivers them when they reappear. As you carry it around, it picks up mail from the radio neighbours it meets, and passes it on when it connects to other mail nodes, such as its home hub.</p>
+<p>CAT is an LXMF propagation node. It stores LXMF messages for anyone who is offline, syncs them with other propagation nodes, and delivers them when the recipient reappears. As you carry it around, it picks up mail from the radio neighbours it meets, and passes it on when it connects to other mail nodes, such as its home hub.</p>
 <p>NTN (satellite) and BLE messaging are in development.</p>
 
 <h2 id="concepts">How the mesh works<a class="anchor" href="#concepts" aria-label="Link to this section">#</a></h2>
@@ -86,8 +86,8 @@
 <tr><td><b>LoRa</b></td><td>The long-range, low-power radio built into CAT. CATs within radio range talk to each other directly, with no phone network, Wi-Fi or internet needed.</td></tr>
 <tr><td><b>Reticulum</b></td><td>The networking system CAT uses. It finds paths between devices and encrypts everything end to end.</td></tr>
 <tr><td><b>LXMF</b></td><td>The message format on top of Reticulum, shared with apps like Sideband and NomadNet.</td></tr>
-<tr><td id="transport"><b>Transport node</b></td><td>A device that forwards other people's traffic. With it on, your CAT helps messages hop across the mesh.</td></tr>
-<tr><td id="propagation"><b>Propagation node</b></td><td>A mailbox. It stores messages for people who are offline and hands them over when they reconnect. Your CAT is one by default, and also uses one (its <b>mail node</b>) for messages it can't deliver directly.</td></tr>
+<tr><td id="transport"><b>Transport node</b></td><td>A node that forwards all Reticulum traffic for the whole network: packets, announces, path requests and links. Every CAT is a transport node by default.</td></tr>
+<tr><td id="propagation"><b>Propagation node</b></td><td>A node that propagates all LXMF messages: it stores messages for anyone who is offline, syncs them with other propagation nodes, and delivers them when the recipient reconnects. Every CAT is a propagation node by default, and uses one (its <b>mail node</b>) for its own messages that can't be delivered directly.</td></tr>
 <tr><td><b>TCP bridge</b> and <b>hubs</b></td><td>Over Wi-Fi, CAT connects to a public Reticulum hub on the internet. That links the CATs around you to the rest of the network, and lets you reach friends far away.</td></tr>
 <tr><td><b>Sanctuary</b></td><td>The project's home hub. CATs connect to it first and also use it as their default mail node.</td></tr>
 </tbody>
@@ -97,21 +97,23 @@
 <h2 id="mesh-page">The MESH page<a class="anchor" href="#mesh-page" aria-label="Link to this section">#</a></h2>
 <p>Settings &rarr; SETTINGS &rarr; MESH. The top of the window is a live status report; the rows below change your CAT's roles. Changes apply at once and are saved when you leave Settings.</p>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: The default setup: transport and propagation node on, mail via the home node, TCP bridge connected."><img src="assets/screens/mesh_main.png" width="640" height="480" loading="lazy" alt="The default setup: transport and propagation node on, mail via the home node, TCP bridge connected."></button><figcaption>The default setup: transport and propagation node on, mail via the home node, TCP bridge connected.</figcaption></figure>
-<div class="table-wrap"><table>
-<thead><tr><th>Status line</th><th>Meaning</th></tr></thead>
-<tbody>
-<tr><td><span class="screen-text">Transport: ON, 7 paths</span></td><td>Forwarding traffic; it knows 7 paths through the network. <span class="screen-text">off (leaf)</span> means it only handles its own traffic.</td></tr>
-<tr><td><span class="screen-text">Propagation node: SERVING, 2 held</span></td><td>Acting as a mailbox, holding 2 messages for others.</td></tr>
-<tr><td><span class="screen-text">Mail via: d4737137 (home)</span></td><td>The node that holds your outgoing mail when a friend is unreachable. <span class="screen-text">(home)</span> is Sanctuary; <span class="screen-text">fallback</span> means CAT picked another node because home is out of reach; <span class="screen-text">direct only</span> means MAIL NODE is off; <span class="screen-text">no node reachable</span> means it couldn't find one.</td></tr>
-<tr><td><span class="screen-text">TCP bridge: auto UP :4965</span></td><td>The internet link state: <span class="screen-text">UP</span>, <span class="screen-text">connecting</span>, <span class="screen-text">retrying</span>, <span class="screen-text">waiting for WiFi</span>, <span class="screen-text">WiFi is off</span>, <span class="screen-text">no host set</span> or <span class="screen-text">off</span>.</td></tr>
-<tr><td><span class="screen-text">Bridging LoRa/TCP: yes</span></td><td>Your CAT is joining the local radio mesh to the internet (transport on, bridge up and radio online).</td></tr>
-</tbody>
-</table></div>
+<dl class="status">
+<dt><span class="screen-text">Transport: ON, 7 paths</span></dt>
+<dd>CAT is a Reticulum transport node: it forwards all Reticulum traffic it receives (packets, announces, path requests and links) for every device on the network, and currently knows 7 paths. <span class="screen-text">Transport: off (leaf)</span> means CAT carries only its own traffic.</dd>
+<dt><span class="screen-text">Propagation node: SERVING, 2 held</span></dt>
+<dd>CAT is an LXMF propagation node: it accepts, stores and passes on LXMF messages for every LXMF user, and syncs them with other propagation nodes. It is holding 2 messages now.</dd>
+<dt><span class="screen-text">Mail via: d4737137 (home)</span></dt>
+<dd>The propagation node that takes your own outgoing mail when a friend can't be reached directly. <span class="screen-text">(home)</span> is Sanctuary. <span class="screen-text">fallback</span> means CAT picked another node because home is out of reach. <span class="screen-text">direct only</span> means MAIL NODE is off. <span class="screen-text">no node reachable</span> means CAT found none.</dd>
+<dt><span class="screen-text">TCP bridge: auto UP :4965</span></dt>
+<dd>The state of the internet link: <span class="screen-text">UP</span>, <span class="screen-text">connecting</span>, <span class="screen-text">retrying</span>, <span class="screen-text">waiting for WiFi</span>, <span class="screen-text">WiFi is off</span>, <span class="screen-text">no host set</span> or <span class="screen-text">off</span>.</dd>
+<dt><span class="screen-text">Bridging LoRa/TCP: yes</span></dt>
+<dd>CAT is joining the LoRa mesh and the internet: transport is on, the TCP bridge is up and the radio is online.</dd>
+</dl>
 <div class="table-wrap"><table>
 <thead><tr><th>Row</th><th>Default</th><th>What it does</th></tr></thead>
 <tbody>
-<tr><td><span class="screen-text">TRANSPORT NODE</span></td><td>On</td><td>Forward other CATs' traffic.</td></tr>
-<tr><td><span class="screen-text">PROPAGATION NODE</span></td><td>On</td><td>Keep mail for offline CATs.</td></tr>
+<tr><td><span class="screen-text">TRANSPORT NODE</span></td><td>On</td><td>Forward all Reticulum traffic for the network.</td></tr>
+<tr><td><span class="screen-text">PROPAGATION NODE</span></td><td>On</td><td>Store and propagate all LXMF messages.</td></tr>
 <tr><td><span class="screen-text">MAIL NODE: HOME</span></td><td>Home</td><td>Choose where your undeliverable mail goes. Press <kbd class="k round" title="A button">A</kbd> to cycle <b>HOME</b> &rarr; <b>AUTO</b> &rarr; <b>OFF</b> &rarr; HOME.</td></tr>
 <tr><td><span class="screen-text">TCP BRIDGE</span></td><td>&ndash;</td><td>The internet link window (below).</td></tr>
 <tr><td><span class="screen-text">RESET TO DEFAULTS</span></td><td>&ndash;</td><td>Asks <span class="screen-text">Restore default mesh settings?</span>. This also resets your device name, the Wi-Fi switch and the hub choice.</td></tr>
