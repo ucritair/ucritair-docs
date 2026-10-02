@@ -73,7 +73,7 @@
 </ul>
 
 <h2 id="fhe">What FHE means<a class="anchor" href="#fhe" aria-label="Link to this section">#</a></h2>
-<p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT locks its readings before they leave the device. The server adds up the locked readings from every CAT into a locked total without seeing any individual value. A key holder unlocks the total and turns it into an average.</p>
+<p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT encrypts its readings before they leave the device. The server adds up the encrypted readings from every CAT into an encrypted total without seeing any individual value. A key holder decrypts the total and turns it into an average.</p>
 <ol class="steps">
 <li><b>Measure.</b> Every 3 minutes CAT records CO2, PM2.5 and PN10 (the number of particles, not their weight).</li>
 <li><b>Encrypt.</b> After each full hour, the Baochip crypto chip packs that hour's 20 readings into one encrypted batch (about 3 minutes of work).</li>
