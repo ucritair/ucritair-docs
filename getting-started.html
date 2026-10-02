@@ -25,7 +25,7 @@
 <li><a href="index.html">Welcome</a>
 </li>
 <li><a href="getting-started.html" aria-current="page">Getting started</a>
-<ul class="toc"><li><a href="#hardware">The hardware</a></li><li><a href="#power">Power and charging</a></li><li><a href="#first-boot">First boot: set your time zone</a></li><li><a href="#home">The home screen</a></li><li><a href="#menus">Using menus</a></li><li><a href="#saving">How saving works (important)</a></li><li><a href="#sounds">Sounds and lights</a></li></ul>
+<ul class="toc"><li><a href="#hardware">The hardware</a></li><li><a href="#power">Power and charging</a></li><li><a href="#first-boot">First boot: set your time zone</a></li><li><a href="#home">The home screen</a></li><li><a href="#menus">Using menus</a></li><li><a href="#saving">How saving works</a></li><li><a href="#sounds">Sounds and lights</a></li></ul>
 </li>
 </ul>
 <h2>Apps</h2><ul>
@@ -59,7 +59,7 @@
 <main>
 <article class="content">
 <h1>Getting started</h1>
-<p class="lede">The hardware, turning CAT on and off, the first-boot time zone prompt, the home screen, and the one habit that keeps your data safe.</p>
+<p class="lede">The hardware, turning CAT on and off, the first-boot time zone prompt, the home screen, menus, and how saving works.</p>
 
 <h2 id="hardware">The hardware<a class="anchor" href="#hardware" aria-label="Link to this section">#</a></h2>
 <p>CAT has a 320&times;240 colour touch screen, eight buttons, a USB-C port, a microSD slot, a speaker, a set of air-quality sensors, a LoRa radio and Wi-Fi. A second, black-and-white e-paper screen shows the latest air readings even while the device is off.</p>
@@ -103,7 +103,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Settings → POWER."><img src="assets/screens/power_menu.png" width="640" height="480" loading="lazy" alt="Settings → POWER."></button><figcaption>Settings &rarr; POWER.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: POWER DOWN asks first. SLEEP does not."><img src="assets/screens/power_down_confirm.png" width="640" height="480" loading="lazy" alt="POWER DOWN asks first. SLEEP does not."></button><figcaption>POWER DOWN asks first. SLEEP does not.</figcaption></figure>
 </div>
-<div class="callout"><strong>Screen off is not power off</strong>When the screen dims and goes dark on its own, CAT keeps running: it still receives messages, relays traffic for other CATs and reads the sensors. The first tap or button press on a dark screen only wakes it and does nothing else.</div>
+<div class="callout"><strong>When the screen goes dark</strong>The screen dims and turns off after a while without input. CAT keeps running: it still receives messages, relays traffic for other CATs and reads the sensors. The first tap or button press on a dark screen only wakes it and does nothing else.</div>
 
 <h3 id="battery">Battery and charging<a class="anchor" href="#battery" aria-label="Link to this section">#</a></h3>
 <ul>
@@ -141,7 +141,7 @@
 </div>
 
 <h2 id="menus">Using menus<a class="anchor" href="#menus" aria-label="Link to this section">#</a></h2>
-<p>Settings and most sub-screens use the same list style. Once you know one, you know them all.</p>
+<p>Settings and most sub-screens use the same list style.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Do this</th><th>With buttons</th><th>With touch</th></tr></thead>
 <tbody>
@@ -157,8 +157,8 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: A window with a status line, three steppers and an action."><img src="assets/screens/settings_display.png" width="640" height="480" loading="lazy" alt="A window with a status line, three steppers and an action."></button><figcaption>A window with a status line, three steppers and an action.</figcaption></figure>
 </div>
 
-<h2 id="saving">How saving works (important)<a class="anchor" href="#saving" aria-label="Link to this section">#</a></h2>
-<p>CAT keeps your messages, contacts, settings and game progress in fast memory while it runs, and writes them to permanent storage only at certain moments. There is no automatic save every few minutes. If CAT loses power suddenly, or is reset, anything since the last save is lost.</p>
+<h2 id="saving">How saving works<a class="anchor" href="#saving" aria-label="Link to this section">#</a></h2>
+<p>CAT keeps your messages, contacts, settings and game progress in fast memory while it runs, and writes them to permanent storage at the moments listed below. If CAT loses power suddenly, or is reset, anything since the last save is lost.</p>
 <p>CAT saves when you:</p>
 <ul>
 <li>put it to sleep or power it down (Settings &rarr; POWER);</li>
@@ -168,10 +168,10 @@
 <li>reach 5% battery (automatic).</li>
 </ul>
 <p>While a save runs, a <span class="screen-text">Saving...</span> box covers the screen. An ordinary save takes about 4 seconds; a busy node can take 10 to 16 seconds. Don't unplug or reset during it.</p>
-<div class="callout tip"><strong>Good habit</strong>Use POWER &rarr; SLEEP instead of letting the battery run out, and use FORCE SAVE before plugging CAT into a computer for an update.</div>
+<div class="callout tip"><strong>Tip</strong>Use POWER &rarr; SLEEP instead of letting the battery run out, and use FORCE SAVE before plugging CAT into a computer for an update.</div>
 
 <h2 id="sounds">Sounds and lights<a class="anchor" href="#sounds" aria-label="Link to this section">#</a></h2>
-<p>CAT is mostly quiet. You hear the message chime (if you turn on <a href="settings.html#tone">NEW MESSAGE TONE</a>), a soft ambient loop in Explore, Party music, and game audio. There are no button clicks. The RGB LEDs only light up from the <a href="extras.html#party">Party</a> menu.</p>
+<p>CAT plays the message chime (with <a href="settings.html#tone">NEW MESSAGE TONE</a> on), an ambient loop in Explore, Party music, and game audio. The RGB LEDs light up from the <a href="extras.html#party">Party</a> menu.</p>
 <nav class="pager" aria-label="Previous and next page"><a class="prev" href="index.html"><small>Previous</small>Welcome</a><a class="next" href="dashboard.html"><small>Next</small>Dashboard</a></nav>
 </article>
 </main>

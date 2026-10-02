@@ -70,14 +70,14 @@
 </ul>
 
 <h2 id="peers">The peer list<a class="anchor" href="#peers" aria-label="Link to this section">#</a></h2>
-<p>Open the Chat tile (the radio) on the home screen. The top bar shows <span class="screen-text">CHAT</span>, the total unread count, <b>your own</b> name and the first 8 digits of your address, and the time. Comparing those 8 digits with a friend's screen is a quick way to check you have the right address.</p>
+<p>Open the Chat tile (the radio) on the home screen. The top bar shows <span class="screen-text">CHAT</span>, the total unread count, <b>your own</b> name and the first 8 digits of your address, and the time. Compare those 8 digits with a friend's screen to check you have the right address.</p>
 <p>Three tabs sit under the bar. Switch with <kbd class="k " title="D-pad left">◀</kbd> <kbd class="k " title="D-pad right">▶</kbd> or tap a tab.</p>
 <div class="shots">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Contacts: people you have saved. Unread first, then recent activity, then by name."><img src="assets/screens/chat_contacts.png" width="640" height="480" loading="lazy" alt="Contacts: people you have saved. Unread first, then recent activity, then by name."></button><figcaption>Contacts: people you have saved. Unread first, then recent activity, then by name.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Nearby: unsaved CATs heard directly over LoRa in the last half hour."><img src="assets/screens/chat_nearby.png" width="640" height="480" loading="lazy" alt="Nearby: unsaved CATs heard directly over LoRa in the last half hour."></button><figcaption>Nearby: unsaved CATs heard directly over LoRa in the last half hour.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Requests: conversations with addresses you haven&#x27;t saved, such as messages from strangers."><img src="assets/screens/chat_requests.png" width="640" height="480" loading="lazy" alt="Requests: conversations with addresses you haven&#x27;t saved, such as messages from strangers."></button><figcaption>Requests: conversations with addresses you haven't saved, such as messages from strangers.</figcaption></figure>
 </div>
-<p>Each row shows the name, the first 8 digits of the address, and either the number of messages or <span class="screen-text">saved</span> / <span class="screen-text">unsaved</span>. On the right, a black box counts unread messages. A small green dot means that CAT was heard announcing itself directly over LoRa since your CAT started. It doesn't promise the CAT is in range right now.</p>
+<p>Each row shows the name, the first 8 digits of the address, and either the number of messages or <span class="screen-text">saved</span> / <span class="screen-text">unsaved</span>. On the right, a black box counts unread messages. A small green dot means that CAT was heard announcing itself directly over LoRa since your CAT started.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Control</th><th>Action</th></tr></thead>
 <tbody>
@@ -112,7 +112,7 @@
 
 <h3 id="add-contact">Adding a contact<a class="anchor" href="#add-contact" aria-label="Link to this section">#</a></h3>
 <ul>
-<li><b>From Nearby:</b> ask your friend to announce (or just wait; CATs announce regularly). Their CAT appears on the Nearby tab. Highlight it and press <kbd class="k round" title="A button">A</kbd>, type a name, and save.</li>
+<li><b>From Nearby:</b> ask your friend to announce (CATs also announce regularly on their own). Their CAT appears on the Nearby tab. Highlight it and press <kbd class="k round" title="A button">A</kbd>, type a name, and save.</li>
 <li><b>By address:</b> <kbd class="k pill" title="START button">START</kbd> &rarr; <span class="screen-text">Add LXMF address</span>. Type the 32 digits on the keyboard's number page (upper or lower case; surrounding &lt; &gt; are fine) and press <span class="screen-text">NEXT</span>. Then type a friendly name, or leave it empty, and press <span class="screen-text">SAVE</span>.</li>
 <li><b>From Requests:</b> highlight the conversation, <kbd class="k pill" title="START button">START</kbd> &rarr; <span class="screen-text">Save contact</span>.</li>
 </ul>
@@ -148,7 +148,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: &quot;teh&quot; became &quot;the&quot;: the red underline and &quot;was: teh&quot; in the title show what changed."><img src="assets/screens/keyboard_autocorrect.png" width="640" height="480" loading="lazy" alt="&quot;teh&quot; became &quot;the&quot;: the red underline and &quot;was: teh&quot; in the title show what changed."></button><figcaption>"teh" became "the": the red underline and "was: teh" in the title show what changed.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Ready to send."><img src="assets/screens/keyboard_typed.png" width="640" height="480" loading="lazy" alt="Ready to send."></button><figcaption>Ready to send.</figcaption></figure>
 </div>
-<div class="callout tip"><strong>Short messages travel best</strong>A message of up to about 48 characters fits in a single LoRa packet. Longer messages are split and need a connection, so they are slower and more likely to be relayed.</div>
+<div class="callout tip"><strong>Message length</strong>A message of up to about 48 characters fits in a single LoRa packet. Longer messages are split and need a connection, so they are slower and more likely to be relayed.</div>
 
 <h2 id="delivery">Delivery marks<a class="anchor" href="#delivery" aria-label="Link to this section">#</a></h2>
 <p>Your bubbles show how far each message has got:</p>
@@ -159,7 +159,7 @@
 <tr><td>Small dot</td><td>Sending.</td><td><img class="mark" src="assets/screens/mark_sending.png" width="904" height="116" alt="A bubble with a small grey dot after the time" loading="lazy"></td></tr>
 <tr><td>One grey tick</td><td>Sent. Waiting for proof that it arrived.</td><td><img class="mark" src="assets/screens/mark_sent.png" width="904" height="116" alt="A bubble with one grey tick" loading="lazy"></td></tr>
 <tr><td>Two green ticks</td><td><b>Delivered</b>: your friend's CAT confirmed it.</td><td><img class="mark" src="assets/screens/mark_delivered.png" width="904" height="116" alt="A bubble with two green ticks" loading="lazy"></td></tr>
-<tr><td>One tick and a dot</td><td><b>Relayed</b>: a propagation node accepted it and will hand it over when your friend checks in. This is final; a second tick won't follow, and that is normal.</td><td>&ndash;</td></tr>
+<tr><td>One tick and a dot</td><td><b>Relayed</b>: a propagation node accepted it and will hand it over when your friend checks in. This is the final mark for a relayed message.</td><td>&ndash;</td></tr>
 <tr><td>Red plus</td><td>Failed.</td><td><img class="mark" src="assets/screens/mark_failed.png" width="904" height="116" alt="A bubble with a red plus sign" loading="lazy"></td></tr>
 </tbody>
 </table></div>

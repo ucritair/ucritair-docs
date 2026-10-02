@@ -89,10 +89,10 @@
 <tr><td><span class="screen-text">NOX</span></td><td>Nitrogen oxides (gas stoves, traffic). An index where about 1 is "normal".</td><td>index 0&ndash;500</td><td>Sensirion SGP41</td></tr>
 </tbody>
 </table></div>
-<div class="callout"><strong>Just after switching on</strong>The particle sensor needs about 10 seconds to spin up and the gas sensor about 45 seconds to condition. Until then the rows read <span class="screen-text">0.00</span>.</div>
+<div class="callout"><strong>After switching on</strong>The particle sensor needs about 10 seconds to spin up and the gas sensor about 45 seconds to condition. Until then the rows read <span class="screen-text">0.00</span>.</div>
 
 <h2 id="grading">How the grade is calculated<a class="anchor" href="#grading" aria-label="Link to this section">#</a></h2>
-<p>Each reading gets a score from 0 (worst) to 1 (best) by sliding between the breakpoints below. The overall grade is the plain average of six scores: the four sensors above plus temperature and humidity.</p>
+<p>Each reading gets a score from 0 (worst) to 1 (best) by sliding between the breakpoints below. The overall grade is the average of six scores: the four sensors above plus temperature and humidity.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Sensor</th><th>Perfect up to</th><th>Breakpoints (getting worse)</th><th>Worst at</th></tr></thead>
 <tbody>
@@ -106,11 +106,11 @@
 <thead><tr><th>Score</th><th>&ge; 0.93</th><th>0.90</th><th>0.87</th><th>0.83</th><th>0.80</th><th>0.77</th><th>0.73</th><th>0.70</th><th>0.67</th><th>0.65</th><th>&lt; 0.65</th></tr></thead>
 <tbody><tr><td>Grade</td><td>A</td><td>A-</td><td>B+</td><td>B</td><td>B-</td><td>C+</td><td>C</td><td>C-</td><td>D+</td><td>D</td><td>F</td></tr></tbody>
 </table></div>
-<p>The scale is strict on purpose. A single sensor drops to F at roughly these readings: CO2 above about 950 ppm, PM2.5 above about 10 &micro;g/m&sup3;, a VOC index above about 140, or a NOx index above about 75.</p>
+<p>A single sensor drops to F at roughly these readings: CO2 above about 950 ppm, PM2.5 above about 10 &micro;g/m&sup3;, a VOC index above about 140, or a NOx index above about 75.</p>
 <div class="callout"><strong>Temperature and humidity</strong>CAT has a temperature and humidity sensor, but its readings are not accurate enough yet, so they are hidden. Both count in the grade as a fixed, comfortable 24 &deg;C and 50% humidity. That nudges the overall grade up a little compared with the four sensors alone.</div>
 
 <h2 id="epaper">The e-paper air badge<a class="anchor" href="#epaper" aria-label="Link to this section">#</a></h2>
-<p>The separate black-and-white e-paper screen updates every 30 seconds, whatever the main screen is doing. It shows:</p>
+<p>The separate black-and-white e-paper screen updates every 30 seconds. It shows:</p>
 <ul>
 <li>a unicorn and a cloud whose moods follow the air (happy above 75%, sad below 50%, a smoke cloud below 25%);</li>
 <li>CO2 in ppm and PM2.5 in &micro;g/m&sup3; in large digits;</li>

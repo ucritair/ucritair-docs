@@ -43,7 +43,7 @@
 <li><a href="mesh.html">Mesh and Wi-Fi</a>
 </li>
 <li><a href="crypto.html" aria-current="page">Crypto: FHE and ZK</a>
-<ul class="toc"><li><a href="#baochip">The Baochip: CAT&#x27;s root of trust</a></li><li><a href="#fhe">What FHE means</a></li><li><a href="#zk">What zero-knowledge proofs are</a></li><li><a href="#zk-login">Anonymous logins and uploads in development</a></li><li><a href="#menu">The CRYPTO menu</a></li><li><a href="#upload">Uploading an hour</a></li><li><a href="#fleet">Fleet statistics</a></li><li><a href="#hourly">Hourly automation</a></li><li><a href="#errors">Status and error messages</a></li><li><a href="#privacy">Privacy in plain words</a></li></ul>
+<ul class="toc"><li><a href="#baochip">The Baochip: CAT&#x27;s root of trust</a></li><li><a href="#fhe">What FHE means</a></li><li><a href="#zk">What zero-knowledge proofs are</a></li><li><a href="#zk-login">Anonymous logins and uploads in development</a></li><li><a href="#menu">The CRYPTO menu</a></li><li><a href="#upload">Uploading an hour</a></li><li><a href="#fleet">Fleet statistics</a></li><li><a href="#hourly">Hourly automation</a></li><li><a href="#errors">Status and error messages</a></li><li><a href="#privacy">Privacy</a></li></ul>
 </li>
 </ul>
 <h2>Reference</h2><ul>
@@ -59,21 +59,21 @@
 <main>
 <article class="content">
 <h1>Crypto: encrypted statistics and anonymous proofs</h1>
-<p class="lede">CAT carries its own secure crypto chip. Today it encrypts your air readings so a server can compute fleet statistics without reading them. Next, it will prove that it is a genuine CAT without revealing which one.</p>
+<p class="lede">CAT has a secure crypto chip. It encrypts your air readings so a server can compute fleet statistics without reading them, and it is being set up to prove a CAT is genuine without revealing which one.</p>
 
 <div class="callout warn"><strong>Encrypted with a shared test key</strong>For now every CAT uses the same encryption key, and that key is published in the project's source code. Anyone with the source can decrypt any upload. Treat everything you upload as public. The device ID and the hour of each upload are also visible to the server.</div>
-<div class="callout tip"><strong>Coming in a future update: MPC key management</strong>Secure multi-party computation (MPC) is being developed to manage the decryption key. Instead of one shared key that anyone can use, the key will be split so that no single party can decrypt your readings on its own. It will replace the test key in a future update.</div>
+<div class="callout tip"><strong>MPC key management (in development)</strong>Secure multi-party computation (MPC) is being developed to manage the decryption key. The key will be split between several parties so that none of them can decrypt your readings alone. It will replace the test key in a future update.</div>
 
 <h2 id="baochip">The Baochip: CAT's root of trust<a class="anchor" href="#baochip" aria-label="Link to this section">#</a></h2>
 <p>Every CAT contains a <a href="https://www.baochip.com/">Baochip</a>, an open-hardware secure microcontroller running the <a href="https://github.com/betrusted-io/xous-core">Xous</a> microkernel. It is CAT's <b>root of trust</b>: the chip where secrets are generated and kept, and where the cryptography runs, separate from the processors that handle the screen, radio and Wi-Fi.</p>
 <ul>
-<li><b>Today</b> it generates the encryption keys after each start (the roughly 4-minute <span class="screen-text">Baochip busy</span> period), encrypts your hourly air readings, and decrypts fleet results (see <a href="#fhe">FHE</a> below).</li>
-<li><b>It runs the zero-knowledge prover</b> behind <a href="#zk-login">anonymous logins</a>.</li>
-<li><b>Next</b>, devices will be provisioned with a secret identity on the Baochip that never leaves it, used to prove membership without revealing who you are.</li>
+<li>It generates the encryption keys after each start (the roughly 4-minute <span class="screen-text">Baochip busy</span> period).</li>
+<li>It encrypts your hourly air readings and decrypts fleet results (see <a href="#fhe">FHE</a>).</li>
+<li>It runs the zero-knowledge prover for <a href="#zk-login">anonymous logins</a>, using a secret identity that is provisioned on the chip and stays there.</li>
 </ul>
 
 <h2 id="fhe">What FHE means<a class="anchor" href="#fhe" aria-label="Link to this section">#</a></h2>
-<p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT locks its readings before they leave the device. The server adds up the locked readings from every CAT, producing a locked total, and never sees a single value. Only a key holder can unlock the total and turn it into an average.</p>
+<p><b>Fully homomorphic encryption</b> (FHE) lets a computer do maths on data it cannot read. Your CAT locks its readings before they leave the device. The server adds up the locked readings from every CAT into a locked total without seeing any individual value. A key holder unlocks the total and turns it into an average.</p>
 <ol class="steps">
 <li><b>Measure.</b> Every 3 minutes CAT records CO2, PM2.5 and PN10 (the number of particles, not their weight).</li>
 <li><b>Encrypt.</b> After each full hour, the Baochip crypto chip packs that hour's 20 readings into one encrypted batch (about 3 minutes of work).</li>
@@ -84,10 +84,10 @@
 <p>Only CO2, PM2.5 and PN10 are uploaded. VOC, NOx, temperature, humidity, pressure, light and motion never leave the device. Readings wait unencrypted in CAT's storage until they are encrypted, and are deleted after 64 hours if never sent.</p>
 
 <h2 id="zk">What zero-knowledge proofs are<a class="anchor" href="#zk" aria-label="Link to this section">#</a></h2>
-<p>A <b>zero-knowledge proof</b> (ZK proof) convinces someone that a statement is true without telling them anything else. The classic picture is a cave with a locked door in the middle of a loop: if you can walk in one side and come out whichever side the other person names, every time, you have proved you know the door's code, without ever saying it.</p>
+<p>A <b>zero-knowledge proof</b> (ZK proof) convinces someone that a statement is true without telling them anything else. A common example is a ring-shaped cave with a locked door in the middle: if you can enter on one side and come out on whichever side the other person names, every time, they know you can open the door, but they never learn the code.</p>
 <p>For CAT the statement is: <i>"I hold a secret that belongs to one of the genuine, registered CATs."</i> The server checks the proof and learns that it is true. It doesn't learn the secret, or which of the registered CATs is asking.</p>
 <div class="table-wrap"><table>
-<thead><tr><th>Ingredient</th><th>In CAT's design</th></tr></thead>
+<thead><tr><th>Part</th><th>Description</th></tr></thead>
 <tbody>
 <tr><td><b>The secret</b></td><td>A random value provisioned into the Baochip. It never leaves the chip.</td></tr>
 <tr><td><b>The registry</b></td><td>A Merkle tree: every registered CAT contributes one hashed entry (a <i>leaf</i>), and the tree's single top hash (the <i>root</i>) stands for the whole set. Depth 31 holds over two billion devices.</td></tr>
@@ -115,13 +115,12 @@
 <li><b>Challenge.</b> To log in, CAT asks the server for a fresh nonce.</li>
 <li><b>Prove.</b> The Baochip proves "I am in the registry" for that nonce.</li>
 <li><b>Verify.</b> The server checks the proof against the registry's root and issues a short-lived access token tied to the session tag.</li>
-<li><b>Submit.</b> CAT uploads its encrypted readings with that token instead of its device ID. The server knows the data came from <i>some</i> genuine CAT, and nothing more.</li>
+<li><b>Submit.</b> CAT uploads its encrypted readings with that token instead of its device ID. The server learns only that the data came from a genuine CAT.</li>
 </ol>
 <p>Anonymous logins are in development. The Baochip already runs the prover; logins and uploads are not yet connected to it, so uploads still carry the device ID.</p>
-<p>Together, MPC key management and ZK logins aim at uploads that are encrypted, anonymous and still provably from real devices.</p>
 
 <h2 id="menu">The CRYPTO menu<a class="anchor" href="#menu" aria-label="Link to this section">#</a></h2>
-<p>Settings &rarr; CRYPTO. Only one job runs at a time; choosing a job that is already running just shows its progress again.</p>
+<p>Settings &rarr; CRYPTO. Only one job runs at a time; choosing a job that is already running shows its progress.</p>
 <div class="shots two">
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Before any statistics have been fetched."><img src="assets/screens/crypto_menu.png" width="640" height="480" loading="lazy" alt="Before any statistics have been fetched."></button><figcaption>Before any statistics have been fetched.</figcaption></figure>
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: With a report available and both hourly options ticked."><img src="assets/screens/crypto_toggles_on.png" width="640" height="480" loading="lazy" alt="With a report available and both hourly options ticked."></button><figcaption>With a report available and both hourly options ticked.</figcaption></figure>
@@ -182,7 +181,7 @@
 <figure class="shot"><button class="device" type="button" aria-label="Enlarge: Another job is running."><img src="assets/screens/crypto_busy.png" width="640" height="480" loading="lazy" alt="Another job is running."></button><figcaption>Another job is running.</figcaption></figure>
 </div>
 <div class="table-wrap"><table>
-<thead><tr><th>Message</th><th>Meaning and what to do</th></tr></thead>
+<thead><tr><th>Message</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td><span class="screen-text">Uploaded</span> / <span class="screen-text">Done</span></td><td>Success.</td></tr>
 <tr><td><span class="screen-text">Already uploaded</span></td><td>That hour was sent before. Nothing to do.</td></tr>
@@ -201,7 +200,7 @@
 </tbody>
 </table></div>
 
-<h2 id="privacy">Privacy in plain words<a class="anchor" href="#privacy" aria-label="Link to this section">#</a></h2>
+<h2 id="privacy">Privacy<a class="anchor" href="#privacy" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><b>Encrypted in transit and at the server:</b> your CO2, PM2.5 and PN10 values for each hour, plus whether each reading was valid and how many readings passed fixed health thresholds.</li>
 <li><b>Visible to the server:</b> your device ID (until <a href="#zk-login">ZK logins</a> replace it), which hour the batch is for, when and how much you uploaded, and some plain bookkeeping (counts of valid readings and the units).</li>
